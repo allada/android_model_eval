@@ -1,0 +1,19 @@
+{
+  "name": "eval_model",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-code": "^2.1.84",
+    "@devicefarmer/adbkit": "^3.3.8",
+    "@modelcontextprotocol/sdk": "^1.28.0",
+    "claude-code": "^1.0.0",
+    "zod": "^4.3.6"
+  }
+}
