@@ -68,4 +68,8 @@ export class AdbService {
   async loadSnapshot(name: string): Promise<void> {
     await this.emuCommand(`avd snapshot load ${name}`);
   }
+
+  async deleteSnapshot(name: string): Promise<void> {
+    await this.emuCommand(`avd snapshot delete ${name}`);
+  }
 }

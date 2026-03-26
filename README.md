@@ -16,11 +16,19 @@ Evaluate how well LLMs can operate an Android device using only native human int
 
 **1. MCP Server (`adb-mcp-bridge/`)**
 
-A stateless MCP server that exposes Android interactions as tools. Device sessions are managed at the tool level, not the transport level, so they survive MCP reconnects.
+Two servers: an MCP server (port 3000) for the LLM, and an admin server (port 3001) for the test harness.
 
+*Admin API (harness use):*
+| Endpoint | Description |
+|----------|-------------|
+| `POST /initDeviceSession` | Create a session, assign a device |
+| `POST /runAdbCommand` | Run raw adb shell command for scoring |
+| `POST /removeDeviceSession` | Clean up session + snapshot |
+
+*MCP Tools (LLM use):*
 | Tool | Description |
 |------|-------------|
-| `init-device-session` | Acquire a device, get session ID + screenshot URL + screen dimensions |
+| `get-device-session-info` | Get screen size + screenshot URL for a session |
 | `tap` | Tap a screen coordinate |
 | `swipe` | Swipe between two points |
 | `long-press` | Tap and hold |
@@ -32,11 +40,12 @@ Screenshots are served via `GET /screenshot/{deviceSessionId}` — the LLM fetch
 
 Drives the evaluation loop:
 
-1. Send the LLM a task prompt (e.g. "Open Settings and enable Dark Mode")
-2. The LLM calls `init-device-session` to get a device and screenshot URL
+1. Harness calls admin API `POST /initDeviceSession` to create a session
+2. Harness gives the `deviceSessionId` and task prompt to the LLM
 3. The LLM fetches screenshots and calls MCP tools to interact with the device
 4. The LLM either continues acting or declares the task complete
-5. Score whether the task was accomplished correctly
+5. Harness calls `POST /runAdbCommand` to check device state and score the result
+6. Harness calls `POST /removeDeviceSession` to clean up
 
 **3. Scoring**
 
@@ -63,7 +72,7 @@ Determine success by checking device state after the LLM finishes (e.g. query se
 bun install
 cd adb-mcp-bridge && bun install && cd ..
 
-# Start the MCP server
+# Start the MCP + admin servers
 ADB_DEVICES=emulator-5554 bun run adb-mcp-bridge/src/main.ts
 
 # Run the eval harness

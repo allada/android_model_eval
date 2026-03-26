@@ -4,94 +4,120 @@ import { AdbService } from "./adb_service.js";
 export interface SessionHandle {
   adb: AdbService;
   serial: string;
-  // Set to true by mutating tool handlers; triggers snapshot save on eviction.
+  dirty: boolean;
+}
+
+interface DeviceSession {
+  serial: string;
+  snapshotName: string | null;
   dirty: boolean;
 }
 
 interface DeviceState {
   serial: string;
-  currentSessionId: string | null;
+  adb: AdbService;
+  // The session that last used this device (whose state is currently on it).
+  activeSessionId: string | null;
 }
 
 export class DevicePool {
   private devices: Map<string, DeviceState>;
-  // TODO(allada) We have a memory leak here, but for this test I'm not going to worry
-  // about it. (ie: we never evict old sessions and have no way to do so).
-  private activeSessions = new Map<string, SessionHandle>();
-  // Insertion-ordered: oldest session is first. Used to pick eviction victim.
-  private sessionOrder: string[] = [];
+  // All sessions ever created. Never deleted (except via removeSession).
+  private sessions = new Map<string, DeviceSession>();
 
   constructor(serials: string[]) {
     this.devices = new Map(
-      serials.map((serial) => [serial, { serial, currentSessionId: null }]),
+      serials.map((serial) => [serial, { serial, adb: new AdbService(serial), activeSessionId: null }]),
     );
     console.error(`DevicePool initialized with ${serials.length} device(s): ${serials.join(", ")}`);
   }
 
-  /// Claim a device for a new session. Evicts the oldest session if all devices are busy.
-  async acquire(): Promise<{ deviceSessionId: string; handle: SessionHandle }> {
+  /// Register a new session on any available device.
+  initializeSession(): { deviceSessionId: string; handle: SessionHandle } {
     const id = randomUUID();
-    let device = this.findIdleDevice();
+    // Pick the first device. With session swapping, all devices are always
+    // available — there's no "busy" concept.
+    const device = this.devices.values().next().value!;
 
-    if (!device) {
-      // Evict the oldest session to free a device.
-      device = await this.evictOldest();
-    }
-
-    device.currentSessionId = id;
-    const handle: SessionHandle = {
-      adb: new AdbService(device.serial),
-      serial: device.serial,
-      dirty: false,
+    this.sessions.set(id, { serial: device.serial, snapshotName: null, dirty: false });
+    console.error(`Session ${id} registered on ${device.serial}`);
+    return {
+      deviceSessionId: id,
+      handle: { adb: device.adb, serial: device.serial, dirty: false },
     };
-    this.activeSessions.set(id, handle);
-    this.sessionOrder.push(id);
-    console.error(`Device session ${id} acquired ${device.serial}`);
-    return { deviceSessionId: id, handle };
   }
 
-  /// Look up the handle for an active device session.
-  getHandle(deviceSessionId: string): SessionHandle | undefined {
-    return this.activeSessions.get(deviceSessionId);
+  /// Ensure the device is in the right state for this session, then return the handle.
+  /// If another session currently owns the device, snapshots it first, then loads ours.
+  async ensureSession(deviceSessionId: string): Promise<SessionHandle> {
+    const session = this.sessions.get(deviceSessionId);
+    if (!session) throw new Error("Unknown device session. Call init-device-session first.");
+
+    const device = this.devices.get(session.serial)!;
+
+    if (device.activeSessionId === deviceSessionId) {
+      // Fast path: we already own the device.
+      return { adb: device.adb, serial: device.serial, dirty: session.dirty };
+    }
+
+    // Swap: save current owner's state, then load ours.
+    if (device.activeSessionId) {
+      const currentSession = this.sessions.get(device.activeSessionId);
+      if (currentSession?.dirty) {
+        const snapName = `mcp-session-${device.activeSessionId}`;
+        console.error(`Swapping out session ${device.activeSessionId}: saving ${snapName}`);
+        await device.adb.saveSnapshot(snapName);
+        currentSession.snapshotName = snapName;
+        currentSession.dirty = false;
+      }
+    }
+
+    // Load our snapshot if we have one.
+    if (session.snapshotName) {
+      console.error(`Swapping in session ${deviceSessionId}: loading ${session.snapshotName}`);
+      await device.adb.loadSnapshot(session.snapshotName);
+    }
+
+    device.activeSessionId = deviceSessionId;
+    return { adb: device.adb, serial: device.serial, dirty: session.dirty };
   }
 
-  // Snapshot and detach the oldest session, freeing its device.
-  private async evictOldest(): Promise<DeviceState> {
-    // Note(allada): Expensive, but this is not really high performance code or
-    // in the critical path.
-    const victimId = this.sessionOrder.shift();
-    if (!victimId) throw new Error("No sessions to evict");
+  /// Get the serial for an existing session.
+  getSessionSerial(deviceSessionId: string): string {
+    const session = this.sessions.get(deviceSessionId);
+    if (!session) throw new Error("Unknown device session.");
+    return session.serial;
+  }
 
-    const handle = this.activeSessions.get(victimId);
-    if (!handle) throw new Error("Eviction target has no handle");
+  /// Mark a session as dirty (device state was modified).
+  markDirty(deviceSessionId: string): void {
+    const session = this.sessions.get(deviceSessionId);
+    if (session) session.dirty = true;
+  }
 
-    this.activeSessions.delete(victimId);
+  /// Remove a session and delete its snapshot from the emulator.
+  async removeSession(deviceSessionId: string): Promise<void> {
+    const session = this.sessions.get(deviceSessionId);
+    if (!session) return;
 
-    const device = this.devices.get(handle.serial);
-    if (!device) throw new Error("Eviction target has no device");
+    const device = this.devices.get(session.serial);
 
-    if (handle.dirty) {
-      const snapName = `mcp-session-${victimId}`;
+    // If this session is the active one on its device, clear that.
+    if (device?.activeSessionId === deviceSessionId) {
+      device.activeSessionId = null;
+    }
+
+    // Delete the snapshot if one was saved.
+    if (session.snapshotName && device) {
       try {
-        console.error(`Saving snapshot ${snapName} on ${handle.serial}...`);
-        await handle.adb.saveSnapshot(snapName);
-        console.error(`Snapshot ${snapName} saved on ${handle.serial}`);
+        await device.adb.deleteSnapshot(session.snapshotName);
+        console.error(`Deleted snapshot ${session.snapshotName} on ${session.serial}`);
       } catch (err) {
-        console.error(`Failed to save snapshot during eviction of ${victimId}:`, err);
+        console.error(`Failed to delete snapshot ${session.snapshotName}:`, err);
       }
     }
 
-    console.error(`Evicted session ${victimId} from ${device.serial}`);
-    device.currentSessionId = null;
-    return device;
-  }
-
-  private findIdleDevice(): DeviceState | null {
-    for (const device of this.devices.values()) {
-      if (device.currentSessionId === null) {
-        return device;
-      }
-    }
-    return null;
+    this.sessions.delete(deviceSessionId);
+    console.error(`Session ${deviceSessionId} removed`);
   }
 }
