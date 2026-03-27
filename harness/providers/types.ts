@@ -10,6 +10,13 @@ export interface ProviderConfig {
   timeoutMs: number;
 }
 
+/** Token usage for a single test execution. */
+export interface TokenUsage {
+  inputTokens: number;
+  outputTokens: number;
+  thinkingTokens: number;
+}
+
 /** Result returned by a provider after executing a task. */
 export interface LlmExecutionResult {
   /** Error message if the LLM failed, undefined on success. */
@@ -20,6 +27,9 @@ export interface LlmExecutionResult {
 
   /** How long the LLM was active, in ms. */
   durationMs: number;
+
+  /** Token usage if parseable from the provider output. */
+  tokenUsage?: TokenUsage;
 }
 
 /**

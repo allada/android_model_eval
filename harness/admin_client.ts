@@ -45,6 +45,19 @@ export class AdminClient {
     return data.output;
   }
 
+  /** Load an emulator snapshot on the session's device. */
+  async loadSnapshot(deviceSessionId: string, name: string): Promise<void> {
+    const res = await fetch(`${this.baseUrl}/loadSnapshot`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ deviceSessionId, name }),
+    });
+    if (!res.ok) {
+      const body = await res.text();
+      throw new Error(`loadSnapshot failed (${res.status}): ${body}`);
+    }
+  }
+
   /** Remove a device session and clean up its snapshot. */
   async removeDeviceSession(deviceSessionId: string): Promise<void> {
     const res = await fetch(`${this.baseUrl}/removeDeviceSession`, {

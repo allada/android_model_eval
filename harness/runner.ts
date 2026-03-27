@@ -86,6 +86,10 @@ export interface RunnerOptions {
   mcpServerUrl: string;
   /** Admin client for session management + ADB commands. */
   admin: AdminClient;
+  /** Model name for the JSON report. */
+  model: string;
+  /** Effort level for the JSON report. */
+  effort?: string;
 }
 
 /**
@@ -95,7 +99,7 @@ export interface RunnerOptions {
 export async function runTests(
   tests: TestCase[],
   provider: LlmProvider,
-  { admin, mcpServerUrl }: RunnerOptions,
+  { admin, mcpServerUrl, model, effort }: RunnerOptions,
 ): Promise<TestRunSummary> {
   const runStart = Date.now();
   const results: TestResult[] = [];
@@ -106,13 +110,18 @@ export async function runTests(
 
     let error: string | undefined;
     let rawOutput: string | undefined;
+    let tokenUsage: import("./providers/types.ts").TokenUsage | undefined;
     let deviceSessionId: string | undefined;
 
     try {
-      // 0. CREATE SESSION
+      // 0. CREATE SESSION + RESTORE BASELINE
       const session = await admin.initDeviceSession();
       deviceSessionId = session.deviceSessionId;
       log.harness(`Session: ${deviceSessionId} (${session.deviceSerial})`);
+
+      log.harness("Loading baseline snapshot...");
+      await admin.loadSnapshot(deviceSessionId, "baseline");
+      log.harness("Baseline snapshot loaded.");
 
       const sessionAdminCtx = makeSessionAdminContext(admin, deviceSessionId);
 
@@ -141,17 +150,29 @@ export async function runTests(
         const result = await provider.execute(test.prompt, config);
         error = result.error;
         rawOutput = result.rawOutput;
+        tokenUsage = result.tokenUsage;
       } catch (err: any) {
         error = err.message;
         log.harnessError(`Execution error: ${err.message}`);
       }
 
-      // 3. VERIFY: check device state
+      // 3. VERIFY: check device state + raw output
       const checks: CheckResult[] = [];
       for (const verification of test.verifications) {
         const result = await runCheck(verification, sessionAdminCtx);
         checks.push(result);
         log.check(result.pass, `${result.name}: ${result.message}`);
+      }
+
+      if (test.rawOutputCheck && rawOutput) {
+        const result = test.rawOutputCheck(rawOutput);
+        const checkResult: CheckResult = {
+          name: "rawOutputCheck",
+          pass: result.pass,
+          message: result.message,
+        };
+        checks.push(checkResult);
+        log.check(checkResult.pass, `${checkResult.name}: ${checkResult.message}`);
       }
 
       const pass = !error && checks.every((c) => c.pass);
@@ -163,6 +184,7 @@ export async function runTests(
         checks,
         durationMs: Date.now() - testStart,
         error,
+        tokenUsage,
         rawOutput,
       });
 
@@ -192,6 +214,8 @@ export async function runTests(
 
   return {
     provider: provider.name,
+    model,
+    effort,
     totalTests: tests.length,
     passed: results.filter((r) => r.pass).length,
     failed: results.filter((r) => !r.pass).length,

@@ -56,6 +56,13 @@ export interface TestCase {
   /** Checks to run after the LLM completes or times out. */
   verifications: VerificationCheck[];
 
+  /**
+   * Optional check against the LLM's raw output (stdout+stderr).
+   * Useful for tests where the LLM needs to report information back
+   * (e.g. reading a verification code from the screen).
+   */
+  rawOutputCheck?: (rawOutput: string) => VerificationResult;
+
   /** Per-test timeout in milliseconds. Default: 120_000. */
   timeoutMs?: number;
 
@@ -71,6 +78,8 @@ export interface CheckResult {
   actualOutput?: string;
 }
 
+import type { TokenUsage } from "./providers/types.ts";
+
 /** Result of running a single test case. */
 export interface TestResult {
   testId: string;
@@ -80,6 +89,8 @@ export interface TestResult {
   checks: CheckResult[];
   durationMs: number;
   error?: string;
+  /** Token usage for this test. */
+  tokenUsage?: TokenUsage;
   /** Raw output from the LLM process. */
   rawOutput?: string;
 }
@@ -87,6 +98,8 @@ export interface TestResult {
 /** Aggregate results for a full test run. */
 export interface TestRunSummary {
   provider: string;
+  model: string;
+  effort?: string;
   totalTests: number;
   passed: number;
   failed: number;

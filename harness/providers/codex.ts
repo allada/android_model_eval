@@ -1,5 +1,5 @@
 import * as log from "../log.ts";
-import type { LlmProvider, LlmExecutionResult, ProviderConfig } from "./types.ts";
+import type { LlmProvider, LlmExecutionResult, ProviderConfig, TokenUsage } from "./types.ts";
 
 const MCP_SERVER_NAME = "eval-adb-mcp-bridge";
 
@@ -8,6 +8,8 @@ export interface CodexProviderOptions {
   model?: string;
   /** MCP server URL to register with codex. */
   mcpServerUrl: string;
+  /** Reasoning effort level (e.g. "low", "medium", "high"). */
+  effort?: string;
 }
 
 /**
@@ -20,12 +22,14 @@ export class CodexProvider implements LlmProvider {
   private model: string;
   private codexBin: string;
   private mcpServerUrl: string;
+  private effort?: string;
   private registered = false;
 
   constructor(options: CodexProviderOptions) {
     this.model = options.model ?? "gpt-5.4";
     this.codexBin = process.env.CODEX_BIN ?? "codex";
     this.mcpServerUrl = options.mcpServerUrl;
+    this.effort = options.effort;
     this.name = `codex-${this.model}`;
   }
 
@@ -64,10 +68,12 @@ export class CodexProvider implements LlmProvider {
 
     const args = [
       "exec",
+      "--json",
       "--model", this.model,
       "-c", "sandbox_workspace_write.network_access=true",
       "--skip-git-repo-check",
       "--disable", "shell_tool",
+      ...(this.effort ? ["-c", `model_reasoning_effort="${this.effort}"`] : []),
       fullPrompt,
     ];
 
@@ -82,7 +88,7 @@ export class CodexProvider implements LlmProvider {
         ? `Codex exited with code ${exitCode}`
         : undefined;
 
-    return { error, durationMs, rawOutput: stdout + stderr };
+    return { error, durationMs, rawOutput: stdout + stderr, tokenUsage: parseTokenUsage(stdout) };
   }
 
   private async spawn(
@@ -123,4 +129,32 @@ export class CodexProvider implements LlmProvider {
 
     return { exitCode: exitCode ?? 1, stdout, stderr };
   }
+}
+
+/**
+ * Parse token usage from Codex's --json JSONL output.
+ * Codex emits events with usage info; we sum across all events.
+ */
+function parseTokenUsage(stdout: string): TokenUsage | undefined {
+  const usage: TokenUsage = { inputTokens: 0, outputTokens: 0, thinkingTokens: 0 };
+  let found = false;
+
+  for (const line of stdout.split("\n")) {
+    if (!line.trim()) continue;
+    try {
+      const event = JSON.parse(line);
+      // Codex JSONL events may include usage at various levels
+      const u = event.usage ?? event.response?.usage;
+      if (u) {
+        usage.inputTokens += u.input_tokens ?? u.prompt_tokens ?? 0;
+        usage.outputTokens += u.output_tokens ?? u.completion_tokens ?? 0;
+        usage.thinkingTokens += u.thinking_tokens ?? u.reasoning_tokens ?? 0;
+        found = true;
+      }
+    } catch {
+      // Not JSON, skip
+    }
+  }
+
+  return found ? usage : undefined;
 }

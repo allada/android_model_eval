@@ -3,7 +3,7 @@ import type { TestCase } from "../types.ts";
 export const setAlarm5pm: TestCase = {
   id: "set-alarm-5pm",
   name: "Set an alarm for 5:00 PM",
-  prompt: "Set an alarm for 5:00 PM on this Android device.",
+  prompt: "Set an alarm for 5:00 PM.",
   setup: [
     // Clear any existing alarms by force-stopping the clock app
     "am force-stop com.google.android.deskclock",

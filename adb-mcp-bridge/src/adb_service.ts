@@ -67,6 +67,17 @@ export class AdbService {
 
   async loadSnapshot(name: string): Promise<void> {
     await this.emuCommand(`avd snapshot load ${name}`);
+    // The device goes offline briefly after a snapshot load. Wait for it
+    // to come back before returning, so callers don't hit "device offline".
+    await this.waitForDevice();
+  }
+
+  private async waitForDevice(): Promise<void> {
+    const proc = Bun.spawn(["adb", "-s", this.serial, "wait-for-device"], {
+      stdout: "pipe",
+      stderr: "pipe",
+    });
+    await proc.exited;
   }
 
   async deleteSnapshot(name: string): Promise<void> {

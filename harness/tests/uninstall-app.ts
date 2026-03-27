@@ -11,7 +11,7 @@ import { packageInstalled } from "../verification/checks.ts";
 export const uninstallCalculator: TestCase = {
   id: "uninstall-calculator",
   name: "Uninstall the Calculator app",
-  prompt: "Uninstall the Calculator app from this Android sessionAdminCtx.",
+  prompt: "Uninstall the Calculator app.",
   setup: [
     // Ensure the calculator is installed (re-install if previously removed)
     async (sessionAdminCtx) => {

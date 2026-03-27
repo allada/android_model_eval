@@ -35,7 +35,7 @@ export function testResult(pass: boolean): void {
   console.log(`${CYAN}[harness]${RESET} Result: ${msg}`);
 }
 
-const MAX_MODEL_LINE_LENGTH = 200;
+const MAX_MODEL_LINE_LENGTH = 500;
 
 /**
  * Write a chunk of LLM output to stdout with a dim prefix.
@@ -45,7 +45,7 @@ export function modelChunk(chunk: Uint8Array): void {
   const text = new TextDecoder().decode(chunk);
   const lines = text.split("\n");
   for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
+    const line = lines[i]!;
     if (i === lines.length - 1 && line === "") continue;
     const display = line.length > MAX_MODEL_LINE_LENGTH
       ? line.slice(0, MAX_MODEL_LINE_LENGTH) + "..."

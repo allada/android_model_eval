@@ -38,7 +38,8 @@ export async function writeJsonReport(
   await mkdir(resultsDir, { recursive: true });
 
   const timestamp = summary.startedAt.replace(/[:.]/g, "-");
-  const filename = `${timestamp}-${summary.provider}.json`;
+  const effortSuffix = summary.effort ? `-${summary.effort}` : "";
+  const filename = `${timestamp}-${summary.provider}${effortSuffix}.json`;
   const filepath = join(resultsDir, filename);
 
   await writeFile(filepath, JSON.stringify(summary, null, 2));

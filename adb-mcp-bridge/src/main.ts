@@ -72,9 +72,9 @@ function createServer(pool: DevicePool): McpServer {
       outputSchema: sessionInfoSchema,
     },
     async ({ deviceSessionId }) => {
-      const serial = pool.getSessionSerial(deviceSessionId);
-      const handle = await pool.ensureSession(deviceSessionId);
-      const structuredContent = await buildSessionInfo(deviceSessionId, handle.serial, handle.adb);
+      const structuredContent = await pool.withSession(deviceSessionId, (handle) =>
+        buildSessionInfo(deviceSessionId, handle.serial, handle.adb),
+      );
       return { content: [], structuredContent };
     },
   );
@@ -88,10 +88,12 @@ function createServer(pool: DevicePool): McpServer {
       },
     },
     async ({ deviceSessionId }) => {
-      const handle = await pool.ensureSession(deviceSessionId);
-      const png = await handle.adb.screenshot();
+      const base64 = await pool.withSession(deviceSessionId, async (handle) => {
+        const png = await handle.adb.screenshot();
+        return png.toString("base64");
+      });
       return {
-        content: [{ type: "image", data: png.toString("base64"), mimeType: "image/png" }],
+        content: [{ type: "image", data: base64, mimeType: "image/png" }],
       };
     },
   );
@@ -127,8 +129,7 @@ function createServer(pool: DevicePool): McpServer {
       },
     },
     async ({ deviceSessionId, x, y }) => {
-      const handle = await pool.ensureSession(deviceSessionId);
-      await handle.adb.tap(x, y);
+      await pool.withSession(deviceSessionId, (handle) => handle.adb.tap(x, y));
       pool.markDirty(deviceSessionId);
       return { content: [], structuredContent: { success: true } };
     },
@@ -151,8 +152,7 @@ function createServer(pool: DevicePool): McpServer {
       },
     },
     async ({ deviceSessionId, x1, y1, x2, y2, durationMs }) => {
-      const handle = await pool.ensureSession(deviceSessionId);
-      await handle.adb.swipe(x1, y1, x2, y2, durationMs);
+      await pool.withSession(deviceSessionId, (handle) => handle.adb.swipe(x1, y1, x2, y2, durationMs));
       pool.markDirty(deviceSessionId);
       return { content: [], structuredContent: { success: true } };
     },
@@ -173,8 +173,7 @@ function createServer(pool: DevicePool): McpServer {
       },
     },
     async ({ deviceSessionId, x, y, durationMs }) => {
-      const handle = await pool.ensureSession(deviceSessionId);
-      await handle.adb.longPress(x, y, durationMs);
+      await pool.withSession(deviceSessionId, (handle) => handle.adb.longPress(x, y, durationMs));
       pool.markDirty(deviceSessionId);
       return { content: [], structuredContent: { success: true } };
     },
@@ -195,9 +194,8 @@ function createServer(pool: DevicePool): McpServer {
       },
     },
     async ({ deviceSessionId, key }) => {
-      const handle = await pool.ensureSession(deviceSessionId);
       const keycode = `KEYCODE_${key}`;
-      await handle.adb.keyEvent(key);
+      await pool.withSession(deviceSessionId, (handle) => handle.adb.keyEvent(key));
       pool.markDirty(deviceSessionId);
       return { content: [], structuredContent: { success: true, keycode } };
     },
@@ -218,6 +216,7 @@ async function main() {
   // MCP server (port 3000) — used by the LLM.
   Bun.serve({
     port: PORT,
+    idleTimeout: 120, // Snapshot swaps can take a while.
     async fetch(req) {
       const url = new URL(req.url);
 
@@ -225,8 +224,7 @@ async function main() {
       const screenshotMatch = url.pathname.match(/^\/screenshot\/([a-f0-9-]+)$/);
       if (screenshotMatch && req.method === "GET") {
         try {
-          const handle = await pool.ensureSession(screenshotMatch[1]);
-          const png = await handle.adb.screenshot();
+          const png = await pool.withSession(screenshotMatch[1], (handle) => handle.adb.screenshot());
           return new Response(new Uint8Array(png), { headers: { "Content-Type": "image/png" } });
         } catch {
           return new Response("Unknown device session", { status: 404 });
@@ -244,6 +242,7 @@ async function main() {
   // Admin server (port 3001) — used by the test harness.
   Bun.serve({
     port: ADMIN_PORT,
+    idleTimeout: 120,
     async fetch(req) {
       const url = new URL(req.url);
 
@@ -259,10 +258,21 @@ async function main() {
             if (!body.deviceSessionId || !body.command) {
               return jsonResponse({ error: "deviceSessionId and command required" }, 400);
             }
-            const handle = await pool.ensureSession(body.deviceSessionId);
-            const output = await handle.adb.shell(body.command);
+            const output = await pool.withSession(body.deviceSessionId, (handle) =>
+              handle.adb.shell(body.command),
+            );
             pool.markDirty(body.deviceSessionId);
             return jsonResponse({ output });
+          }
+          case "/loadSnapshot": {
+            const body = await req.json() as { deviceSessionId: string; name: string };
+            if (!body.deviceSessionId || !body.name) {
+              return jsonResponse({ error: "deviceSessionId and name required" }, 400);
+            }
+            await pool.withSession(body.deviceSessionId, (handle) =>
+              handle.adb.loadSnapshot(body.name),
+            );
+            return jsonResponse({ success: true });
           }
           case "/removeDeviceSession": {
             const body = await req.json() as { deviceSessionId: string };
