@@ -1,4 +1,5 @@
-import { AdbService } from "../adb-mcp-bridge/src/adb_service.ts";
+import { AdminClient } from "./admin_client.ts";
+import * as log from "./log.ts";
 import type { LlmProvider, ProviderConfig } from "./providers/types.ts";
 import type {
   TestCase,
@@ -6,35 +7,40 @@ import type {
   TestRunSummary,
   CheckResult,
   VerificationCheck,
+  SessionAdminContext,
 } from "./types.ts";
 
 const DEFAULT_TIMEOUT_MS = 120_000;
 
 /** Common setup commands run before every test. */
-const COMMON_SETUP = [
-  "input keyevent WAKEUP",
-  "input keyevent MENU",       // dismiss lock screen
-  "input keyevent HOME",
+const COMMON_SETUP: string[] = [
+  // "input keyevent WAKEUP",
+  // "input keyevent MENU",       // dismiss lock screen
+  // "input keyevent HOME",
 ];
 
-/** Pause for device animations to settle. */
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/** Create a SessionAdminContext backed by the admin API for a specific session. */
+function makeSessionAdminContext(admin: AdminClient, sessionId: string): SessionAdminContext {
+  return {
+    adbShell: (command: string) => admin.runAdbCommand(sessionId, command),
+  };
 }
 
 /** Execute a single verification check and return the result. */
 async function runCheck(
   check: VerificationCheck,
-  adb: AdbService,
+  sessionAdminCtx: SessionAdminContext,
 ): Promise<CheckResult> {
   try {
-    // Get command output
     const output =
       typeof check.command === "string"
-        ? (await adb.shell(check.command)).trim()
-        : await check.command(adb);
+        ? (await sessionAdminCtx.adbShell(check.command)).trim()
+        : await check.command(sessionAdminCtx);
 
-    // Evaluate against expected
     if (typeof check.expected === "string") {
       const pass = output === check.expected;
       return {
@@ -59,7 +65,6 @@ async function runCheck(
       };
     }
 
-    // Function validator
     const result = check.expected(output);
     return {
       name: check.name,
@@ -77,52 +82,93 @@ async function runCheck(
 }
 
 export interface RunnerOptions {
-  /** URL of the running adb-mcp-bridge server. */
+  /** URL of the MCP server (port 3000). Passed to the LLM provider. */
   mcpServerUrl: string;
-  /** Device serial for setup/verification ADB commands (e.g. "emulator-5554"). */
-  deviceSerial: string;
+  /** Admin client for session management + ADB commands. */
+  admin: AdminClient;
 }
 
 /**
  * Runs test cases sequentially against a given LLM provider.
- * Returns a summary of all results.
+ * Each test gets its own device session via the admin API.
  */
 export async function runTests(
   tests: TestCase[],
   provider: LlmProvider,
-  options: RunnerOptions,
+  { admin, mcpServerUrl }: RunnerOptions,
 ): Promise<TestRunSummary> {
-  const startedAt = new Date().toISOString();
   const runStart = Date.now();
   const results: TestResult[] = [];
 
-  // Create an AdbService for setup/verification (separate from MCP server sessions).
-  const adb = new AdbService(options.deviceSerial);
-
   for (const test of tests) {
     const testStart = Date.now();
-    console.log(`\n--- Running: ${test.name} (${test.id}) ---`);
+    log.testHeader(test.name, test.id);
 
-    let timedOut = false;
     let error: string | undefined;
+    let rawOutput: string | undefined;
+    let deviceSessionId: string | undefined;
 
-    // 1. SETUP: common + test-specific
     try {
+      // 0. CREATE SESSION
+      const session = await admin.initDeviceSession();
+      deviceSessionId = session.deviceSessionId;
+      log.harness(`Session: ${deviceSessionId} (${session.deviceSerial})`);
+
+      const sessionAdminCtx = makeSessionAdminContext(admin, deviceSessionId);
+
+      // 1. SETUP: common + test-specific
       for (const cmd of COMMON_SETUP) {
-        await adb.shell(cmd);
+        await sessionAdminCtx.adbShell(cmd);
       }
-      await sleep(1000);
 
       for (const step of test.setup) {
         if (typeof step === "string") {
-          await adb.shell(step);
+          log.harness(`Setup: ${step}`);
+          await sessionAdminCtx.adbShell(step);
         } else {
-          await step(adb);
+          await step(sessionAdminCtx);
         }
       }
-      await sleep(500);
+
+      // 2. EXECUTE: let the LLM do its thing
+      const config: ProviderConfig = {
+        mcpServerUrl,
+        deviceSessionId,
+        timeoutMs: test.timeoutMs ?? DEFAULT_TIMEOUT_MS,
+      };
+
+      try {
+        const result = await provider.execute(test.prompt, config);
+        error = result.error;
+        rawOutput = result.rawOutput;
+      } catch (err: any) {
+        error = err.message;
+        log.harnessError(`Execution error: ${err.message}`);
+      }
+
+      // 3. VERIFY: check device state
+      const checks: CheckResult[] = [];
+      for (const verification of test.verifications) {
+        const result = await runCheck(verification, sessionAdminCtx);
+        checks.push(result);
+        log.check(result.pass, `${result.name}: ${result.message}`);
+      }
+
+      const pass = !error && checks.every((c) => c.pass);
+      results.push({
+        testId: test.id,
+        testName: test.name,
+        provider: provider.name,
+        pass,
+        checks,
+        durationMs: Date.now() - testStart,
+        error,
+        rawOutput,
+      });
+
+      log.testResult(pass);
     } catch (err: any) {
-      console.error(`  Setup failed: ${err.message}`);
+      log.harnessError(`Test failed: ${err.message}`);
       results.push({
         testId: test.id,
         testName: test.name,
@@ -130,69 +176,28 @@ export async function runTests(
         pass: false,
         checks: [],
         durationMs: Date.now() - testStart,
-        timedOut: false,
-        error: `Setup failed: ${err.message}`,
+        error: err.message,
       });
-      continue;
-    }
-
-    // 2. EXECUTE: let the LLM do its thing
-    const timeoutMs = test.timeoutMs ?? DEFAULT_TIMEOUT_MS;
-    const config: ProviderConfig = {
-      mcpServerUrl: options.mcpServerUrl,
-      timeoutMs,
-    };
-
-    try {
-      const result = await provider.execute(test.prompt, config);
-      if (!result.completedSuccessfully) {
-        timedOut = true;
+    } finally {
+      // 4. CLEANUP: remove session
+      if (deviceSessionId) {
+        try {
+          await admin.removeDeviceSession(deviceSessionId);
+        } catch (err: any) {
+          log.harnessError(`Cleanup failed: ${err.message}`);
+        }
       }
-      if (result.finalOutput) {
-        console.log(`  LLM output: ${result.finalOutput.slice(0, 200)}`);
-      }
-    } catch (err: any) {
-      error = err.message;
-      console.error(`  Execution error: ${err.message}`);
     }
-
-    // 3. VERIFY: check device state
-    await sleep(1000); // let any final animations settle
-    const checks: CheckResult[] = [];
-    for (const check of test.verifications) {
-      const result = await runCheck(check, adb);
-      checks.push(result);
-      const icon = result.pass ? "PASS" : "FAIL";
-      console.log(`  [${icon}] ${result.name}: ${result.message}`);
-    }
-
-    // 4. TEARDOWN
-    await adb.shell("input keyevent HOME");
-
-    const pass = !error && !timedOut && checks.every((c) => c.pass);
-    results.push({
-      testId: test.id,
-      testName: test.name,
-      provider: provider.name,
-      pass,
-      checks,
-      durationMs: Date.now() - testStart,
-      timedOut,
-      error,
-    });
-
-    console.log(`  Result: ${pass ? "PASSED" : "FAILED"}`);
   }
 
-  const completedAt = new Date().toISOString();
   return {
     provider: provider.name,
     totalTests: tests.length,
     passed: results.filter((r) => r.pass).length,
     failed: results.filter((r) => !r.pass).length,
     results,
-    startedAt,
-    completedAt,
+    startedAt: new Date(runStart).toISOString(),
+    completedAt: new Date().toISOString(),
     totalDurationMs: Date.now() - runStart,
   };
 }

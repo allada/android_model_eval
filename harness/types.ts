@@ -1,9 +1,18 @@
-import type { AdbService } from "../adb-mcp-bridge/src/adb_service.ts";
+import type { AdminClient } from "./admin_client.ts";
 
 /** Result from a custom verification function. */
 export interface VerificationResult {
   pass: boolean;
   message: string;
+}
+
+/**
+ * A thin shell interface used by setup/verification steps.
+ * Backed by the admin API's runAdbCommand endpoint.
+ */
+export interface SessionAdminContext {
+  /** Run an ADB shell command and return stdout. */
+  adbShell(command: string): Promise<string>;
 }
 
 /** A single check to run against device state after the LLM finishes. */
@@ -13,9 +22,9 @@ export interface VerificationCheck {
 
   /**
    * ADB shell command (string) or async function returning command output.
-   * Strings are executed via `adb.shell(command)`.
+   * Strings are executed via the admin API's runAdbCommand.
    */
-  command: string | ((adb: AdbService) => Promise<string>);
+  command: string | ((sessionAdminCtx: SessionAdminContext) => Promise<string>);
 
   /**
    * How to validate the command output:
@@ -39,10 +48,10 @@ export interface TestCase {
 
   /**
    * Commands to run before the LLM starts, putting the device in a known state.
-   * Strings are executed via `adb.shell()`. Functions receive the AdbService.
+   * Strings are executed via the admin API. Functions receive a SessionAdminContext.
    * Executed sequentially.
    */
-  setup: Array<string | ((adb: AdbService) => Promise<void>)>;
+  setup: Array<string | ((sessionAdminCtx: SessionAdminContext) => Promise<void>)>;
 
   /** Checks to run after the LLM completes or times out. */
   verifications: VerificationCheck[];
@@ -70,8 +79,9 @@ export interface TestResult {
   pass: boolean;
   checks: CheckResult[];
   durationMs: number;
-  timedOut: boolean;
   error?: string;
+  /** Raw output from the LLM process. */
+  rawOutput?: string;
 }
 
 /** Aggregate results for a full test run. */

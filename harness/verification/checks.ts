@@ -1,5 +1,4 @@
-import type { AdbService } from "../../adb-mcp-bridge/src/adb_service.ts";
-import type { VerificationCheck, VerificationResult } from "../types.ts";
+import type { SessionAdminContext, VerificationCheck, VerificationResult } from "../types.ts";
 
 /** Check that an Android setting has a specific value. */
 export function settingEquals(
@@ -55,17 +54,15 @@ export function shellMatches(
   return { name, command, expected: pattern };
 }
 
-/** Arbitrary async verification using the AdbService directly. */
+/** Arbitrary async verification using the device shell directly. */
 export function custom(
   name: string,
-  fn: (adb: AdbService) => Promise<VerificationResult>,
+  fn: (sessionAdminCtx: SessionAdminContext) => Promise<VerificationResult>,
 ): VerificationCheck {
   return {
     name,
-    command: async (adb) => {
-      // Store the result on a side channel — the runner will call expected()
-      // with this stringified result.
-      const result = await fn(adb);
+    command: async (sessionAdminCtx) => {
+      const result = await fn(sessionAdminCtx);
       return JSON.stringify(result);
     },
     expected: (output: string): VerificationResult => {

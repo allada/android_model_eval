@@ -76,7 +76,7 @@ cd adb-mcp-bridge && bun install && cd ..
 ADB_DEVICES=emulator-5554 bun run adb-mcp-bridge/src/main.ts
 
 # Run the eval harness
-bun run index.ts --provider openai --test airplane-mode-on
+bun run index.ts --provider codex
 ```
 
 ## Roadmap

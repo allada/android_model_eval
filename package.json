@@ -11,9 +11,8 @@
   },
   "dependencies": {
     "@anthropic-ai/claude-code": "^2.1.84",
-    "@devicefarmer/adbkit": "^3.3.8",
-    "@modelcontextprotocol/sdk": "^1.28.0",
+    "@openai/codex": "^0.116.0",
     "claude-code": "^1.0.0",
-    "zod": "^4.3.6"
+    "codex": "^0.2.3"
   }
 }

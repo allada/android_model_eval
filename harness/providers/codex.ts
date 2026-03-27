@@ -1,99 +1,126 @@
-import { writeFile, unlink, mkdtemp } from "node:fs/promises";
-import { join } from "node:path";
-import { tmpdir } from "node:os";
+import * as log from "../log.ts";
 import type { LlmProvider, LlmExecutionResult, ProviderConfig } from "./types.ts";
 
+const MCP_SERVER_NAME = "eval-adb-mcp-bridge";
+
 export interface CodexProviderOptions {
-  /** Model to use (e.g. "o4-mini", "o3"). Default: "o4-mini". */
+  /** Model to use. Default: "gpt-5.4". */
   model?: string;
-  /** Path to the codex binary. Default: "codex". */
-  codexBin?: string;
+  /** MCP server URL to register with codex. */
+  mcpServerUrl: string;
 }
 
 /**
- * Provider that spawns the Codex CLI with native MCP server support.
- * Codex connects to the MCP server directly — no API bridging needed.
+ * Provider that uses the Codex CLI with native MCP server support.
+ * Registers the MCP server via `codex mcp add` on setup,
+ * runs tasks via `codex exec`, and cleans up on teardown.
  */
 export class CodexProvider implements LlmProvider {
   readonly name: string;
   private model: string;
   private codexBin: string;
+  private mcpServerUrl: string;
+  private registered = false;
 
-  constructor(options: CodexProviderOptions = {}) {
-    this.model = options.model ?? "o4-mini";
-    this.codexBin = options.codexBin ?? "codex";
+  constructor(options: CodexProviderOptions) {
+    this.model = options.model ?? "gpt-5.4";
+    this.codexBin = process.env.CODEX_BIN ?? "codex";
+    this.mcpServerUrl = options.mcpServerUrl;
     this.name = `codex-${this.model}`;
+  }
+
+  /** Register the MCP server with codex. Call before first execute(). */
+  async setup(): Promise<void> {
+    // Remove any stale registration first
+    await this.spawn(["mcp", "remove", MCP_SERVER_NAME]).catch(() => {});
+    const { exitCode, stderr } = await this.spawn([
+      "mcp", "add", "--url", this.mcpServerUrl, MCP_SERVER_NAME,
+    ]);
+    if (exitCode !== 0) {
+      throw new Error(`Failed to register MCP server: ${stderr}`);
+    }
+    this.registered = true;
+  }
+
+  /** Unregister the MCP server from codex. Call after all tests. */
+  async teardown(): Promise<void> {
+    if (!this.registered) return;
+    await this.spawn(["mcp", "remove", MCP_SERVER_NAME]).catch(() => {});
+    this.registered = false;
   }
 
   async execute(prompt: string, config: ProviderConfig): Promise<LlmExecutionResult> {
     const start = Date.now();
 
-    // Write a temporary MCP config file pointing to the running server
-    const tmpDir = await mkdtemp(join(tmpdir(), "eval-harness-"));
-    const mcpConfigPath = join(tmpDir, "mcp.json");
-    await writeFile(
-      mcpConfigPath,
-      JSON.stringify({
-        mcpServers: {
-          "adb-mcp-bridge": {
-            type: "http",
-            url: config.mcpServerUrl,
-          },
-        },
-      }),
-    );
+    const fullPrompt = [
+      "You are controlling an Android device via MCP tools.",
+      `Your device session ID is: ${config.deviceSessionId}`,
+      "Pass this deviceSessionId to every MCP tool call.",
+      "First call get-device-session-info to get the screenshot URL and screen dimensions.",
+      "You should verify the action you took succeeded and retry or wait if needed.",
+      "",
+      `Task: ${prompt}`,
+    ].join("\n");
 
-    try {
-      const systemPrompt = [
-        "You are controlling an Android device via MCP tools.",
-        "First call init-device-session to acquire a device — this returns a screenshotUrl you can GET at any time to see the current screen.",
-        "Available tools: init-device-session, tap, swipe, long-press, key-event (POWER, VOLUME_UP, VOLUME_DOWN only).",
-        "To type text, tap individual keys on the on-screen keyboard.",
-        "To go home, swipe up from the bottom of the screen. To go back, swipe from the left edge.",
-        "When done, stop and summarize what you did.",
-      ].join(" ");
+    const args = [
+      "exec",
+      "--model", this.model,
+      "-c", "sandbox_workspace_write.network_access=true",
+      "--skip-git-repo-check",
+      "--disable", "shell_tool",
+      fullPrompt,
+    ];
 
-      const args = [
-        "--full-auto",
-        "--model", this.model,
-        "--mcp-config", mcpConfigPath,
-        "--system-prompt", systemPrompt,
-        prompt,
-      ];
+    const { exitCode, stdout, stderr } = await this.spawn(args, config.timeoutMs, true);
 
-      const proc = Bun.spawn([this.codexBin, ...args], {
-        stdout: "pipe",
-        stderr: "pipe",
-        env: { ...process.env },
-      });
+    const durationMs = Date.now() - start;
+    const timedOut = durationMs >= config.timeoutMs;
 
-      // Race between process completion and timeout
-      const timeoutId = setTimeout(() => {
-        proc.kill();
-      }, config.timeoutMs);
+    const error = timedOut
+      ? "Timed out"
+      : exitCode !== 0
+        ? `Codex exited with code ${exitCode}`
+        : undefined;
 
-      const [exitCode, stdout, stderr] = await Promise.all([
-        proc.exited,
-        new Response(proc.stdout).text(),
-        new Response(proc.stderr).text(),
-      ]);
+    return { error, durationMs, rawOutput: stdout + stderr };
+  }
 
-      clearTimeout(timeoutId);
+  private async spawn(
+    args: string[],
+    timeoutMs?: number,
+    stream = false,
+  ): Promise<{ exitCode: number; stdout: string; stderr: string }> {
+    const proc = Bun.spawn([this.codexBin, ...args], {
+      stdout: "pipe",
+      stderr: "pipe",
+      env: { ...process.env },
+    });
 
-      const durationMs = Date.now() - start;
-      const timedOut = durationMs >= config.timeoutMs;
-
-      if (stderr) {
-        console.error(`  [codex stderr]: ${stderr.slice(0, 500)}`);
-      }
-
-      return {
-        completedSuccessfully: exitCode === 0 && !timedOut,
-        finalOutput: stdout || undefined,
-        durationMs,
-      };
-    } finally {
-      await unlink(mcpConfigPath).catch(() => {});
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+    if (timeoutMs) {
+      timeoutId = setTimeout(() => proc.kill(), timeoutMs);
     }
+
+    const readStream = async (
+      readable: ReadableStream<Uint8Array>,
+      tee: boolean,
+    ): Promise<string> => {
+      const chunks: Uint8Array[] = [];
+      for await (const chunk of readable) {
+        chunks.push(chunk);
+        if (tee) log.modelChunk(chunk);
+      }
+      return Buffer.concat(chunks).toString();
+    };
+
+    const [exitCode, stdout, stderr] = await Promise.all([
+      proc.exited,
+      readStream(proc.stdout as ReadableStream<Uint8Array>, stream),
+      readStream(proc.stderr as ReadableStream<Uint8Array>, stream),
+    ]);
+
+    if (timeoutId) clearTimeout(timeoutId);
+
+    return { exitCode: exitCode ?? 1, stdout, stderr };
   }
 }

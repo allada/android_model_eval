@@ -80,6 +80,40 @@ function createServer(pool: DevicePool): McpServer {
   );
 
   server.registerTool(
+    "screenshot",
+    {
+      description: "Capture the current screen and return it as a PNG image.",
+      inputSchema: {
+        deviceSessionId: z.string().describe("Device Session ID"),
+      },
+    },
+    async ({ deviceSessionId }) => {
+      const handle = await pool.ensureSession(deviceSessionId);
+      const png = await handle.adb.screenshot();
+      return {
+        content: [{ type: "image", data: png.toString("base64"), mimeType: "image/png" }],
+      };
+    },
+  );
+
+  server.registerTool(
+    "sleep",
+    {
+      description: "Wait for a specified duration. Useful to let UI animations finish or delayed actions to complete before taking a screenshot.",
+      inputSchema: {
+        durationMs: z.number().describe("Duration to wait in milliseconds"),
+      },
+      outputSchema: {
+        success: z.boolean(),
+      },
+    },
+    async ({ durationMs }) => {
+      await new Promise((resolve) => setTimeout(resolve, durationMs));
+      return { content: [], structuredContent: { success: true } };
+    },
+  );
+
+  server.registerTool(
     "tap",
     {
       description: "Tap a screen coordinate",

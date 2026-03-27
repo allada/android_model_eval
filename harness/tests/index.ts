@@ -11,12 +11,3 @@ export const allTests: TestCase[] = [
   uninstallCalculator,
 ];
 
-/** Filter tests by ID. */
-export function filterById(tests: TestCase[], id: string): TestCase[] {
-  return tests.filter((t) => t.id === id);
-}
-
-/** Filter tests by tag. */
-export function filterByTag(tests: TestCase[], tag: string): TestCase[] {
-  return tests.filter((t) => t.tags?.includes(tag));
-}

@@ -19,9 +19,6 @@ export function printSummary(summary: TestRunSummary): void {
       if (result.error) {
         console.log(`         Error: ${result.error}`);
       }
-      if (result.timedOut) {
-        console.log(`         Timed out`);
-      }
       for (const check of result.checks) {
         if (!check.pass) {
           console.log(`         - ${check.name}: ${check.message}`);

@@ -11,14 +11,13 @@ import { packageInstalled } from "../verification/checks.ts";
 export const uninstallCalculator: TestCase = {
   id: "uninstall-calculator",
   name: "Uninstall the Calculator app",
-  prompt: "Uninstall the Calculator app from this Android device.",
+  prompt: "Uninstall the Calculator app from this Android sessionAdminCtx.",
   setup: [
     // Ensure the calculator is installed (re-install if previously removed)
-    async (adb) => {
-      const packages = await adb.shell("pm list packages | grep calc");
+    async (sessionAdminCtx) => {
+      const packages = await sessionAdminCtx.adbShell("pm list packages | grep calc");
       if (!packages.includes("com.google.android.calculator")) {
-        // Try to re-enable it if it was disabled
-        await adb.shell(
+        await sessionAdminCtx.adbShell(
           "pm install-existing com.google.android.calculator || true",
         );
       }
