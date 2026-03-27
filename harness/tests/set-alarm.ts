@@ -7,37 +7,21 @@ export const setAlarm5pm: TestCase = {
   setup: [
     // Clear any existing alarms by force-stopping the clock app
     "am force-stop com.google.android.deskclock",
-    "input keyevent HOME",
   ],
   verifications: [
     {
-      name: "Alarm is set for 17:00",
-      command: "dumpsys alarm | grep -i 'triggerWhenIdle'",
+      name: "Clock app has a pending alarm for 17:00",
+      // Only check the active "Pending alarm batches" section (before "Past-due"),
+      // so we don't match cancelled/historical entries.
+      command: "dumpsys alarm | sed '/Past-due/,$d' | grep -A2 'com.google.android.deskclock'",
       expected: (output: string) => {
-        // Look for an alarm manager entry that indicates a pending alarm.
-        // The exact format varies by Android version, so we use a broad check.
-        // A more precise check would query the clock app's content provider.
-        const hasAlarm = output.length > 0;
-        return {
-          pass: hasAlarm,
-          message: hasAlarm
-            ? "Found alarm entries in dumpsys"
-            : "No alarm entries found in dumpsys",
-        };
-      },
-    },
-    {
-      name: "Clock app has pending alarm",
-      command:
-        "content query --uri content://com.android.deskclock/alarm",
-      expected: (output: string) => {
-        // Check if there's an alarm entry with hour=17
-        const has5pm = /hour=17/.test(output) || /17:00/.test(output);
+        // dumpsys alarm shows origWhen with local time like "origWhen=2026-03-26 17:00:00.000"
+        const has5pm = /17:00/.test(output);
         return {
           pass: has5pm,
           message: has5pm
-            ? "Found 5:00 PM alarm in clock database"
-            : `No 5:00 PM alarm found. Output: ${output.slice(0, 200)}`,
+            ? "Found 17:00 alarm in dumpsys"
+            : `No 17:00 alarm found. Output: ${output}`,
         };
       },
     },

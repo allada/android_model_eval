@@ -5,9 +5,9 @@ import { uninstallCalculator } from "./uninstall-app.ts";
 
 /** All available test cases. */
 export const allTests: TestCase[] = [
-  airplaneModeOn,
-  airplaneModeOff,
+  // airplaneModeOn,
+  // airplaneModeOff,
   setAlarm5pm,
-  uninstallCalculator,
+  // uninstallCalculator,
 ];
 

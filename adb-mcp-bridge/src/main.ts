@@ -99,9 +99,9 @@ function createServer(pool: DevicePool): McpServer {
   server.registerTool(
     "sleep",
     {
-      description: "Wait for a specified duration. Useful to let UI animations finish or delayed actions to complete before taking a screenshot.",
+      description: "Wait for a specified duration. Useful to let UI animations finish or delayed actions to complete before taking a screenshot. Start with 50ms and increase only if needed.",
       inputSchema: {
-        durationMs: z.number().describe("Duration to wait in milliseconds"),
+        durationMs: z.number().max(100).optional().default(50).describe("Duration to wait in milliseconds (default 50, max 100)"),
       },
       outputSchema: {
         success: z.boolean(),

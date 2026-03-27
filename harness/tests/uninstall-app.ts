@@ -22,7 +22,6 @@ export const uninstallCalculator: TestCase = {
         );
       }
     },
-    "input keyevent HOME",
   ],
   verifications: [
     packageInstalled("com.google.android.calculator", false),

@@ -7,7 +7,6 @@ export const airplaneModeOn: TestCase = {
   setup: [
     // Ensure airplane mode is OFF before the test
     "cmd connectivity airplane-mode disable",
-    "input keyevent HOME",
   ],
   verifications: [
     {
@@ -27,7 +26,6 @@ export const airplaneModeOff: TestCase = {
   setup: [
     // Ensure airplane mode is ON before the test
     "cmd connectivity airplane-mode enable",
-    "input keyevent HOME",
   ],
   verifications: [
     {
