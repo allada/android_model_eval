@@ -9,14 +9,14 @@ export function makeVerificationCodeTest(): TestCase {
     prompt:
       "You just received a text message with a verification code. Open the Messages app, find the verification code, and tell me what it is.",
     setup: [
-      "settings put secure sms_default_application com.google.android.apps.messaging",
-      "content delete --uri content://sms",
+      "input keyevent HOME",
       async (sessionAdminCtx) => {
-        await sessionAdminCtx.adbShell(
-          `content insert --uri content://sms --bind address:s:555-1234 --bind body:s:'Your verification code is ${code}. It expires in 10 minutes.' --bind type:i:1 --bind read:i:0 --bind seen:i:0 --bind date:l:${Date.now()}`,
+        // Use the emulator console to simulate an incoming SMS.
+        // `content insert` into the SMS provider silently fails on Android 16+.
+        await sessionAdminCtx.adbEmu(
+          `sms send 555-1234 Your verification code is ${code}. It expires in 10 minutes.`,
         );
       },
-      "input keyevent HOME",
     ],
     verifications: [],
     rawOutputCheck: (rawOutput: string) => {

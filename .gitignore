@@ -6,6 +6,10 @@ out
 dist
 *.tgz
 results
+db
+widget/data
+widget/videos
+widget/images
 
 # code coverage
 coverage

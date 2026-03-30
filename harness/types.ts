@@ -13,6 +13,12 @@ export interface VerificationResult {
 export interface SessionAdminContext {
   /** Run an ADB shell command and return stdout. */
   adbShell(command: string): Promise<string>;
+  /** Run an emulator console command (e.g. "sms send 555-1234 hello") and return stdout. */
+  adbEmu(command: string): Promise<string>;
+  /** Download a file from a URL and send it to a path on the device. */
+  downloadFile(url: string, destPath: string): Promise<void>;
+  /** The ADB serial of the device (e.g. "emulator-5554"). */
+  deviceSerial: string;
 }
 
 /** A single check to run against device state after the LLM finishes. */
@@ -93,6 +99,10 @@ export interface TestResult {
   tokenUsage?: TokenUsage;
   /** Raw output from the LLM process. */
   rawOutput?: string;
+  /** Path to the screen recording video file. */
+  videoPath?: string;
+  /** Epoch ms when scrcpy confirmed recording started (host clock). */
+  recordingStartedAtMs?: number;
 }
 
 /** Aggregate results for a full test run. */

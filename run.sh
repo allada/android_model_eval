@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-export CODEX_BIN=/home/allada/projects/eval_model/node_modules/.bin/codex
-export CLAUDE_BIN=/home/allada/projects/eval_model/node_modules/.bin/claude
+SCRIPT_DIR_EARLY="$(cd "$(dirname "$0")" && pwd)"
+export CODEX_BIN="${CODEX_BIN:-$SCRIPT_DIR_EARLY/node_modules/.bin/codex}"
+export CLAUDE_BIN="${CLAUDE_BIN:-$SCRIPT_DIR_EARLY/node_modules/.bin/claude}"
+export GEMINI_BIN="${GEMINI_BIN:-$SCRIPT_DIR_EARLY/node_modules/.bin/gemini}"
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-INSTANCES=${INSTANCES:-4}
+# INSTANCES defaults to the number of running emulators (set below).
 MCP_PORT=${MCP_PORT:-3000}
 ADMIN_PORT=${ADMIN_PORT:-3001}
 MCP_PID=""
@@ -19,13 +21,16 @@ cleanup() {
 }
 trap cleanup EXIT
 
-# Find all running emulators.
-ADB_DEVICES=$(adb devices | grep -E 'emulator-[0-9]+\s+device' | awk '{print $1}' | paste -sd, -)
+# Find all connected ADB devices (emulators, Redroid instances, etc.)
+ADB_DEVICES=$(adb devices | grep -E '\s+device$' | awk '{print $1}' | paste -sd, -)
 if [ -z "$ADB_DEVICES" ]; then
-  echo "No running emulators found. Start at least one emulator first."
+  echo "No ADB devices found. Start Redroid or an emulator first."
   exit 1
 fi
-echo "Devices: $ADB_DEVICES"
+DEVICE_COUNT=$(echo "$ADB_DEVICES" | tr ',' '\n' | wc -l)
+INSTANCES=${INSTANCES:-$DEVICE_COUNT}
+echo "Devices: $ADB_DEVICES ($DEVICE_COUNT)"
+echo "Instances: $INSTANCES"
 
 # Install dependencies if needed.
 if [ ! -d "$SCRIPT_DIR/node_modules" ]; then
@@ -61,6 +66,7 @@ for i in $(seq 1 "$INSTANCES"); do
     --mcp-url "http://localhost:$MCP_PORT" \
     --admin-url "http://localhost:$ADMIN_PORT" \
     "$@" &
+  sleep 1
   pids+=($!)
 done
 

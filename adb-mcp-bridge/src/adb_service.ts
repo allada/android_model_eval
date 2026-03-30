@@ -47,7 +47,7 @@ export class AdbService {
 
   // Sends a command to the emulator console (e.g. "avd snapshot save foo").
   // Uses `adb emu` which forwards to the emulator's telnet console.
-  private async emuCommand(command: string): Promise<string> {
+  async emuCommand(command: string): Promise<string> {
     const proc = Bun.spawn(["adb", "-s", this.serial, "emu", ...command.split(" ")], {
       stdout: "pipe",
       stderr: "pipe",
@@ -59,6 +59,18 @@ export class AdbService {
       throw new Error(`emu command failed: ${stdout.trim()} ${stderr.trim()}`);
     }
     return stdout;
+  }
+
+  async pushFile(localPath: string, destPath: string): Promise<void> {
+    const proc = Bun.spawn(["adb", "-s", this.serial, "push", localPath, destPath], {
+      stdout: "pipe",
+      stderr: "pipe",
+    });
+    const exitCode = await proc.exited;
+    if (exitCode !== 0) {
+      const stderr = await new Response(proc.stderr).text();
+      throw new Error(`adb push failed: ${stderr.trim()}`);
+    }
   }
 
   async saveSnapshot(name: string): Promise<void> {

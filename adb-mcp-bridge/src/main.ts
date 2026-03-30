@@ -1,8 +1,18 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
+import sharp from "sharp";
 import { z } from "zod";
 import { DevicePool } from "./device_pool.js";
 import type { AdbService } from "./adb_service.js";
+import { spawn, type Subprocess } from "bun";
+import { mkdirSync } from "node:fs";
+import { dirname } from "node:path";
+
+interface ActiveRecording {
+  proc: Subprocess;
+  videoPath: string;
+  startedAtMs: number;
+}
 
 const PORT = parseInt(process.env.PORT ?? "3000", 10);
 
@@ -18,10 +28,13 @@ const sessionInfoSchema = {
   deviceSerial: z.string(),
   screenWidth: z.number(),
   screenHeight: z.number(),
-  screenshotUrl: z.string().describe("GET this URL to retrieve a live PNG screenshot of the device"),
+  screenshotUrl: z.string().describe(
+    "GET this URL to retrieve a live PNG screenshot. Supports optional query params: x, y, width, height (crop region, width/height max 500px) and scale (0.0-1.0, applied after crop)."
+  ),
+  timestamp_ms: z.number().describe("Server-side epoch timestamp in milliseconds when this request was handled"),
 };
 
-async function buildSessionInfo(deviceSessionId: string, serial: string, adb: AdbService) {
+async function buildSessionInfo(deviceSessionId: string, serial: string, adb: AdbService, timestamp_ms: number) {
   const rawScreenSize = await adb.getScreenSize();
   const match = rawScreenSize.match(/(\d+)x(\d+)/);
   return {
@@ -30,6 +43,7 @@ async function buildSessionInfo(deviceSessionId: string, serial: string, adb: Ad
     screenWidth: match ? parseInt(match[1], 10) : 0,
     screenHeight: match ? parseInt(match[2], 10) : 0,
     screenshotUrl: `http://localhost:${PORT}/screenshot/${deviceSessionId}`,
+    timestamp_ms,
   };
 }
 
@@ -73,7 +87,7 @@ function createServer(pool: DevicePool): McpServer {
     },
     async ({ deviceSessionId }) => {
       const structuredContent = await pool.withSession(deviceSessionId, (handle) =>
-        buildSessionInfo(deviceSessionId, handle.serial, handle.adb),
+        buildSessionInfo(deviceSessionId, handle.serial, handle.adb, Date.now()),
       );
       return { content: [], structuredContent };
     },
@@ -82,18 +96,54 @@ function createServer(pool: DevicePool): McpServer {
   server.registerTool(
     "screenshot",
     {
-      description: "Capture the current screen and return it as a PNG image.",
+      description: "Capture the current screen and return it as a PNG image. Optionally crop to a bounding box and/or scale down.",
       inputSchema: {
         deviceSessionId: z.string().describe("Device Session ID"),
+        x: z.number().describe("Crop origin X [px] on original image"),
+        y: z.number().describe("Crop origin Y [px] on original image"),
+        width: z.number().max(512).describe("Crop width [px]. Max 512"),
+        height: z.number().max(512).describe("Crop height [px]. Max 512"),
+        scale: z.number().optional().default(0.25).describe("Scale factor (0.0-1.0, applied after crop). 1.0 = original size, 0.5 = half size. Default: 0.25"),
       },
     },
-    async ({ deviceSessionId }) => {
-      const base64 = await pool.withSession(deviceSessionId, async (handle) => {
-        const png = await handle.adb.screenshot();
-        return png.toString("base64");
+    async ({ deviceSessionId, x, y, width, height, scale }) => {
+      let timestamp_ms: number;
+      let png: Buffer = await pool.withSession(deviceSessionId, (handle) => {
+        timestamp_ms = Date.now();
+        return handle.adb.screenshot();
       });
+
+      const hasCrop = x != null && y != null && width != null && height != null;
+      const hasScale = scale != null;
+
+      if (hasCrop || hasScale) {
+        let pipeline = sharp(png);
+
+        if (hasCrop) {
+          pipeline = pipeline.extract({
+            left: Math.round(x!),
+            top: Math.round(y!),
+            width: Math.round(width!),
+            height: Math.round(height!),
+          });
+        }
+
+        if (hasScale && scale! < 1.0) {
+          const srcWidth = hasCrop ? width! : (await sharp(png).metadata()).width!;
+          pipeline = pipeline.resize({
+            width: Math.round(srcWidth * scale!),
+            withoutEnlargement: true,
+          });
+        }
+
+        png = await pipeline.png().toBuffer();
+      }
+
       return {
-        content: [{ type: "image", data: base64, mimeType: "image/png" }],
+        content: [
+          { type: "text", text: JSON.stringify({ timestamp_ms: timestamp_ms! }) },
+          { type: "image", data: png.toString("base64"), mimeType: "image/png" },
+        ],
       };
     },
   );
@@ -103,15 +153,17 @@ function createServer(pool: DevicePool): McpServer {
     {
       description: "Wait for a specified duration. Useful to let UI animations finish or delayed actions to complete before taking a screenshot. Start with 50ms and increase only if needed.",
       inputSchema: {
-        durationMs: z.number().max(100).optional().default(50).describe("Duration to wait in milliseconds (default 50, max 100)"),
+        durationMs: z.number().max(25).optional().default(10).describe("Duration to wait in milliseconds (default 10, max 25)"),
       },
       outputSchema: {
         success: z.boolean(),
+        timestamp_ms: z.number().describe("Server-side epoch timestamp in milliseconds"),
       },
     },
     async ({ durationMs }) => {
+      const timestamp_ms = Date.now();
       await new Promise((resolve) => setTimeout(resolve, durationMs));
-      return { content: [], structuredContent: { success: true } };
+      return { content: [], structuredContent: { success: true, timestamp_ms } };
     },
   );
 
@@ -126,12 +178,17 @@ function createServer(pool: DevicePool): McpServer {
       },
       outputSchema: {
         success: z.boolean(),
+        timestamp_ms: z.number().describe("Server-side epoch timestamp in milliseconds"),
       },
     },
     async ({ deviceSessionId, x, y }) => {
-      await pool.withSession(deviceSessionId, (handle) => handle.adb.tap(x, y));
+      const timestamp_ms = await pool.withSession(deviceSessionId, async (handle) => {
+        const ts = Date.now();
+        await handle.adb.tap(x, y);
+        return ts;
+      });
       pool.markDirty(deviceSessionId);
-      return { content: [], structuredContent: { success: true } };
+      return { content: [], structuredContent: { success: true, timestamp_ms } };
     },
   );
 
@@ -149,12 +206,17 @@ function createServer(pool: DevicePool): McpServer {
       },
       outputSchema: {
         success: z.boolean(),
+        timestamp_ms: z.number().describe("Server-side epoch timestamp in milliseconds"),
       },
     },
     async ({ deviceSessionId, x1, y1, x2, y2, durationMs }) => {
-      await pool.withSession(deviceSessionId, (handle) => handle.adb.swipe(x1, y1, x2, y2, durationMs));
+      const timestamp_ms = await pool.withSession(deviceSessionId, async (handle) => {
+        const ts = Date.now();
+        await handle.adb.swipe(x1, y1, x2, y2, durationMs);
+        return ts;
+      });
       pool.markDirty(deviceSessionId);
-      return { content: [], structuredContent: { success: true } };
+      return { content: [], structuredContent: { success: true, timestamp_ms } };
     },
   );
 
@@ -170,12 +232,17 @@ function createServer(pool: DevicePool): McpServer {
       },
       outputSchema: {
         success: z.boolean(),
+        timestamp_ms: z.number().describe("Server-side epoch timestamp in milliseconds"),
       },
     },
     async ({ deviceSessionId, x, y, durationMs }) => {
-      await pool.withSession(deviceSessionId, (handle) => handle.adb.longPress(x, y, durationMs));
+      const timestamp_ms = await pool.withSession(deviceSessionId, async (handle) => {
+        const ts = Date.now();
+        await handle.adb.longPress(x, y, durationMs);
+        return ts;
+      });
       pool.markDirty(deviceSessionId);
-      return { content: [], structuredContent: { success: true } };
+      return { content: [], structuredContent: { success: true, timestamp_ms } };
     },
   );
 
@@ -191,13 +258,18 @@ function createServer(pool: DevicePool): McpServer {
       outputSchema: {
         success: z.boolean(),
         keycode: z.string(),
+        timestamp_ms: z.number().describe("Server-side epoch timestamp in milliseconds"),
       },
     },
     async ({ deviceSessionId, key }) => {
       const keycode = `KEYCODE_${key}`;
-      await pool.withSession(deviceSessionId, (handle) => handle.adb.keyEvent(key));
+      const timestamp_ms = await pool.withSession(deviceSessionId, async (handle) => {
+        const ts = Date.now();
+        await handle.adb.keyEvent(key);
+        return ts;
+      });
       pool.markDirty(deviceSessionId);
-      return { content: [], structuredContent: { success: true, keycode } };
+      return { content: [], structuredContent: { success: true, keycode, timestamp_ms } };
     },
   );
 
@@ -210,6 +282,103 @@ function jsonResponse(data: unknown, status = 200) {
   return Response.json(data, { status });
 }
 
+// Active screen recordings keyed by deviceSessionId.
+const activeRecordings = new Map<string, ActiveRecording>();
+
+async function startRecording(pool: DevicePool, deviceSessionId: string, outputPath: string): Promise<{ startedAtMs: number }> {
+  if (activeRecordings.has(deviceSessionId)) {
+    throw new Error(`Recording already active for session ${deviceSessionId}`);
+  }
+
+  const serial = pool.getSessionSerial(deviceSessionId);
+  mkdirSync(dirname(outputPath), { recursive: true });
+
+  // Use stdbuf to force line-buffered stdout — scrcpy block-buffers when piped,
+  // which prevents us from detecting "Recording started" until exit.
+  const proc = spawn(
+    ["stdbuf", "-oL", "scrcpy", `--serial=${serial}`, `--record=${outputPath}`, "--no-window", "--no-playback", "--video-codec=h264"],
+    { stdout: "pipe", stderr: "pipe" },
+  );
+
+  // Wait for scrcpy to confirm recording has started by watching stdout.
+  // Note: scrcpy prints "INFO: Recording started ..." to stdout, not stderr.
+  const startedAtMs = await new Promise<number>((resolve, reject) => {
+    const timeout = setTimeout(() => {
+      reject(new Error("scrcpy did not start recording within 30s"));
+    }, 30_000);
+
+    // Drain stderr in the background so the pipe doesn't block.
+    (async () => {
+      const errReader = proc.stderr.getReader();
+      while (true) {
+        const { done, value } = await errReader.read();
+        if (done) break;
+        console.error(`[scrcpy:${deviceSessionId}] ${new TextDecoder().decode(value).trimEnd()}`);
+      }
+    })();
+
+    const reader = proc.stdout.getReader();
+    let accumulated = "";
+
+    function read() {
+      reader.read().then(({ done, value }) => {
+        if (done) {
+          clearTimeout(timeout);
+          reject(new Error(`scrcpy exited before recording started. stdout: ${accumulated}`));
+          return;
+        }
+        const chunk = new TextDecoder().decode(value);
+        accumulated += chunk;
+        console.error(`[scrcpy:${deviceSessionId}] ${chunk.trimEnd()}`);
+
+        if (accumulated.includes("Recording started")) {
+          clearTimeout(timeout);
+          resolve(Date.now());
+        } else {
+          read();
+        }
+      }, (err) => {
+        clearTimeout(timeout);
+        reject(err);
+      });
+    }
+    read();
+  });
+
+  activeRecordings.set(deviceSessionId, { proc, videoPath: outputPath, startedAtMs });
+  console.error(`Recording started for session ${deviceSessionId} → ${outputPath} (startedAtMs=${startedAtMs})`);
+  return { startedAtMs };
+}
+
+async function stopRecording(deviceSessionId: string): Promise<{ stoppedAtMs: number }> {
+  const recording = activeRecordings.get(deviceSessionId);
+  if (!recording) {
+    throw new Error(`No active recording for session ${deviceSessionId}`);
+  }
+
+  // SIGINT causes scrcpy to flush and close the MKV container cleanly.
+  recording.proc.kill("SIGINT");
+
+  // Wait for process exit with timeout.
+  const exitPromise = recording.proc.exited;
+  const timeoutPromise = new Promise<never>((_, reject) =>
+    setTimeout(() => reject(new Error("scrcpy did not exit within 10s")), 10_000),
+  );
+
+  try {
+    await Promise.race([exitPromise, timeoutPromise]);
+  } catch {
+    console.error(`Force-killing scrcpy for session ${deviceSessionId}`);
+    recording.proc.kill("SIGKILL");
+    await recording.proc.exited;
+  }
+
+  activeRecordings.delete(deviceSessionId);
+  const stoppedAtMs = Date.now();
+  console.error(`Recording stopped for session ${deviceSessionId} (stoppedAtMs=${stoppedAtMs})`);
+  return { stoppedAtMs };
+}
+
 async function main() {
   const pool = new DevicePool(ADB_DEVICES.split(",").map((s) => s.trim()).filter(Boolean));
 
@@ -220,14 +389,61 @@ async function main() {
     async fetch(req) {
       const url = new URL(req.url);
 
-      // GET /screenshot/{deviceSessionId} — returns latest PNG screenshot.
+      // GET /screenshot/{deviceSessionId}?x=&y=&width=&height=&scale= — returns PNG screenshot.
       const screenshotMatch = url.pathname.match(/^\/screenshot\/([a-f0-9-]+)$/);
       if (screenshotMatch && req.method === "GET") {
         try {
-          const png = await pool.withSession(screenshotMatch[1], (handle) => handle.adb.screenshot());
+          let png: Buffer = await pool.withSession(screenshotMatch[1], (handle) => handle.adb.screenshot());
+
+          const x = url.searchParams.has("x") ? Number(url.searchParams.get("x")) : null;
+          const y = url.searchParams.has("y") ? Number(url.searchParams.get("y")) : null;
+          const width = url.searchParams.has("width") ? Number(url.searchParams.get("width")) : null;
+          const height = url.searchParams.has("height") ? Number(url.searchParams.get("height")) : null;
+          const scale = url.searchParams.has("scale") ? Number(url.searchParams.get("scale")) : null;
+
+          const hasCrop = x !== null && y !== null && width !== null && height !== null;
+          const hasScale = scale !== null;
+
+          if (hasCrop || hasScale) {
+            if (hasCrop) {
+              if (isNaN(x!) || isNaN(y!) || isNaN(width!) || isNaN(height!) || x! < 0 || y! < 0 || width! <= 0 || height! <= 0 || width! > 500 || height! > 500) {
+                return new Response("Invalid crop: need x >= 0, y >= 0, 0 < width <= 500, 0 < height <= 500", { status: 400 });
+              }
+            }
+            if (hasScale) {
+              if (isNaN(scale!) || scale! <= 0 || scale! > 1.0) {
+                return new Response("Invalid scale: must be between 0.0 (exclusive) and 1.0", { status: 400 });
+              }
+            }
+
+            let pipeline = sharp(png);
+
+            if (hasCrop) {
+              pipeline = pipeline.extract({
+                left: Math.round(x!),
+                top: Math.round(y!),
+                width: Math.round(width!),
+                height: Math.round(height!),
+              });
+            }
+
+            if (hasScale && scale! < 1.0) {
+              const srcWidth = hasCrop ? width! : (await sharp(png).metadata()).width!;
+              pipeline = pipeline.resize({
+                width: Math.round(srcWidth * scale!),
+                withoutEnlargement: true,
+              });
+            }
+
+            png = await pipeline.png().toBuffer();
+          }
+
           return new Response(new Uint8Array(png), { headers: { "Content-Type": "image/png" } });
-        } catch {
-          return new Response("Unknown device session", { status: 404 });
+        } catch (err: any) {
+          if (err.message?.includes("Unknown device session")) {
+            return new Response("Unknown device session", { status: 404 });
+          }
+          return new Response(`Screenshot error: ${err.message}`, { status: 500 });
         }
       }
 
@@ -250,7 +466,7 @@ async function main() {
         switch (url.pathname) {
           case "/initDeviceSession": {
             const { deviceSessionId, handle } = pool.initializeSession();
-            const info = await buildSessionInfo(deviceSessionId, handle.serial, handle.adb);
+            const info = await buildSessionInfo(deviceSessionId, handle.serial, handle.adb, Date.now());
             return jsonResponse(info);
           }
           case "/runAdbCommand": {
@@ -264,6 +480,41 @@ async function main() {
             pool.markDirty(body.deviceSessionId);
             return jsonResponse({ output });
           }
+          case "/downloadFile": {
+            const body = await req.json() as { deviceSessionId: string; url: string; destPath: string };
+            if (!body.deviceSessionId || !body.url || !body.destPath) {
+              return jsonResponse({ error: "deviceSessionId, url, and destPath required" }, 400);
+            }
+            // Download to a temp file on the host, then adb push to device.
+            const tmpPath = `/tmp/dl-${Date.now()}`;
+            const curlProc = Bun.spawn(["curl", "-fsSL", "-o", tmpPath, body.url], {
+              stdout: "pipe",
+              stderr: "pipe",
+            });
+            const curlExit = await curlProc.exited;
+            if (curlExit !== 0) {
+              const stderr = await new Response(curlProc.stderr).text();
+              throw new Error(`Failed to download ${body.url}: ${stderr.trim()}`);
+            }
+            try {
+              await pool.withSession(body.deviceSessionId, (handle) =>
+                handle.adb.pushFile(tmpPath, body.destPath),
+              );
+            } finally {
+              try { (await import("node:fs")).unlinkSync(tmpPath); } catch {}
+            }
+            return jsonResponse({ success: true });
+          }
+          case "/runEmuCommand": {
+            const body = await req.json() as { deviceSessionId: string; command: string };
+            if (!body.deviceSessionId || !body.command) {
+              return jsonResponse({ error: "deviceSessionId and command required" }, 400);
+            }
+            const output = await pool.withSession(body.deviceSessionId, (handle) =>
+              handle.adb.emuCommand(body.command),
+            );
+            return jsonResponse({ output });
+          }
           case "/loadSnapshot": {
             const body = await req.json() as { deviceSessionId: string; name: string };
             if (!body.deviceSessionId || !body.name) {
@@ -274,10 +525,30 @@ async function main() {
             );
             return jsonResponse({ success: true });
           }
+          case "/startRecording": {
+            const body = await req.json() as { deviceSessionId: string; outputPath: string };
+            if (!body.deviceSessionId || !body.outputPath) {
+              return jsonResponse({ error: "deviceSessionId and outputPath required" }, 400);
+            }
+            const recordResult = await startRecording(pool, body.deviceSessionId, body.outputPath);
+            return jsonResponse(recordResult);
+          }
+          case "/stopRecording": {
+            const body = await req.json() as { deviceSessionId: string };
+            if (!body.deviceSessionId) {
+              return jsonResponse({ error: "deviceSessionId required" }, 400);
+            }
+            const stopResult = await stopRecording(body.deviceSessionId);
+            return jsonResponse(stopResult);
+          }
           case "/removeDeviceSession": {
             const body = await req.json() as { deviceSessionId: string };
             if (!body.deviceSessionId) {
               return jsonResponse({ error: "deviceSessionId required" }, 400);
+            }
+            // Auto-stop recording if active.
+            if (activeRecordings.has(body.deviceSessionId)) {
+              try { await stopRecording(body.deviceSessionId); } catch {}
             }
             await pool.removeSession(body.deviceSessionId);
             return jsonResponse({ success: true });

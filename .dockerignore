@@ -1,0 +1,9 @@
+node_modules
+adb-mcp-bridge/node_modules
+results
+db
+widget/data
+widget/videos
+widget/images
+.git
+*.tgz

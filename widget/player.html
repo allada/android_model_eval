@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent Replay</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #1a1a2e; color: #eee; font-family: system-ui, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; min-height: 100vh; }
+  h1 { font-size: 1.2em; margin-bottom: 8px; color: #aaa; }
+  #status { font-size: 0.85em; color: #888; margin-bottom: 12px; }
+  .player-wrap { position: relative; background: #000; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.5); }
+  .main-layout { display: flex; gap: 2px; background: #333; align-items: stretch; }
+  .canvases { display: flex; gap: 2px; }
+  .canvas-col { display: flex; flex-direction: column; }
+  .canvas-label { text-align: center; font-size: 0.7em; color: #888; padding: 4px 0; background: #000; }
+  .message-box { width: 300px; background: #0f0f23; display: flex; flex-direction: column; overflow: hidden; }
+  .message-box-label { text-align: center; font-size: 0.7em; color: #888; padding: 4px 0; background: #000; }
+  .message-content { flex: 1; min-height: 0; overflow-y: auto; padding: 10px; font-size: 0.8em; line-height: 1.5; display: flex; flex-direction: column; }
+  .msg-thinking { color: #a78bfa; margin-bottom: 8px; padding: 6px 8px; background: rgba(167, 139, 250, 0.08); border-left: 2px solid #a78bfa; border-radius: 0 4px 4px 0; font-style: italic; }
+  .msg-text { color: #e2e8f0; margin-bottom: 8px; padding: 6px 8px; background: rgba(255, 255, 255, 0.04); border-left: 2px solid #64748b; border-radius: 0 4px 4px 0; }
+  canvas { display: block; }
+  .controls { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 10px; padding: 8px 12px; background: #16213e; border-radius: 0 0 8px 8px; }
+  .controls button { background: none; border: none; color: #eee; font-size: 1.4em; cursor: pointer; padding: 2px 6px; }
+  .controls button:hover { color: #fff; }
+  .scrubber { min-width: 0; height: 6px; -webkit-appearance: none; appearance: none; background: #333; border-radius: 3px; cursor: pointer; outline: none; }
+  .scrubber::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; background: #e94560; border-radius: 50%; cursor: pointer; }
+  .scrubber::-moz-range-thumb { width: 14px; height: 14px; background: #e94560; border-radius: 50%; cursor: pointer; border: none; }
+  .time { font-size: 0.8em; color: #aaa; font-variant-numeric: tabular-nums; min-width: 80px; text-align: center; }
+  .speed { font-size: 0.75em; color: #aaa; cursor: pointer; padding: 2px 6px; border: 1px solid #444; border-radius: 4px; background: none; }
+  .speed:hover { border-color: #888; color: #eee; }
+  .token-stats { display: flex; gap: 16px; padding: 6px 12px; background: #0d1117; font-size: 0.75em; color: #888; font-variant-numeric: tabular-nums; }
+  .token-stat { display: flex; gap: 4px; align-items: center; }
+  .token-stat .label { color: #666; }
+  .token-stat .value { color: #c9d1d9; font-weight: 600; }
+  #file-picker { margin-bottom: 16px; }
+  select { background: #16213e; color: #eee; border: 1px solid #444; border-radius: 4px; padding: 6px 10px; font-size: 0.9em; }
+</style>
+</head>
+<body>
+
+<h1 id="title">Agent Replay</h1>
+<div id="status">Loading...</div>
+
+<div id="file-picker">
+  <select id="data-select"><option value="">Select a test...</option></select>
+</div>
+
+<div class="player-wrap">
+  <div class="main-layout">
+    <div class="canvases">
+      <div class="canvas-col">
+        <div class="canvas-label">Device Screen</div>
+        <canvas id="canvas"></canvas>
+      </div>
+      <div class="canvas-col">
+        <div class="canvas-label">Agent's View</div>
+        <canvas id="agent-canvas"></canvas>
+      </div>
+    </div>
+    <div class="message-box">
+      <div class="message-box-label">Agent Messages</div>
+      <div class="message-content" id="message-content"></div>
+    </div>
+  </div>
+  <div class="token-stats">
+    <div class="token-stat"><span class="label">Input:</span> <span class="value" id="stat-input">0</span></div>
+    <div class="token-stat"><span class="label">Output:</span> <span class="value" id="stat-output">0</span></div>
+    <div class="token-stat"><span class="label">Total:</span> <span class="value" id="stat-total">0</span></div>
+  </div>
+  <div class="controls">
+    <button id="play-btn">&#9654;</button>
+    <input type="range" class="scrubber" id="scrubber" min="0" max="1000" value="0">
+    <span class="time" id="time-display">0:00 / 0:00</span>
+    <button class="speed" id="speed-btn">1x</button>
+  </div>
+</div>
+
+<video id="video" style="display:none" muted playsinline></video>
+
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const agentCanvas = document.getElementById('agent-canvas');
+const agentCtx = agentCanvas.getContext('2d');
+const video = document.getElementById('video');
+const playBtn = document.getElementById('play-btn');
+const scrubber = document.getElementById('scrubber');
+const timeDisplay = document.getElementById('time-display');
+const speedBtn = document.getElementById('speed-btn');
+const statusEl = document.getElementById('status');
+const titleEl = document.getElementById('title');
+const statInput = document.getElementById('stat-input');
+const statOutput = document.getElementById('stat-output');
+const statTotal = document.getElementById('stat-total');
+const dataSelect = document.getElementById('data-select');
+const messageContent = document.getElementById('message-content');
+
+let data = null;
+let events = [];
+let messageEvents = [];  // { videoOffsetMs, text, thinking }
+let messagesShown = 0;
+let lastMessageMs = -1;
+let playing = false;
+let animFrameId = null;
+let canvasScale = 1;
+let speeds = [1, 2, 4, 8, 16];
+let speedIdx = 3;
+let timelineEndMs = 0;
+let virtualTimeMs = 0;  // extends past video.duration for trailing events
+
+const DISPLAY_HEIGHT = 780;
+
+function formatTime(ms) {
+  const s = Math.floor(ms / 1000);
+  const m = Math.floor(s / 60);
+  return m + ':' + String(s % 60).padStart(2, '0');
+}
+
+function loadDataFile(url) {
+  statusEl.textContent = 'Loading data...';
+  fetch(url)
+    .then(r => r.json())
+    .then(d => {
+      data = d;
+      events = d.events.slice().sort((a, b) => a.videoOffsetMs - b.videoOffsetMs);
+
+      // Preload screenshot images
+      for (const event of events) {
+        if (event.type === 'screenshot' && event.imageFile) {
+          const img = new Image();
+          img.src = event.imageFile;
+          event._img = img;
+        }
+      }
+
+      // Prepare message events (DOM built dynamically during playback)
+      messageContent.innerHTML = '';
+      messageEvents = events
+        .filter(e => e.type === 'message')
+        .map(e => ({ videoOffsetMs: e.videoOffsetMs, text: e.text, thinking: e.thinking }));
+      messagesShown = 0;
+      lastMessageMs = -1;
+
+      titleEl.textContent = d.testName + ' (' + d.model + ')';
+      statusEl.textContent = d.pass ? 'PASS' : 'FAIL';
+      statusEl.style.color = d.pass ? '#4ade80' : '#f87171';
+
+      video.src = 'videos/' + d.videoFile;
+      video.load();
+    })
+    .catch(err => {
+      statusEl.textContent = 'Error: ' + err.message;
+    });
+}
+
+video.addEventListener('loadedmetadata', () => {
+  video.playbackRate = speeds[speedIdx];
+  speedBtn.textContent = speeds[speedIdx] + 'x';
+  const videoAspect = video.videoWidth / video.videoHeight;
+  const displayH = DISPLAY_HEIGHT;
+  const displayW = Math.round(displayH * videoAspect);
+
+  // Size both canvases identically
+  for (const c of [canvas, agentCanvas]) {
+    c.width = displayW;
+    c.height = displayH;
+    c.style.width = displayW + 'px';
+    c.style.height = displayH + 'px';
+  }
+  canvasScale = displayW / (data?.screenWidth || video.videoWidth);
+
+  // Match message box height to canvas column (canvas + label)
+  const canvasColHeight = document.querySelector('.canvas-col').offsetHeight;
+  document.querySelector('.message-box').style.height = canvasColHeight + 'px';
+
+  // Extend scrubber to cover events that may exceed video duration
+  const maxEventMs = events.length > 0 ? Math.max(...events.map(e => e.videoOffsetMs)) : 0;
+  timelineEndMs = Math.max(video.duration * 1000, maxEventMs + 500);
+  scrubber.max = Math.floor(timelineEndMs);
+  drawFrame();
+});
+
+video.addEventListener('ended', () => {
+  // Don't stop playing — the virtual timeline may extend past the video
+  // requestFrame will handle stopping when virtualTimeMs >= timelineEndMs
+});
+
+playBtn.addEventListener('click', () => {
+  if (!video.src) return;
+  if (playing) {
+    video.pause();
+    playing = false;
+    playBtn.innerHTML = '&#9654;';
+  } else {
+    playing = true;
+    playBtn.innerHTML = '&#9646;&#9646;';
+    lastFrameTime = performance.now();
+    // If past video end, don't try to play the video element
+    if (virtualTimeMs < video.duration * 1000) {
+      video.currentTime = virtualTimeMs / 1000;
+      video.play();
+    }
+    requestFrame();
+  }
+});
+
+let scrubbing = false;
+scrubber.addEventListener('input', () => {
+  scrubbing = true;
+  virtualTimeMs = Number(scrubber.value);
+  video.currentTime = Math.min(virtualTimeMs / 1000, video.duration || 0);
+  drawFrame();
+});
+scrubber.addEventListener('change', () => {
+  scrubbing = false;
+});
+
+speedBtn.addEventListener('click', () => {
+  speedIdx = (speedIdx + 1) % speeds.length;
+  video.playbackRate = speeds[speedIdx];
+  speedBtn.textContent = speeds[speedIdx] + 'x';
+});
+
+let lastFrameTime = 0;
+function requestFrame() {
+  if (!playing) return;
+  const now = performance.now();
+  animFrameId = requestAnimationFrame(() => {
+    const delta = now - lastFrameTime;
+    lastFrameTime = now;
+
+    if (video.ended || video.paused && virtualTimeMs >= video.duration * 1000) {
+      // Video ended but timeline continues — advance virtual time manually
+      virtualTimeMs += delta * speeds[speedIdx];
+      if (virtualTimeMs >= timelineEndMs) {
+        virtualTimeMs = timelineEndMs;
+        playing = false;
+        playBtn.innerHTML = '&#9654;';
+      }
+    } else {
+      virtualTimeMs = video.currentTime * 1000;
+    }
+
+    drawFrame();
+    if (!scrubbing) {
+      scrubber.value = Math.floor(virtualTimeMs);
+    }
+    requestFrame();
+  });
+}
+
+function drawFrame() {
+  if (!data) return;
+  const currentMs = virtualTimeMs;
+
+  // === Left canvas: video + overlays ===
+  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+  for (const event of events) {
+    drawEventOverlay(ctx, event, currentMs);
+  }
+
+  // === Right canvas: agent's cumulative view ===
+  agentCtx.fillStyle = '#000';
+  agentCtx.fillRect(0, 0, agentCanvas.width, agentCanvas.height);
+
+  // Draw all screenshots up to current time (cumulative)
+  // Each new screenshot darkens all previous content by 50%
+  const s = canvasScale;
+  let drawnAny = false;
+  for (const event of events) {
+    if (event.type !== 'screenshot') continue;
+    if (event.videoOffsetMs > currentMs) break; // events are sorted
+    if (!event._img || !event._img.complete) continue;
+
+    // Darken existing content before drawing the new screenshot
+    if (drawnAny) {
+      agentCtx.fillStyle = 'rgba(0, 0, 0, 0.25)';
+      agentCtx.fillRect(0, 0, agentCanvas.width, agentCanvas.height);
+    }
+
+    const dx = (event.x ?? 0) * s;
+    const dy = (event.y ?? 0) * s;
+    const dw = (event.width ?? data.screenWidth) * s;
+    const dh = (event.height ?? data.screenHeight) * s;
+    agentCtx.drawImage(event._img, dx, dy, dw, dh);
+    drawnAny = true;
+  }
+
+  // Draw action overlays on agent canvas too
+  for (const event of events) {
+    drawEventOverlay(agentCtx, event, currentMs);
+  }
+
+  // === Message box: add messages as video progresses ===
+  // If scrubbed backwards, rebuild from scratch
+  if (currentMs < lastMessageMs) {
+    messageContent.innerHTML = '';
+    messagesShown = 0;
+  }
+  lastMessageMs = currentMs;
+
+  // Check if user has scrolled away from bottom (sticky scroll)
+  const atBottom = messageContent.scrollHeight - messageContent.scrollTop - messageContent.clientHeight < 30;
+
+  // Append new messages that have become active
+  while (messagesShown < messageEvents.length && messageEvents[messagesShown].videoOffsetMs <= currentMs) {
+    const msg = messageEvents[messagesShown];
+    const el = document.createElement('div');
+    el.className = 'msg-entry';
+    if (msg.thinking) {
+      const t = document.createElement('div');
+      t.className = 'msg-thinking';
+      t.textContent = msg.thinking;
+      el.appendChild(t);
+    }
+    if (msg.text) {
+      const t = document.createElement('div');
+      t.className = 'msg-text';
+      t.textContent = msg.text;
+      el.appendChild(t);
+    }
+    messageContent.appendChild(el);
+    messagesShown++;
+  }
+  // Sticky scroll: only auto-scroll if was already at bottom
+  if (atBottom) {
+    messageContent.scrollTop = messageContent.scrollHeight;
+  }
+
+  // === Token stats: find latest usage event at or before currentMs ===
+  let latestUsage = null;
+  for (const event of events) {
+    if (event.type === 'usage' && event.videoOffsetMs <= currentMs) {
+      latestUsage = event;
+    }
+  }
+  const inp = latestUsage?.inputTokens || 0;
+  const out = latestUsage?.outputTokens || 0;
+  statInput.textContent = inp.toLocaleString();
+  statOutput.textContent = out.toLocaleString();
+  statTotal.textContent = (inp + out).toLocaleString();
+
+  // Update time display
+  timeDisplay.textContent = formatTime(currentMs) + ' / ' + formatTime(video.duration * 1000);
+}
+
+function drawEventOverlay(ctx, event, currentMs) {
+  const offset = event.videoOffsetMs;
+  const s = canvasScale;
+
+  switch (event.type) {
+    case 'tap': {
+      const elapsed = currentMs - offset;
+      if (elapsed < 0 || elapsed > 500) return;
+      const alpha = 1 - (elapsed / 500);
+      const radius = 12 + (elapsed / 500) * 20;
+
+      ctx.beginPath();
+      ctx.arc(event.x * s, event.y * s, radius, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(233, 69, 96, ${alpha * 0.8})`;
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(event.x * s, event.y * s, 6, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(233, 69, 96, ${alpha})`;
+      ctx.fill();
+      break;
+    }
+
+    case 'swipe': {
+      const duration = event.durationMs || 300;
+      const totalShow = duration + 300;
+      const elapsed = currentMs - offset;
+      if (elapsed < 0 || elapsed > totalShow) return;
+
+      const progress = Math.min(elapsed / duration, 1);
+      const fadeAlpha = elapsed > duration ? 1 - ((elapsed - duration) / 300) : 1;
+
+      const x1 = event.x1 * s, y1 = event.y1 * s;
+      const x2 = event.x2 * s, y2 = event.y2 * s;
+      const cx = x1 + (x2 - x1) * progress;
+      const cy = y1 + (y2 - y1) * progress;
+
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(cx, cy);
+      ctx.strokeStyle = `rgba(99, 102, 241, ${fadeAlpha * 0.7})`;
+      ctx.lineWidth = 4;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+
+      if (progress < 1) {
+        ctx.beginPath();
+        ctx.arc(cx, cy, 10, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(99, 102, 241, ${fadeAlpha})`;
+        ctx.fill();
+      }
+
+      ctx.beginPath();
+      ctx.arc(x1, y1, 5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(99, 102, 241, ${fadeAlpha * 0.5})`;
+      ctx.fill();
+      break;
+    }
+
+    case 'long-press': {
+      const duration = event.durationMs || 1000;
+      const totalShow = duration + 300;
+      const elapsed = currentMs - offset;
+      if (elapsed < 0 || elapsed > totalShow) return;
+
+      const fadeAlpha = elapsed > duration ? 1 - ((elapsed - duration) / 300) : 1;
+      const pulse = 1 + 0.3 * Math.sin((elapsed / 200) * Math.PI);
+
+      ctx.beginPath();
+      ctx.arc(event.x * s, event.y * s, 14 * pulse, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(251, 191, 36, ${fadeAlpha * 0.6})`;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(event.x * s, event.y * s, 7, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(251, 191, 36, ${fadeAlpha})`;
+      ctx.fill();
+      break;
+    }
+
+    case 'screenshot': {
+      const elapsed = currentMs - offset;
+      if (elapsed < 0 || elapsed > 600) return;
+      const alpha = elapsed < 100 ? elapsed / 100 : (elapsed > 400 ? 1 - ((elapsed - 400) / 200) : 1);
+
+      const x = (event.x ?? 0) * s;
+      const y = (event.y ?? 0) * s;
+      const w = (event.width ?? data.screenWidth) * s;
+      const h = (event.height ?? data.screenHeight) * s;
+
+      ctx.strokeStyle = `rgba(52, 211, 153, ${alpha * 0.9})`;
+      ctx.lineWidth = 2;
+      ctx.setLineDash([6, 4]);
+      ctx.strokeRect(x, y, w, h);
+      ctx.setLineDash([]);
+
+      ctx.fillStyle = `rgba(52, 211, 153, ${alpha * 0.08})`;
+      ctx.fillRect(x, y, w, h);
+
+      ctx.font = '11px system-ui';
+      ctx.fillStyle = `rgba(52, 211, 153, ${alpha})`;
+      ctx.fillText('screenshot', x + 4, y + 14);
+      break;
+    }
+
+    case 'key-event': {
+      const elapsed = currentMs - offset;
+      if (elapsed < 0 || elapsed > 800) return;
+      const alpha = 1 - (elapsed / 800);
+
+      ctx.font = 'bold 14px system-ui';
+      ctx.fillStyle = `rgba(168, 85, 247, ${alpha})`;
+      ctx.fillText('KEY: ' + (event.key || ''), 10, canvas.height - 20);
+      break;
+    }
+  }
+}
+
+// Populate file picker from index.json
+async function loadFileList() {
+  try {
+    const index = await fetch('data/index.json').then(r => r.json());
+    for (const entry of index) {
+      const opt = document.createElement('option');
+      opt.value = 'data/' + entry.file;
+      opt.textContent = entry.testName + ' (' + entry.model + ')' + (entry.pass ? ' PASS' : ' FAIL');
+      dataSelect.appendChild(opt);
+    }
+    const params = new URLSearchParams(location.search);
+    const dataUrl = params.get('data');
+    if (dataUrl) {
+      loadDataFile(dataUrl);
+    } else if (index.length > 0) {
+      dataSelect.value = 'data/' + index[0].file;
+      loadDataFile(dataSelect.value);
+    }
+  } catch (err) {
+    statusEl.textContent = 'Failed to load index: ' + err.message;
+  }
+}
+
+dataSelect.addEventListener('change', () => {
+  if (dataSelect.value) {
+    video.pause();
+    playing = false;
+    playBtn.innerHTML = '&#9654;';
+    loadDataFile(dataSelect.value);
+  }
+});
+
+loadFileList();
+
+document.addEventListener('keydown', (e) => {
+  if (e.code === 'Space') {
+    e.preventDefault();
+    playBtn.click();
+  } else if (e.code === 'ArrowLeft') {
+    video.currentTime = Math.max(0, video.currentTime - 5);
+    drawFrame();
+  } else if (e.code === 'ArrowRight') {
+    video.currentTime = Math.min(video.duration, video.currentTime + 5);
+    drawFrame();
+  }
+});
+</script>
+</body>
+</html>

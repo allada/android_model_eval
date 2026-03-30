@@ -1,31 +1,33 @@
 import type { TestCase } from "../types.ts";
 import { packageInstalled } from "../verification/checks.ts";
 
+const FOCUS_APK_URL =
+  "https://github.com/mozilla-mobile/focus-android/releases/download/v108.1.0/focus-108.1.0-x86_64.apk";
+const FOCUS_PACKAGE = "org.mozilla.focus";
+
 /**
  * Test that the LLM can uninstall an app.
  *
- * Uses the Calculator app as a target since it's a non-critical system app
- * that can be uninstalled on most emulator images. Adjust the package name
- * if your emulator image uses a different calculator.
+ * Downloads and installs Firefox Focus, then asks the LLM to remove it.
  */
-export const uninstallCalculator: TestCase = {
-  id: "uninstall-calculator",
-  name: "Uninstall the Calculator app",
-  prompt: "Uninstall the Calculator app.",
+export const uninstallApp: TestCase = {
+  id: "uninstall-app",
+  name: "Uninstall the Firefox Focus app",
+  prompt: [
+    "There is an app called Firefox Focus installed on this device.",
+    "The icon looks like the firefox logo, but purple.",
+    "Find it and uninstall it.",
+  ].join(" "),
   setup: [
-    // Ensure the calculator is installed (re-install if previously removed)
-    async (sessionAdminCtx) => {
-      const packages = await sessionAdminCtx.adbShell("pm list packages | grep calc");
-      if (!packages.includes("com.google.android.calculator")) {
-        await sessionAdminCtx.adbShell(
-          "pm install-existing com.google.android.calculator || true",
-        );
-      }
+    async (ctx) => {
+      const packages = await ctx.adbShell("pm list packages");
+      if (packages.includes(FOCUS_PACKAGE)) return;
+      await ctx.downloadFile(FOCUS_APK_URL, "/data/local/tmp/focus.apk");
+      await ctx.adbShell("pm install /data/local/tmp/focus.apk");
+      await ctx.adbShell("rm /data/local/tmp/focus.apk");
     },
   ],
-  verifications: [
-    packageInstalled("com.google.android.calculator", false),
-  ],
+  verifications: [packageInstalled(FOCUS_PACKAGE, false)],
   timeoutMs: 120_000,
   tags: ["apps", "uninstall"],
 };

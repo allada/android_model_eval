@@ -9,6 +9,7 @@ import type {
   VerificationCheck,
   SessionAdminContext,
 } from "./types.ts";
+import { join } from "node:path";
 
 const DEFAULT_TIMEOUT_MS = 120_000;
 
@@ -24,9 +25,12 @@ function sleep(ms: number): Promise<void> {
 }
 
 /** Create a SessionAdminContext backed by the admin API for a specific session. */
-function makeSessionAdminContext(admin: AdminClient, sessionId: string): SessionAdminContext {
+function makeSessionAdminContext(admin: AdminClient, sessionId: string, deviceSerial: string): SessionAdminContext {
   return {
     adbShell: (command: string) => admin.runAdbCommand(sessionId, command),
+    adbEmu: (command: string) => admin.runEmuCommand(sessionId, command),
+    downloadFile: (url: string, destPath: string) => admin.downloadFile(sessionId, url, destPath),
+    deviceSerial,
   };
 }
 
@@ -90,6 +94,8 @@ export interface RunnerOptions {
   model: string;
   /** Effort level for the JSON report. */
   effort?: string;
+  /** Directory for result output (videos stored in videos/ subdir). Defaults to "results". */
+  resultsDir?: string;
 }
 
 /**
@@ -99,7 +105,7 @@ export interface RunnerOptions {
 export async function runTests(
   tests: TestCase[],
   provider: LlmProvider,
-  { admin, mcpServerUrl, model, effort }: RunnerOptions,
+  { admin, mcpServerUrl, model, effort, resultsDir = "results" }: RunnerOptions,
 ): Promise<TestRunSummary> {
   const runStart = Date.now();
   const results: TestResult[] = [];
@@ -112,6 +118,8 @@ export async function runTests(
     let rawOutput: string | undefined;
     let tokenUsage: import("./providers/types.ts").TokenUsage | undefined;
     let deviceSessionId: string | undefined;
+    let videoPath: string | undefined;
+    let recordingStartedAtMs: number | undefined;
 
     try {
       // 0. CREATE SESSION + RESTORE BASELINE
@@ -123,7 +131,7 @@ export async function runTests(
       await admin.loadSnapshot(deviceSessionId, "baseline");
       log.harness("Baseline snapshot loaded.");
 
-      const sessionAdminCtx = makeSessionAdminContext(admin, deviceSessionId);
+      const sessionAdminCtx = makeSessionAdminContext(admin, deviceSessionId, session.deviceSerial);
 
       // 1. SETUP: common + test-specific
       for (const cmd of COMMON_SETUP) {
@@ -137,6 +145,18 @@ export async function runTests(
         } else {
           await step(sessionAdminCtx);
         }
+      }
+
+      // 1.5. START RECORDING (after setup, before LLM execution)
+      try {
+        videoPath = join(resultsDir, "videos", `${deviceSessionId}.mkv`);
+        const recordResult = await admin.startRecording(deviceSessionId, videoPath);
+        recordingStartedAtMs = recordResult.startedAtMs;
+        log.harness(`Recording started (startedAtMs=${recordingStartedAtMs})`);
+      } catch (err: any) {
+        log.harnessError(`Recording failed to start: ${err.message}`);
+        videoPath = undefined;
+        recordingStartedAtMs = undefined;
       }
 
       // 2. EXECUTE: let the LLM do its thing
@@ -154,6 +174,19 @@ export async function runTests(
       } catch (err: any) {
         error = err.message;
         log.harnessError(`Execution error: ${err.message}`);
+      }
+
+      // 2.5. STOP RECORDING (after LLM execution, before verification)
+      if (videoPath && recordingStartedAtMs) {
+        try {
+          // Force a screen redraw so scrcpy captures a final frame
+          await sessionAdminCtx.adbShell("input keyevent WAKEUP");
+          await new Promise((r) => setTimeout(r, 200));
+          await admin.stopRecording(deviceSessionId);
+          log.harness("Recording stopped.");
+        } catch (err: any) {
+          log.harnessError(`Recording stop failed: ${err.message}`);
+        }
       }
 
       // 3. VERIFY: check device state + raw output
@@ -186,6 +219,8 @@ export async function runTests(
         error,
         tokenUsage,
         rawOutput,
+        videoPath,
+        recordingStartedAtMs,
       });
 
       log.testResult(pass);
@@ -201,7 +236,7 @@ export async function runTests(
         error: err.message,
       });
     } finally {
-      // 4. CLEANUP: remove session
+      // 4. CLEANUP: remove session (auto-stops recording if still active)
       if (deviceSessionId) {
         try {
           await admin.removeDeviceSession(deviceSessionId);

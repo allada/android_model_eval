@@ -74,6 +74,8 @@ export class CodexProvider implements LlmProvider {
       "--skip-git-repo-check",
       "--disable", "shell_tool",
       ...(this.effort ? ["-c", `model_reasoning_effort="${this.effort}"`] : []),
+      "-c", 'model_reasoning_summary="detailed"',
+      "-c", "hide_agent_reasoning=false",
       fullPrompt,
     ];
 

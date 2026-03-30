@@ -5,6 +5,7 @@ import { printSummary, writeJsonReport } from "./harness/reporter.ts";
 import { AdminClient } from "./harness/admin_client.ts";
 import { CodexProvider } from "./harness/providers/codex.ts";
 import { ClaudeProvider } from "./harness/providers/claude.ts";
+import { GeminiProvider } from "./harness/providers/gemini.ts";
 import type { LlmProvider } from "./harness/providers/types.ts";
 
 const { values } = parseArgs({
@@ -24,7 +25,7 @@ if (values.help) {
   console.log(`Usage: bun run index.ts [options]
 
 Options:
-  --provider <name>    LLM provider: codex, claude (default: codex)
+  --provider <name>    LLM provider: codex, claude, gemini (default: codex)
   --model <model>      Model override (e.g. o4-mini, sonnet, opus)
   --mcp-url <url>      MCP server URL (default: http://localhost:3000)
   --admin-url <url>    Admin API URL (default: http://localhost:3001)
@@ -45,9 +46,11 @@ function createProvider(name: string, model?: string): LlmProvider {
       return new CodexProvider({ model, mcpServerUrl: mcpUrl, effort });
     case "claude":
       return new ClaudeProvider({ model, mcpServerUrl: mcpUrl, effort });
+    case "gemini":
+      return new GeminiProvider({ model, mcpServerUrl: mcpUrl });
     default:
       console.error(`Unknown provider: ${name}`);
-      console.error("Available providers: codex, claude");
+      console.error("Available providers: codex, claude, gemini");
       process.exit(1);
   }
 }
@@ -71,7 +74,11 @@ if ("setup" in provider && typeof provider.setup === "function") {
 }
 
 try {
-  const model = values.model ?? (values.provider === "claude" ? "sonnet" : "gpt-5.4");
+  const model = values.model ?? (
+    values.provider === "claude" ? "sonnet" :
+    values.provider === "gemini" ? "gemini-2.5-pro" :
+    "gpt-5.4"
+  );
   const summary = await runTests(tests, provider, { mcpServerUrl: mcpUrl, admin, model, effort });
   printSummary(summary);
   await writeJsonReport(summary);

@@ -36,8 +36,9 @@ export class ClaudeProvider implements LlmProvider {
       "You are controlling an Android device via MCP tools.",
       `Your device session ID is: ${config.deviceSessionId}`,
       "Pass this deviceSessionId to every MCP tool call.",
-      "First call get-device-session-info to get the screenshot URL and screen dimensions.",
-      "You should verify the action you took succeeded and retry or wait if needed.",
+      "First call get-device-session-info to get screen dimensions.",
+      "Prefer low-resolution, downscaled screenshots to minimize tokens. Only request high-resolution crops of specific UI sections as needed.",
+      "Verify the action you took succeeded and retry or wait if needed.",
     ].join("\n");
 
     const mcpConfig = JSON.stringify({
