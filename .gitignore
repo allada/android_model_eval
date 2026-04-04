@@ -10,6 +10,11 @@ db
 widget/data
 widget/videos
 widget/images
+stats.csv
+widget/stats-embed.html
+
+# archives
+*.zip
 
 # code coverage
 coverage

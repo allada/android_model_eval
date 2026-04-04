@@ -9,16 +9,7 @@ import type {
   VerificationCheck,
   SessionAdminContext,
 } from "./types.ts";
-import { join } from "node:path";
-
 const DEFAULT_TIMEOUT_MS = 120_000;
-
-/** Common setup commands run before every test. */
-const COMMON_SETUP: string[] = [
-  // "input keyevent WAKEUP",
-  // "input keyevent MENU",       // dismiss lock screen
-  // "input keyevent HOME",
-];
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -134,11 +125,7 @@ export async function runTests(
 
       const sessionAdminCtx = makeSessionAdminContext(admin, deviceSessionId, session.deviceSerial);
 
-      // 1. SETUP: common + test-specific
-      for (const cmd of COMMON_SETUP) {
-        await sessionAdminCtx.adbShell(cmd);
-      }
-
+      // 1. SETUP: test-specific
       for (const step of test.setup) {
         if (typeof step === "string") {
           log.harness(`Setup: ${step}`);
