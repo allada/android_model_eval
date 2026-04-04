@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Android LLM Benchmark — Stats</title>
+<style>
+html, body {
+  margin: 0; padding: 0;
+  background: #0f1117;
+}
+body { padding: 12px; }
+@media (prefers-color-scheme: light) {
+  html, body { background: #f1f5f9; }
+}
+.bench-chart {
+  /* Dark (default) */
+  --bc-surface: #181c2a;
+  --bc-text: #e2e8f0;
+  --bc-dim: #64748b;
+  --bc-border: #2a2a40;
+  --bc-accent: #059669;
+  --bc-track: rgba(255,255,255,0.025);
+  --bc-tip-bg: #111122;
+  --bc-tip-border: #2a2a40;
+  background: var(--bc-surface);
+  color: var(--bc-text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  border: 1px solid var(--bc-border);
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 100%;
+  line-height: 1.4;
+  position: relative;
+  overflow: visible;
+}
+.bench-chart *, .bench-chart *::before, .bench-chart *::after {
+  margin: 0; padding: 0; box-sizing: border-box;
+}
+.bench-chart .bc-title { font-size: 1.05em; font-weight: 700; margin-bottom: 2px; }
+.bench-chart .bc-desc  { font-size: 0.78em; color: var(--bc-dim); margin-bottom: 14px; }
+.bench-chart canvas    { display: block; width: 100%; -webkit-tap-highlight-color: transparent; }
+
+/* Light mode */
+@media (prefers-color-scheme: light) {
+  .bench-chart {
+    --bc-surface: #ffffff;
+    --bc-text: #0f172a;
+    --bc-dim: #334155;
+    --bc-border: #cbd5e1;
+    --bc-accent: #059669;
+    --bc-track: rgba(0,0,0,0.08);
+    --bc-tip-bg: #ffffff;
+    --bc-tip-border: #cbd5e1;
+  }
+}
+
+/* Tabs */
+.bench-chart .bc-tabs { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
+.bench-chart .bc-tab {
+  background: rgba(255,255,255,0.04); color: var(--bc-dim);
+  border: 1px solid var(--bc-border); border-radius: 6px;
+  padding: 5px 11px; font-size: 0.72em; font-family: inherit;
+  cursor: pointer; transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent; white-space: nowrap;
+}
+.bench-chart .bc-tab:hover { border-color: #444; color: var(--bc-text); }
+.bench-chart .bc-tab.active {
+  background: rgba(52,211,153,0.12);
+  border-color: var(--bc-accent); color: var(--bc-accent); font-weight: 600;
+}
+
+/* Methodology */
+.bench-chart .bc-method-toggle {
+  margin-top: 14px; font-size: 0.72em; color: var(--bc-dim);
+  cursor: pointer; text-align: center; padding: 6px;
+  border-top: 1px solid var(--bc-border); transition: color 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.bench-chart .bc-method-toggle:hover { color: var(--bc-accent); }
+.bench-chart .bc-method-toggle::before { content: '▸ '; font-size: 0.85em; }
+.bench-chart .bc-method-toggle.open::before { content: '▾ '; }
+.bench-chart .bc-method { display: none; padding: 12px 0 0; }
+.bench-chart .bc-method.open { display: block; }
+.bench-chart .bc-method-section { margin-bottom: 12px; }
+.bench-chart .bc-method-title { font-size: 0.78em; font-weight: 600; color: var(--bc-text); margin-bottom: 3px; }
+.bench-chart .bc-method-body { font-size: 0.72em; color: var(--bc-dim); line-height: 1.6; }
+.bench-chart .bc-method-body ul { margin: 6px 0 0 16px; padding: 0; }
+.bench-chart .bc-method-body li { margin-bottom: 3px; }
+.bench-chart .bc-method-body strong { color: var(--bc-text); font-weight: 600; }
+.bench-chart .bc-method-body a { color: var(--bc-accent); text-decoration: none; }
+.bench-chart .bc-method-body a:hover { text-decoration: underline; }
+
+/* Error */
+.bench-chart .bc-error { text-align: center; color: var(--bc-dim); padding: 32px 0; font-size: 0.85em; }
+
+/* Tooltip */
+.bench-chart .bc-tooltip {
+  position: absolute; background: var(--bc-tip-bg, #111122); border: 1px solid var(--bc-tip-border, #2a2a40);
+  color: var(--bc-text, #e2e8f0); padding: 10px 14px; border-radius: 8px;
+  font-size: 12px; font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6; display: none; cursor: pointer;
+  z-index: 10000; max-width: min(340px, 90vw);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+}
+.bench-chart .bc-tooltip.visible { display: block; }
+.bench-chart .bc-tooltip strong { color: var(--bc-accent, #059669); }
+.bench-chart .bc-tooltip .tt-dim { color: var(--bc-dim, #64748b); }
+.bench-chart .bc-tooltip .bc-caret {
+  position: absolute; width: 10px; height: 10px;
+  background: var(--bc-tip-bg, #111122);
+  border-left: 1px solid var(--bc-tip-border, #2a2a40); border-top: 1px solid var(--bc-tip-border, #2a2a40);
+}
+.bench-chart .bc-tooltip .bc-caret.above { top: -6px; transform: rotate(45deg); }
+.bench-chart .bc-tooltip .bc-caret.below { bottom: -6px; transform: rotate(225deg); }
+</style>
+</head>
+<body>
+
+<div class="bench-chart" id="benchChart">
+  <div class="bc-title">Model Comparison</div>
+  <div class="bc-desc">Lower is better for all metrics. Whiskers show 95% CI on fail rate. Tap/click a row for details.</div>
+  <div class="bc-tabs" id="bcTabs"></div>
+  <canvas id="bcCanvas"></canvas>
+  <div class="bc-method-toggle" id="bcMethodToggle">How is this calculated?</div>
+  <div class="bc-method" id="bcMethod">
+    <div class="bc-method-section">
+      <div class="bc-method-title">Test Period</div>
+      <div class="bc-method-body">All runs were conducted between <strong>March 28 – April 2, 2026</strong> using each provider's publicly available API.</div>
+    </div>
+    <div class="bc-method-section">
+      <div class="bc-method-title">Plans Used</div>
+      <div class="bc-method-body">Tests were run using the following subscription plans:
+        <ul>
+          <li><strong>Anthropic</strong> — Max 20x plan</li>
+          <li><strong>Google</strong> — AI Ultra plan</li>
+          <li><strong>OpenAI</strong> — Pro plan</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bc-method-section">
+      <div class="bc-method-title">Cost Calculation</div>
+      <div class="bc-method-body">Cost = (input tokens × input price) + (output tokens × output price) per successful run. Costs are based on each provider's published API token pricing (input / output per million tokens), not subscription fees. Sources:
+        <ul>
+          <li><strong>Anthropic</strong> — Opus: $5 / $25, Sonnet: $3 / $15 (<a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener">source</a>)</li>
+          <li><strong>Google</strong> — Gemini 2.5 Pro: $1.25 / $10, Flash: $0.30 / $2.50, Flash Lite: $0.10 / $0.40 (<a href="https://ai.google.dev/pricing" target="_blank" rel="noopener">source</a>)</li>
+          <li><strong>OpenAI</strong> — GPT-5.4: $2.50 / $15, GPT-5.2/5.3 Codex: $1.75 / $14, GPT-5.1 Codex: $1.25 / $10 (<a href="https://platform.openai.com/docs/pricing" target="_blank" rel="noopener">source</a>)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bc-method-section">
+      <div class="bc-method-title">Confidence Intervals</div>
+      <div class="bc-method-body">Error bars use the <strong>Wilson score interval</strong> at 95% confidence.</div>
+    </div>
+    <div class="bc-method-section">
+      <div class="bc-method-title">Timeouts</div>
+      <div class="bc-method-body">Each test has a <strong>10-minute timeout</strong>. Runs that exceed this are marked as "Timed Out" (shown in the darker segment of the fail bar). Timeouts count as failures in the pass rate calculation.</div>
+    </div>
+    <div class="bc-method-section">
+      <div class="bc-method-title">Low Sample Threshold</div>
+      <div class="bc-method-body">Models with fewer than 50% of the max run count are separated into a "Low sample" group.</div>
+    </div>
+    <div class="bc-method-section">
+      <div class="bc-method-title">Duration &amp; Token Metrics</div>
+      <div class="bc-method-body">Duration and token bars only average <strong>successful runs</strong>.</div>
+    </div>
+  </div>
+  <div class="bc-tooltip" id="bcTooltip"></div>
+</div>
+
+<script>
+(function () {
+'use strict';
+
+// =====================================================================
+// Configuration
+// =====================================================================
+var EXCLUDE_TESTS     = { 'get-verification-code': true };
+var LOW_N_PCT         = 0.5;
+var COMPACT_BREAKPOINT = 480;
+
+var METRICS = [
+  { key: 'failRate', color: [220, 80, 80],  label: 'Failed' },
+  { key: 'timeout',  color: [205, 110, 62], label: 'Timed Out' },
+  { key: 'duration', color: [96, 165, 250], label: 'Duration (success)' },
+  { key: 'tokens',   color: [251, 191, 36], label: 'Tokens (success)' },
+  { key: 'cost',     color: [52, 211, 153], label: 'Cost (success)' },
+];
+
+var BAR_H_PRIMARY = 22;
+var BAR_H         = 7;
+var BAR_GAP       = 2;
+var ROW_GAP       = 10;
+var SEP_H         = 24;
+var LEGEND_H      = 24;
+var LABEL_ROW_H   = 18;
+
+// =====================================================================
+// Helpers
+// =====================================================================
+function mColor(i, a) {
+  var c = METRICS[i].color;
+  return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')';
+}
+
+function wilsonCI(passes, n) {
+  if (n === 0) return [0, 0];
+  var p = passes / n, z = 1.96;
+  var d = 1 + z * z / n;
+  var ctr = (p + z * z / (2 * n)) / d;
+  var m = z * Math.sqrt((p * (1 - p) + z * z / (4 * n)) / n) / d;
+  return [Math.max(0, ctr - m), Math.min(1, ctr + m)];
+}
+
+function fmtPct(v) { return v.toFixed(1) + '%'; }
+function fmtSec(v) { return v != null ? v.toFixed(0) + 's' : '—'; }
+function fmtUSD(v) { return v != null ? '$' + v.toFixed(2) : '—'; }
+function fmtTok(v) {
+  if (v == null) return '—';
+  return v >= 1e6 ? (v / 1e6).toFixed(1) + 'M' : Math.round(v / 1000) + 'K';
+}
+
+function maxOf(arr, fn, floor) {
+  var vals = arr.map(fn).filter(function (v) { return v != null && v > 0; });
+  return vals.length > 0 ? Math.max.apply(null, vals) : floor;
+}
+
+// =====================================================================
+// Pricing
+// =====================================================================
+var pricing = {};
+
+function costUSD(model, inTok, outTok) {
+  var p = pricing[model];
+  return p ? (inTok / 1e6) * p.inputPerM + (outTok / 1e6) * p.outputPerM : null;
+}
+
+// =====================================================================
+// Data
+// =====================================================================
+function loadData(raw) {
+  return raw
+    .filter(function (d) { return !EXCLUDE_TESTS[d.testId]; })
+    .map(function (d) {
+      return {
+        test: d.testId, testName: d.testName || d.testId, model: d.model,
+        passes: d.passes, fails: d.fails, timeouts: d.timeouts || 0, runs: d.runs,
+        passAvgDuration: d.passAvgDurationS,
+        passAvgInput: d.passAvgInputTokens, passAvgOutput: d.passAvgOutputTokens,
+      };
+    });
+}
+
+function aggregate(data, filterTest) {
+  var subset = filterTest ? data.filter(function (d) { return d.test === filterTest; }) : data;
+  var map = {};
+  subset.forEach(function (d) { (map[d.model] = map[d.model] || []).push(d); });
+
+  var result = [];
+  for (var model in map) {
+    var rows = map[model];
+    var tP = 0, tN = 0, tTO = 0, pN = 0, dS = 0, iS = 0, oS = 0;
+    rows.forEach(function (r) {
+      tP += r.passes; tN += r.runs; tTO += r.timeouts;
+      if (r.passAvgDuration != null && r.passes > 0) {
+        pN += r.passes;
+        dS += r.passAvgDuration * r.passes;
+        iS += (r.passAvgInput || 0) * r.passes;
+        oS += (r.passAvgOutput || 0) * r.passes;
+      }
+    });
+    var ci = wilsonCI(tP, tN);
+    result.push({
+      model: model,
+      rate: tN > 0 ? tP / tN * 100 : 0,
+      runs: tN, passes: tP, fails: tN - tP, timeouts: tTO,
+      ciLower: ci[0] * 100, ciUpper: ci[1] * 100,
+      passAvgDuration: pN > 0 ? dS / pN : null,
+      passAvgTokens: pN > 0 ? (iS + oS) / pN : null,
+      passAvgInput: pN > 0 ? Math.round(iS / pN) : null,
+      passAvgOutput: pN > 0 ? Math.round(oS / pN) : null,
+      passAvgCost: pN > 0 ? costUSD(model, iS / pN, oS / pN) : null,
+    });
+  }
+  return result;
+}
+
+// =====================================================================
+// DOM & State
+// =====================================================================
+var root     = document.getElementById('benchChart');
+var tabsEl   = document.getElementById('bcTabs');
+var canvas   = document.getElementById('bcCanvas');
+var ctx      = canvas.getContext('2d');
+var tooltip  = document.getElementById('bcTooltip');
+
+var allData = [], tests = [], testLabels = {};
+var selectedTest = null, modelAgg = [], modelOrder = [], barSlots = [];
+
+// Theme colors (read from CSS vars at draw time)
+var T = {};
+function readTheme() {
+  var s = getComputedStyle(root);
+  T.text = s.getPropertyValue('--bc-text').trim() || '#e2e8f0';
+  T.dim = s.getPropertyValue('--bc-dim').trim() || '#64748b';
+  T.track = s.getPropertyValue('--bc-track').trim() || T.track;
+  T.accent = s.getPropertyValue('--bc-accent').trim() || '#059669';
+  // Parse text color to rgba for alpha variants
+  var m = T.text.match(/(\d+),\s*(\d+),\s*(\d+)/);
+  if (!m) { // hex
+    var hex = T.text.replace('#','');
+    if (hex.length === 3) hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+    T.tr = parseInt(hex.slice(0,2),16); T.tg = parseInt(hex.slice(2,4),16); T.tb = parseInt(hex.slice(4,6),16);
+  } else {
+    T.tr = +m[1]; T.tg = +m[2]; T.tb = +m[3];
+  }
+  var dm = T.dim.match(/(\d+),\s*(\d+),\s*(\d+)/);
+  if (!dm) {
+    var dh = T.dim.replace('#','');
+    if (dh.length === 3) dh = dh[0]+dh[0]+dh[1]+dh[1]+dh[2]+dh[2];
+    T.dr = parseInt(dh.slice(0,2),16); T.dg = parseInt(dh.slice(2,4),16); T.db = parseInt(dh.slice(4,6),16);
+  } else {
+    T.dr = +dm[1]; T.dg = +dm[2]; T.db = +dm[3];
+  }
+}
+function tRGBA(a) { return 'rgba(' + T.tr + ',' + T.tg + ',' + T.tb + ',' + a + ')'; }
+function dRGBA(a) { return 'rgba(' + T.dr + ',' + T.dg + ',' + T.db + ',' + a + ')'; }
+
+// =====================================================================
+// Layout
+// =====================================================================
+function compact()  { return root.clientWidth < COMPACT_BREAKPOINT; }
+function labelW()   { return compact() ? 0 : Math.min(180, Math.max(100, root.clientWidth * 0.22)); }
+function rightPad() { return Math.min(65, Math.max(40, root.clientWidth * 0.08)); }
+function fs(base)   { return Math.max(base - 1, Math.min(base, root.clientWidth / 70)); }
+function rowH()     { return (compact() ? LABEL_ROW_H : 0) + BAR_H_PRIMARY + BAR_GAP + BAR_H * 3 + BAR_GAP * 2; }
+
+// =====================================================================
+// Tabs
+// =====================================================================
+function buildTabs() {
+  tabsEl.innerHTML = '';
+  var btn = document.createElement('button');
+  btn.className = 'bc-tab' + (selectedTest === null ? ' active' : '');
+  btn.textContent = 'All Tests';
+  btn.onclick = function () { selectTest(null); };
+  tabsEl.appendChild(btn);
+  tests.forEach(function (t) {
+    var b = document.createElement('button');
+    b.className = 'bc-tab' + (selectedTest === t ? ' active' : '');
+    b.textContent = testLabels[t] || t;
+    b.onclick = function () { selectTest(t); };
+    tabsEl.appendChild(b);
+  });
+}
+
+function selectTest(t) {
+  selectedTest = t;
+  modelAgg = aggregate(allData, t);
+  if (t === null) {
+    modelAgg.sort(function (a, b) { return b.rate - a.rate; });
+    modelOrder = modelAgg.map(function (m) { return m.model; });
+  } else {
+    var ord = {};
+    modelOrder.forEach(function (m, i) { ord[m] = i; });
+    modelAgg.sort(function (a, b) {
+      return (ord[a.model] != null ? ord[a.model] : 9999) - (ord[b.model] != null ? ord[b.model] : 9999);
+    });
+  }
+  dismissTip();
+  buildTabs();
+  draw();
+}
+
+// =====================================================================
+// Tooltip
+// =====================================================================
+var activeSlot = null;
+
+function buildTipHTML(m) {
+  var t = selectedTest ? '<span class="tt-dim">Test:</span> ' + (testLabels[selectedTest] || selectedTest) + '<br>' : '';
+  var d = m.passAvgDuration != null ? '<span class="tt-dim">Avg duration (pass):</span> ' + m.passAvgDuration.toFixed(1) + 's<br>' : '';
+  var k = m.passAvgInput != null ? '<span class="tt-dim">Avg tokens (pass):</span> ' + m.passAvgInput.toLocaleString() + ' in + ' + m.passAvgOutput.toLocaleString() + ' out<br>' : '';
+  var c = m.passAvgCost != null ? '<span class="tt-dim">Avg cost (pass):</span> $' + m.passAvgCost.toFixed(2) + '<br>' : '';
+  return '<strong>' + m.model + '</strong><br>' + t
+    + '<span class="tt-dim">Runs:</span> ' + m.runs + '<br>'
+    + '<span class="tt-dim">Pass rate:</span> ' + m.rate.toFixed(1) + '% <span class="tt-dim">(' + m.ciLower.toFixed(1) + '–' + m.ciUpper.toFixed(1) + '% CI)</span><br>'
+    + '<span class="tt-dim">Failed:</span> ' + (m.fails - m.timeouts) + ' <span class="tt-dim">(' + (m.runs > 0 ? ((m.fails - m.timeouts) / m.runs * 100).toFixed(1) : 0) + '%)</span><br>'
+    + '<span class="tt-dim">Timed out:</span> ' + m.timeouts + ' <span class="tt-dim">(' + (m.runs > 0 ? (m.timeouts / m.runs * 100).toFixed(1) : 0) + '%)</span><br>'
+    + d + k + c;
+}
+
+function showTipAtRow(slot) {
+  tooltip.innerHTML = buildTipHTML(slot.data) + '<div class="bc-caret"></div>';
+  tooltip.classList.add('visible');
+
+  // Position relative to the .bench-chart container (position: relative)
+  var canvasOffsetTop = canvas.offsetTop;
+  var lw = labelW();
+  var tr = tooltip.getBoundingClientRect();
+  var rootW = root.clientWidth;
+
+  var x = lw + 20;
+  var y = canvasOffsetTop + slot.yBot + 8;
+
+  // Flip above if tooltip would go past the canvas bottom
+  var canvasBot = canvasOffsetTop + canvas.clientHeight;
+  if (y + tr.height > canvasBot + 20) {
+    y = canvasOffsetTop + slot.yTop - tr.height - 8;
+  }
+
+  if (x + tr.width > rootW - 8) x = rootW - tr.width - 8;
+  if (x < 8) x = 8;
+
+  tooltip.style.left = x + 'px';
+  tooltip.style.top = y + 'px';
+
+  var caret = tooltip.querySelector('.bc-caret');
+  caret.style.left = Math.max(12, Math.min(32, tr.width - 20)) + 'px';
+  var showBelow = y > canvasOffsetTop + slot.yBot;
+  caret.className = 'bc-caret ' + (showBelow ? 'above' : 'below');
+}
+
+function dismissTip() {
+  activeSlot = null;
+  tooltip.classList.remove('visible');
+}
+
+// =====================================================================
+// Drawing
+// =====================================================================
+function draw() {
+  readTheme();
+  var dpr = window.devicePixelRatio || 1;
+  var cmp = compact();
+  var pad = parseInt(getComputedStyle(root).paddingLeft) || 20;
+  var totalW = root.clientWidth - pad * 2;
+  var lw = labelW(), rp = rightPad();
+  var barW = Math.max(60, totalW - lw - rp);
+
+  var maxRuns = maxOf(modelAgg, function (m) { return m.runs; }, 1);
+  var lowT = Math.ceil(maxRuns * LOW_N_PCT);
+  var main = modelAgg.filter(function (m) { return m.runs >= lowT; });
+  var low  = modelAgg.filter(function (m) { return m.runs < lowT; });
+  var hasSep = main.length > 0 && low.length > 0;
+  var rh = rowH();
+  var chartH = (cmp ? 60 : LEGEND_H) + modelAgg.length * (rh + ROW_GAP) + (hasSep ? SEP_H : 0) + 10;
+
+  canvas.width = totalW * dpr;
+  canvas.height = chartH * dpr;
+  canvas.style.width = totalW + 'px';
+  canvas.style.height = chartH + 'px';
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  // ── Legend ──
+  var f = fs(10);
+  ctx.font = f + 'px system-ui, sans-serif';
+  var lsx = cmp ? 4 : lw, lmx = cmp ? totalW : lw + barW;
+  var lx = lsx, ly = 5, lrh = 14;
+
+  METRICS.forEach(function (met, i) {
+    var iw = ctx.measureText(met.label).width + 28;
+    if (lx + iw > lmx && lx > lsx) { lx = lsx; ly += lrh; }
+    ctx.fillStyle = mColor(i, 0.85);
+    ctx.beginPath(); ctx.roundRect(lx, ly, 12, 8, 2); ctx.fill();
+    ctx.fillStyle = T.dim; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+    ctx.fillText(met.label, lx + 16, ly + 5);
+    lx += iw;
+  });
+
+  var hint = '◂ lower is better', hw = ctx.measureText(hint).width + 8;
+  if (cmp || lx + hw > lmx) {
+    ly += lrh;
+    ctx.fillStyle = dRGBA(0.7); ctx.textAlign = 'left'; ctx.fillText(hint, lsx, ly + 5);
+  } else {
+    ctx.fillStyle = dRGBA(0.7); ctx.textAlign = 'right'; ctx.fillText(hint, lmx, ly + 5);
+  }
+  var legendH = ly + lrh + 4;
+
+  // ── Scales ──
+  var maxDur = maxOf(modelAgg, function (m) { return m.passAvgDuration; }, 1);
+  var maxTok = maxOf(modelAgg, function (m) { return m.passAvgTokens; }, 1);
+  var maxCst = maxOf(modelAgg, function (m) { return m.passAvgCost; }, 0.01);
+
+  // ── Rows ──
+  barSlots = [];
+  var curY = legendH;
+
+  function drawRow(m) {
+    var y = curY, by = y;
+    var isLow = m.runs < lowT;
+    var fa = isLow ? 0.47 : 0.85;
+    var ta = isLow ? 0.65 : 1;
+    var lf = fs(11), vf = fs(9);
+
+    // Label
+    if (cmp) {
+      ctx.fillStyle = tRGBA(ta);
+      ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+      ctx.font = 'bold ' + lf + 'px system-ui, sans-serif';
+      ctx.fillText(m.model, 4, by);
+      var mw = ctx.measureText(m.model).width;
+      ctx.fillStyle = dRGBA(ta * 0.7);
+      ctx.font = (lf - 2) + 'px system-ui, sans-serif';
+      ctx.fillText('  n=' + m.runs, 4 + mw, by + 1);
+      by += LABEL_ROW_H;
+    } else {
+      ctx.fillStyle = tRGBA(ta);
+      ctx.textAlign = 'right'; ctx.textBaseline = 'top';
+      ctx.font = lf + 'px system-ui, sans-serif';
+      ctx.fillText(m.model, lw - 10, y + 1);
+      ctx.fillStyle = dRGBA(ta * 0.7);
+      ctx.font = (lf - 2) + 'px system-ui, sans-serif';
+      ctx.fillText('n=' + m.runs, lw - 10, y + lf + 3);
+    }
+
+    // ── Fail bar (two segments) ──
+    var ntp = m.runs > 0 ? (m.fails - m.timeouts) / m.runs : 0;
+    var top = m.runs > 0 ? m.timeouts / m.runs : 0;
+    var fp  = m.runs > 0 ? m.fails / m.runs : 0;
+
+    ctx.fillStyle = T.track;
+    ctx.beginPath(); ctx.roundRect(lw, by, barW, BAR_H_PRIMARY, 2); ctx.fill();
+
+    var w1 = ntp > 0 ? Math.max(1, ntp * barW) : 0;
+    if (w1 > 0) { ctx.fillStyle = mColor(0, fa); ctx.beginPath(); ctx.roundRect(lw, by, w1, BAR_H_PRIMARY, 2); ctx.fill(); }
+
+    var w2 = top > 0 ? Math.max(1, top * barW) : 0;
+    if (w2 > 0) { ctx.fillStyle = mColor(1, fa); ctx.beginPath(); ctx.roundRect(lw + w1, by, w2, BAR_H_PRIMARY, 2); ctx.fill(); }
+
+    // CI whiskers
+    var cl = lw + (100 - m.ciUpper) / 100 * barW, cr2 = lw + (100 - m.ciLower) / 100 * barW;
+    var mid = by + BAR_H_PRIMARY / 2;
+    ctx.strokeStyle = tRGBA(fa * 0.6); ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(cl, mid); ctx.lineTo(cr2, mid);
+    ctx.moveTo(cl, mid - 4); ctx.lineTo(cl, mid + 4);
+    ctx.moveTo(cr2, mid - 4); ctx.lineTo(cr2, mid + 4);
+    ctx.stroke();
+
+    ctx.fillStyle = tRGBA(ta * 0.65);
+    ctx.font = vf + 'px system-ui, sans-serif'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+    ctx.fillText(fmtPct(fp * 100), lw + barW + 5, mid);
+    by += BAR_H_PRIMARY + BAR_GAP;
+
+    // ── Secondary bars ──
+    [
+      { v: m.passAvgDuration, mx: maxDur, ci: 2, t: fmtSec(m.passAvgDuration) },
+      { v: m.passAvgTokens,   mx: maxTok, ci: 3, t: fmtTok(m.passAvgTokens) },
+      { v: m.passAvgCost,     mx: maxCst, ci: 4, t: fmtUSD(m.passAvgCost) },
+    ].forEach(function (b) {
+      ctx.fillStyle = T.track;
+      ctx.beginPath(); ctx.roundRect(lw, by, barW, BAR_H, 2); ctx.fill();
+      if (b.v != null && b.v > 0) {
+        ctx.fillStyle = mColor(b.ci, fa);
+        ctx.beginPath(); ctx.roundRect(lw, by, Math.max(2, (b.v / b.mx) * barW), BAR_H, 2); ctx.fill();
+      }
+      ctx.fillStyle = tRGBA(ta * 0.65);
+      ctx.font = vf + 'px system-ui, sans-serif'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+      ctx.fillText(b.t, lw + barW + 5, by + BAR_H / 2);
+      by += BAR_H + BAR_GAP;
+    });
+
+    barSlots.push({ model: m.model, yTop: y, yBot: y + rh, data: m });
+    curY += rh + ROW_GAP;
+  }
+
+  main.forEach(drawRow);
+
+  if (hasSep) {
+    var sy = curY + SEP_H / 2;
+    ctx.strokeStyle = tRGBA(0.07); ctx.setLineDash([4, 4]);
+    ctx.beginPath(); ctx.moveTo(lw, sy); ctx.lineTo(lw + barW, sy); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = dRGBA(0.7); ctx.font = fs(9) + 'px system-ui, sans-serif'; ctx.textBaseline = 'middle';
+    if (cmp) { ctx.textAlign = 'left'; ctx.fillText('Low sample (n < ' + lowT + ')', 4, sy); }
+    else     { ctx.textAlign = 'right'; ctx.fillText('Low sample (n < ' + lowT + ')', lw - 10, sy); }
+    curY += SEP_H;
+  }
+
+  low.forEach(drawRow);
+}
+
+// =====================================================================
+// Interaction
+// =====================================================================
+function hitTest(clientY) {
+  var r = canvas.getBoundingClientRect();
+  var y = clientY - r.top;
+  for (var i = 0; i < barSlots.length; i++) {
+    if (y >= barSlots[i].yTop && y <= barSlots[i].yBot) return barSlots[i];
+  }
+  return null;
+}
+
+canvas.addEventListener('mousemove', function (e) {
+  canvas.style.cursor = hitTest(e.clientY) ? 'pointer' : 'default';
+});
+
+canvas.addEventListener('click', function (e) {
+  var hit = hitTest(e.clientY);
+  if (hit && activeSlot !== hit.model) {
+    activeSlot = hit.model;
+    showTipAtRow(hit);
+  } else {
+    dismissTip();
+  }
+});
+
+// Tooltip captures all events to prevent bleed-through, dismisses on click
+['mousedown', 'touchstart', 'touchend'].forEach(function (evt) {
+  tooltip.addEventListener(evt, function (e) { e.stopPropagation(); });
+});
+tooltip.addEventListener('click', function (e) { e.stopPropagation(); dismissTip(); });
+
+// Dismiss on outside interaction or scroll
+document.addEventListener('mousedown', function (e) { if (!canvas.contains(e.target)) dismissTip(); });
+document.addEventListener('touchstart', function (e) { if (!canvas.contains(e.target)) dismissTip(); }, { passive: true });
+window.addEventListener('scroll', dismissTip, { passive: true });
+
+// =====================================================================
+// Methodology toggle
+// =====================================================================
+document.getElementById('bcMethodToggle').addEventListener('click', function () {
+  this.classList.toggle('open');
+  document.getElementById('bcMethod').classList.toggle('open');
+});
+
+// =====================================================================
+// Resize & Boot
+// =====================================================================
+var resizeTimer;
+window.addEventListener('resize', function () { clearTimeout(resizeTimer); resizeTimer = setTimeout(function () { dismissTip(); draw(); }, 80); });
+
+// ── Inline data ──
+/*INLINE_DATA_START*/
+var INLINE_STATS = null;
+var INLINE_PRICING = null;
+/*INLINE_DATA_END*/
+
+function boot(statsData, pricingData) {
+  pricing = pricingData;
+  allData = loadData(statsData);
+  var seen = {};
+  allData.forEach(function (d) { if (!seen[d.test]) { tests.push(d.test); seen[d.test] = true; } testLabels[d.test] = d.testName; });
+  modelAgg = aggregate(allData, null);
+  modelAgg.sort(function (a, b) { return b.rate - a.rate; });
+  modelOrder = modelAgg.map(function (m) { return m.model; });
+  buildTabs();
+  draw();
+}
+
+if (INLINE_STATS && INLINE_PRICING) {
+  boot(INLINE_STATS, INLINE_PRICING);
+} else {
+  Promise.all([
+    fetch('data/stats.json').then(function (r) { return r.json(); }),
+    fetch('data/pricing.json').then(function (r) { return r.json(); }),
+  ]).then(function (res) { boot(res[0], res[1]); })
+  .catch(function () {
+    canvas.style.display = 'none';
+    var el = document.createElement('div');
+    el.className = 'bc-error';
+    el.textContent = 'Failed to load benchmark data.';
+    canvas.parentNode.insertBefore(el, canvas);
+  });
+}
+
+})();
+</script>
+</body>
+</html>

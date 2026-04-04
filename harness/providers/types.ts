@@ -22,6 +22,9 @@ export interface LlmExecutionResult {
   /** Error message if the LLM failed, undefined on success. */
   error?: string;
 
+  /** The full prompt sent to the LLM. */
+  prompt?: string;
+
   /** Raw stdout+stderr from the LLM process. */
   rawOutput?: string;
 

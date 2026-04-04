@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, writeFile, open } from "node:fs/promises";
 import { join } from "node:path";
 import type { TestRunSummary } from "./types.ts";
 
@@ -42,7 +42,40 @@ export async function writeJsonReport(
   const filename = `${timestamp}-${summary.provider}${effortSuffix}.json`;
   const filepath = join(resultsDir, filename);
 
-  await writeFile(filepath, JSON.stringify(summary, null, 2));
+  // Write incrementally to avoid OOM on large rawOutput blobs.
+  const fh = await open(filepath, "w");
+  try {
+    const { results, ...rest } = summary;
+    // Write everything except results array
+    const header = JSON.stringify(rest, null, 2);
+    // Replace closing } with results array start
+    await fh.write(header.slice(0, -2) + ',\n  "results": [\n');
+
+    for (let i = 0; i < results.length; i++) {
+      const comma = i < results.length - 1 ? "," : "";
+      // Write each result field-by-field to avoid OOM on large rawOutput strings.
+      const { rawOutput, ...resultRest } = results[i];
+      const prefix = JSON.stringify(resultRest);
+
+      if (rawOutput != null) {
+        await fh.write("    " + prefix.slice(0, -1) + ',"rawOutput":"');
+        // Stream rawOutput in chunks. JSON.stringify each chunk independently
+        // to get correct escaping, then strip the surrounding quotes.
+        const CHUNK = 2 * 1024 * 1024;
+        for (let j = 0; j < rawOutput.length; j += CHUNK) {
+          const escaped = JSON.stringify(rawOutput.slice(j, j + CHUNK));
+          await fh.write(escaped.slice(1, -1));
+        }
+        await fh.write('"' + "}" + comma + "\n");
+      } else {
+        await fh.write("    " + prefix + comma + "\n");
+      }
+    }
+
+    await fh.write("  ]\n}\n");
+  } finally {
+    await fh.close();
+  }
   console.log(`Results written to ${filepath}`);
   return filepath;
 }

@@ -115,6 +115,7 @@ export async function runTests(
     log.testHeader(test.name, test.id);
 
     let error: string | undefined;
+    let prompt: string | undefined;
     let rawOutput: string | undefined;
     let tokenUsage: import("./providers/types.ts").TokenUsage | undefined;
     let deviceSessionId: string | undefined;
@@ -169,6 +170,7 @@ export async function runTests(
       try {
         const result = await provider.execute(test.prompt, config);
         error = result.error;
+        prompt = result.prompt;
         rawOutput = result.rawOutput;
         tokenUsage = result.tokenUsage;
       } catch (err: any) {
@@ -217,6 +219,7 @@ export async function runTests(
         checks,
         durationMs: Date.now() - testStart,
         error,
+        prompt,
         tokenUsage,
         rawOutput,
         videoPath,

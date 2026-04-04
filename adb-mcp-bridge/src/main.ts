@@ -96,14 +96,22 @@ function createServer(pool: DevicePool): McpServer {
   server.registerTool(
     "screenshot",
     {
-      description: "Capture the current screen and return it as a PNG image. Optionally crop to a bounding box and/or scale down.",
+      description: [
+        "Capture a region of the screen as a PNG image. Two-step process:",
+        "1) CROP: Extract the rectangle from (x, y) to (x+width, y+height) in device pixels.",
+        "2) SCALE: Resize the cropped image by the scale factor.",
+        "The returned image dimensions are (width*scale) x (height*scale) pixels.",
+        "Example: x=0, y=0, width=512, height=512, scale=0.5 → crops a 512x512 region, then scales to 256x256px.",
+        "Example: x=100, y=200, width=400, height=400, scale=0.25 → crops 400x400 at (100,200), then scales to 100x100px.",
+        "Use small scale values (0.25) for overview, larger (0.5-1.0) for reading text or fine details.",
+      ].join(" "),
       inputSchema: {
         deviceSessionId: z.string().describe("Device Session ID"),
-        x: z.number().describe("Crop origin X [px] on original image"),
-        y: z.number().describe("Crop origin Y [px] on original image"),
-        width: z.number().max(512).describe("Crop width [px]. Max 512"),
-        height: z.number().max(512).describe("Crop height [px]. Max 512"),
-        scale: z.number().optional().default(0.25).describe("Scale factor (0.0-1.0, applied after crop). 1.0 = original size, 0.5 = half size. Default: 0.25"),
+        x: z.number().describe("Left edge of crop region in device pixels. 0 = left edge of screen."),
+        y: z.number().describe("Top edge of crop region in device pixels. 0 = top of screen."),
+        width: z.number().max(512).describe("Width of crop region in device pixels. Max 512. The crop covers x to x+width."),
+        height: z.number().max(512).describe("Height of crop region in device pixels. Max 512. The crop covers y to y+height."),
+        scale: z.number().optional().default(0.25).describe("Downscale factor applied AFTER cropping. 0.25 = quarter size (default), 0.5 = half size, 1.0 = original crop size. Output image is (width*scale) x (height*scale) pixels."),
       },
     },
     async ({ deviceSessionId, x, y, width, height, scale }) => {

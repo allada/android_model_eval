@@ -16,6 +16,7 @@ const { values } = parseArgs({
     "admin-url": { type: "string", default: "http://localhost:3001" },
     effort: { type: "string" },
     timeout: { type: "string" },
+    test: { type: "string" },
     help: { type: "boolean", short: "h" },
   },
   strict: true,
@@ -30,6 +31,7 @@ Options:
   --mcp-url <url>      MCP server URL (default: http://localhost:3000)
   --admin-url <url>    Admin API URL (default: http://localhost:3001)
   --effort <level>     Reasoning effort level (e.g. low, medium, high, max)
+  --test <id>          Run only this test (e.g. set-alarm-5pm, airplane-mode-on)
   --timeout <ms>       Per-test timeout in milliseconds
   -h, --help           Show this help
 `);
@@ -56,6 +58,14 @@ function createProvider(name: string, model?: string): LlmProvider {
 }
 
 let tests = allTests;
+if (values.test) {
+  tests = tests.filter((t) => t.id === values.test);
+  if (tests.length === 0) {
+    console.error(`Unknown test: ${values.test}`);
+    console.error("Available tests: " + allTests.map((t) => t.id).join(", "));
+    process.exit(1);
+  }
+}
 if (values.timeout) {
   const ms = parseInt(values.timeout, 10);
   tests = tests.map((t) => ({ ...t, timeoutMs: ms }));

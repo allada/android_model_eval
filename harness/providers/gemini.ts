@@ -136,10 +136,30 @@ export class GeminiProvider implements LlmProvider {
         return Buffer.concat(chunks).toString();
       };
 
+      // Read stderr line-by-line, stripping _geminiClient from MESSAGE_BUS lines
+      // to avoid storing the bloated chat history (570MB → ~50MB).
+      const readAndCleanStderr = async (
+        readable: ReadableStream<Uint8Array>,
+      ): Promise<string> => {
+        const lines: string[] = [];
+        let partial = "";
+        for await (const chunk of readable) {
+          log.modelChunk(chunk);
+          partial += Buffer.from(chunk).toString();
+          const parts = partial.split("\n");
+          partial = parts.pop()!; // last part is incomplete
+          for (const line of parts) {
+            lines.push(cleanMessageBusLine(line));
+          }
+        }
+        if (partial) lines.push(cleanMessageBusLine(partial));
+        return lines.join("\n");
+      };
+
       const [exitCode, stdout, stderr] = await Promise.all([
         proc.exited,
         readStream(proc.stdout as ReadableStream<Uint8Array>, true),
-        readStream(proc.stderr as ReadableStream<Uint8Array>, true),
+        readAndCleanStderr(proc.stderr as ReadableStream<Uint8Array>),
       ]);
 
       if (timeoutId) clearTimeout(timeoutId);
@@ -153,12 +173,51 @@ export class GeminiProvider implements LlmProvider {
           ? `Gemini exited with code ${exitCode}`
           : undefined;
 
-      return { error, durationMs, rawOutput: stdout + stderr, tokenUsage: parseTokenUsage(stdout) };
+      return { error, prompt: fullPrompt, durationMs, rawOutput: stdout + stderr, tokenUsage: parseTokenUsage(stdout) };
     } finally {
       try {
         rmSync(tmpHome, { recursive: true, force: true });
       } catch {}
     }
+  }
+}
+
+/**
+ * Strip bloated internal state from a MESSAGE_BUS debug line.
+ * Gemini CLI's debug output includes per-tool-call:
+ *   - _geminiClient: entire chat history with all past screenshot base64
+ *   - tool.messageBus: internal message bus state (~63KB per line)
+ *   - tool.mcpTool: full MCP tool schema (~17KB per line)
+ * These are repeated on every update event (hundreds of times) and are never
+ * needed by the export pipeline. Stripping them reduces rawOutput by ~98%.
+ */
+function cleanMessageBusLine(line: string): string {
+  if (!line.includes("[MESSAGE_BUS]")) return line;
+  const jsonStart = line.indexOf("{");
+  if (jsonStart < 0) return line;
+  const prefix = line.substring(0, jsonStart);
+  try {
+    const obj = JSON.parse(line.substring(jsonStart));
+    if (Array.isArray(obj.toolCalls)) {
+      for (const tc of obj.toolCalls) {
+        if (tc.tool) {
+          delete tc.tool.messageBus;
+          delete tc.tool.mcpTool;
+          delete tc.tool._geminiClient;
+          delete tc.tool.cliConfig;
+        }
+        // Also strip _geminiClient from anywhere else it appears
+        const strip = (o: any) => {
+          if (!o || typeof o !== "object") return;
+          delete o._geminiClient;
+          for (const v of Object.values(o)) strip(v);
+        };
+        strip(tc);
+      }
+    }
+    return prefix + JSON.stringify(obj);
+  } catch {
+    return line;
   }
 }
 

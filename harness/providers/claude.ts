@@ -105,7 +105,8 @@ export class ClaudeProvider implements LlmProvider {
         ? `Claude exited with code ${exitCode}`
         : undefined;
 
-    return { error, durationMs, rawOutput: stdout + stderr, tokenUsage: parseTokenUsage(stdout) };
+    const fullPrompt = `System: ${systemPrompt}\n\nUser: ${prompt}`;
+    return { error, prompt: fullPrompt, durationMs, rawOutput: stdout + stderr, tokenUsage: parseTokenUsage(stdout) };
   }
 }
 

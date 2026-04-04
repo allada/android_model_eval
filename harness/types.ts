@@ -97,6 +97,8 @@ export interface TestResult {
   error?: string;
   /** Token usage for this test. */
   tokenUsage?: TokenUsage;
+  /** The full prompt sent to the LLM. */
+  prompt?: string;
   /** Raw output from the LLM process. */
   rawOutput?: string;
   /** Path to the screen recording video file. */

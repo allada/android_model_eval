@@ -15,7 +15,7 @@ const WIDGET_VIDEOS_DIR = join(WIDGET_DIR, "videos");
 const WIDGET_IMAGES_DIR = join(WIDGET_DIR, "images");
 
 interface WidgetEvent {
-  type: "tap" | "swipe" | "long-press" | "key-event" | "screenshot" | "sleep" | "message" | "usage";
+  type: "tap" | "swipe" | "long-press" | "key-event" | "screenshot" | "sleep" | "message" | "usage" | "tool_call";
   videoOffsetMs: number;
   x?: number;
   y?: number;
@@ -35,6 +35,10 @@ interface WidgetEvent {
   imageFile?: string;
   text?: string;
   thinking?: string;
+  toolName?: string;
+  toolRequest?: string;
+  toolResponse?: string;
+  toolResponseImageFile?: string;
 }
 
 interface WidgetData {
@@ -89,6 +93,14 @@ function extractBase64Image(resultContent: any): string | null {
     }
   }
   return null;
+}
+
+/** Format a tool request/response as pretty JSON, stripping deviceSessionId */
+function formatToolParams(params: any): string {
+  if (!params) return "{}";
+  const clean = { ...params };
+  delete clean.deviceSessionId;
+  return JSON.stringify(clean, null, 2);
 }
 
 function getToolNameShort(name: string): string {
@@ -281,6 +293,40 @@ function processClaudeRawOutput(
               break;
             }
           }
+
+          // Emit tool_call event with request/response for the message panel
+          {
+            // Format the response, replacing base64 with image reference
+            let toolResponse: string;
+            const lastScreenshot = events.filter(e => e.type === "screenshot").slice(-1)[0];
+            if (typeof block.content === "string") {
+              try {
+                toolResponse = JSON.stringify(JSON.parse(block.content), null, 2);
+              } catch {
+                toolResponse = block.content;
+              }
+            } else if (Array.isArray(block.content)) {
+              const cleaned = block.content.map((c: any) => {
+                if (c.type === "image") return { type: "image", note: "see Agent's View" };
+                if (c.type === "text") {
+                  try { return JSON.parse(c.text); } catch { return c.text; }
+                }
+                return c;
+              });
+              toolResponse = JSON.stringify(cleaned.length === 1 ? cleaned[0] : cleaned, null, 2);
+            } else {
+              toolResponse = JSON.stringify(block.content, null, 2);
+            }
+
+            events.push({
+              type: "tool_call",
+              videoOffsetMs,
+              toolName: shortName,
+              toolRequest: formatToolParams(input),
+              toolResponse,
+              toolResponseImageFile: shortName === "screenshot" ? lastScreenshot?.imageFile : undefined,
+            });
+          }
         }
       }
     }
@@ -444,6 +490,36 @@ function processCodexRawOutput(
         }
         break;
     }
+
+    // Emit tool_call event for the message panel
+    {
+      // Format response: strip base64 from structured_content
+      let toolResponse: string;
+      const sc = result?.structured_content;
+      if (sc) {
+        const clean = { ...sc };
+        delete clean.timestamp_ms;
+        toolResponse = JSON.stringify(clean, null, 2);
+      } else if (Array.isArray(result?.content)) {
+        const cleaned = result.content.map((c: any) => {
+          if (c.type === "image") return { type: "image", note: "see Agent's View" };
+          return c;
+        });
+        toolResponse = JSON.stringify(cleaned.length === 1 ? cleaned[0] : cleaned, null, 2);
+      } else {
+        toolResponse = JSON.stringify({ success: true }, null, 2);
+      }
+
+      const lastScreenshot = events.filter(e => e.type === "screenshot").slice(-1)[0];
+      events.push({
+        type: "tool_call",
+        videoOffsetMs,
+        toolName: tool,
+        toolRequest: formatToolParams(args),
+        toolResponse,
+        toolResponseImageFile: tool === "screenshot" ? lastScreenshot?.imageFile : undefined,
+      });
+    }
   }
 
   // Flush remaining pending messages
@@ -472,6 +548,257 @@ function processCodexRawOutput(
   return { events, screenWidth, screenHeight };
 }
 
+function processGeminiRawOutput(
+  rawOutput: string,
+  recordingStartedAtMs: number,
+  imageDir: string,
+  sessionId: string,
+): { events: WidgetEvent[]; screenWidth: number; screenHeight: number } {
+  const lines = rawOutput.split("\n").filter(Boolean);
+  const events: WidgetEvent[] = [];
+  let screenWidth = 1080;
+  let screenHeight = 2400;
+
+  // Gemini stream-json event types:
+  //   tool_use:    { tool_name, tool_id, parameters, timestamp }
+  //   tool_result: { tool_id, status, output, timestamp }
+  //   message:     { role, content, delta, timestamp }
+  //   result:      { stats: { input_tokens, output_tokens, ... } }
+
+  // Map tool_id -> tool_use data for correlating results
+  const toolUseMap = new Map<string, { name: string; params: any; timestamp: string }>();
+  // Accumulate assistant message chunks
+  let pendingText = "";
+  let pendingTextTimestamp = "";
+  // Track screenshot index for image filenames
+  let screenshotIdx = 0;
+  // Track whether current text block is thinking
+  let isThinkingBlock = false;
+  // Final usage from result event
+  let finalUsage: { inputTokens: number; outputTokens: number } | null = null;
+
+  for (const line of lines) {
+    let obj: any;
+    try {
+      obj = JSON.parse(line);
+    } catch {
+      continue;
+    }
+
+    // Collect tool_use events (defer emission to tool_result for accurate timing)
+    if (obj.type === "tool_use") {
+      toolUseMap.set(obj.tool_id, {
+        name: obj.tool_name,
+        params: obj.parameters,
+        timestamp: obj.timestamp,
+      });
+    }
+
+    // Emit events at tool_result time — this is when the action actually happened
+    if (obj.type === "tool_result") {
+      const toolUse = toolUseMap.get(obj.tool_id);
+      if (!toolUse) continue;
+      const shortName = toolUse.name?.replace(/^mcp_adb-mcp-bridge_/, "") || "";
+
+      // Use tool_result ISO timestamp, or MCP timestamp_ms if available
+      let videoOffsetMs: number;
+      let mcpTimestamp: number | null = null;
+      if (obj.status === "success" && obj.output) {
+        try {
+          const parsed = JSON.parse(obj.output.split("\n")[0]);
+          if (parsed.timestamp_ms) mcpTimestamp = parsed.timestamp_ms;
+          if (parsed.screenWidth) screenWidth = parsed.screenWidth;
+          if (parsed.screenHeight) screenHeight = parsed.screenHeight;
+        } catch {}
+      }
+      videoOffsetMs = mcpTimestamp
+        ? mcpTimestamp - recordingStartedAtMs
+        : new Date(obj.timestamp).getTime() - recordingStartedAtMs;
+
+      // Flush pending assistant text before this action
+      if (pendingText.trim()) {
+        const msgTs = pendingTextTimestamp ? new Date(pendingTextTimestamp).getTime() : new Date(obj.timestamp).getTime();
+        const msgEvent: WidgetEvent = {
+          type: "message",
+          videoOffsetMs: msgTs - recordingStartedAtMs,
+        };
+        if (isThinkingBlock) {
+          msgEvent.thinking = pendingText.trim();
+        } else {
+          msgEvent.text = pendingText.trim();
+        }
+        events.push(msgEvent);
+        pendingText = "";
+        pendingTextTimestamp = "";
+        isThinkingBlock = false;
+      }
+
+      // Only emit events for successful tool calls
+      if (obj.status !== "success") continue;
+
+      const p = toolUse.params || {};
+      switch (shortName) {
+        case "tap":
+          events.push({ type: "tap", videoOffsetMs, x: p.x, y: p.y });
+          break;
+        case "swipe":
+          events.push({
+            type: "swipe", videoOffsetMs,
+            x1: p.x1, y1: p.y1, x2: p.x2, y2: p.y2,
+            durationMs: p.durationMs ?? 300,
+          });
+          break;
+        case "long-press":
+          events.push({ type: "long-press", videoOffsetMs, x: p.x, y: p.y, durationMs: p.durationMs ?? 1000 });
+          break;
+        case "key-event":
+          events.push({ type: "key-event", videoOffsetMs, key: p.key });
+          break;
+        case "screenshot": {
+          const ssEvent: any = {
+            type: "screenshot", videoOffsetMs,
+            x: p.x ?? 0, y: p.y ?? 0,
+            width: p.width, height: p.height, scale: p.scale,
+          };
+          ssEvent._toolId = obj.tool_id;
+          events.push(ssEvent);
+          break;
+        }
+      }
+
+      // Emit tool_call event for the message panel
+      {
+        let toolResponse: string;
+        if (obj.output) {
+          // Clean up: replace base64 image data
+          const cleanOutput = obj.output.replace(/\[Image: image\/png\]/g, "[see Agent's View]");
+          try {
+            toolResponse = JSON.stringify(JSON.parse(cleanOutput.split("\n")[0]), null, 2);
+          } catch {
+            toolResponse = cleanOutput;
+          }
+        } else if (shortName === "get-device-session-info") {
+          toolResponse = JSON.stringify({ screenWidth, screenHeight }, null, 2);
+        } else if (mcpTimestamp) {
+          toolResponse = JSON.stringify({ success: true, timestamp_ms: mcpTimestamp }, null, 2);
+        } else {
+          toolResponse = JSON.stringify({ success: true }, null, 2);
+        }
+
+        const lastScreenshot = events.filter(e => e.type === "screenshot").slice(-1)[0];
+        events.push({
+          type: "tool_call",
+          videoOffsetMs,
+          toolName: shortName,
+          toolRequest: formatToolParams(p),
+          toolResponse,
+          toolResponseImageFile: shortName === "screenshot" ? lastScreenshot?.imageFile : undefined,
+        });
+      }
+    }
+
+    // Collect assistant messages (delta chunks)
+    if (obj.type === "message" && obj.role === "assistant") {
+      const content = obj.content || "";
+      // "thought" is Gemini's thinking indicator — marks start of a thinking block
+      if (content === "thought") {
+        // Flush any pending non-thinking text first
+        if (pendingText.trim() && !isThinkingBlock) {
+          const msgTs = pendingTextTimestamp ? new Date(pendingTextTimestamp).getTime() - recordingStartedAtMs : 0;
+          events.push({ type: "message", videoOffsetMs: msgTs, text: pendingText.trim() });
+          pendingText = "";
+        }
+        isThinkingBlock = true;
+        if (!pendingTextTimestamp) pendingTextTimestamp = obj.timestamp;
+        continue;
+      }
+      if (!pendingTextTimestamp) pendingTextTimestamp = obj.timestamp;
+      pendingText += content;
+    }
+
+    // Final result with stats
+    if (obj.type === "result" && obj.stats) {
+      finalUsage = {
+        inputTokens: (obj.stats.input_tokens || 0),
+        outputTokens: (obj.stats.output_tokens || 0),
+      };
+    }
+  }
+  if (Bun && Bun.gc) {
+    Bun.gc();
+  }
+
+  // Flush any remaining text
+  if (pendingText.trim() && events.length > 0) {
+    const lastOffset = events[events.length - 1].videoOffsetMs;
+    const msgEvent: WidgetEvent = { type: "message", videoOffsetMs: lastOffset };
+    if (isThinkingBlock) {
+      msgEvent.thinking = pendingText.trim();
+    } else {
+      msgEvent.text = pendingText.trim();
+    }
+    events.push(msgEvent);
+  }
+
+  // Extract screenshot images from [MESSAGE_BUS] debug lines (stderr).
+  // Gemini CLI strips base64 from stream-json tool_result events but the debug
+  // output contains the full image data in responseParts[].inlineData.
+  // Match by callId (tool_id) to ensure correct image-to-event mapping.
+  const screenshotEvents = events.filter((e: any) => e.type === "screenshot" && e._toolId);
+  const ssByToolId = new Map(screenshotEvents.map((e: any) => [e._toolId, e]));
+  let ssImgIdx = 0;
+  for (const line of lines) {
+    if (!line.includes("[MESSAGE_BUS]") || !line.includes("inlineData")) continue;
+    const jsonStart = line.indexOf("{");
+    if (jsonStart < 0) continue;
+    try {
+      const bus = JSON.parse(line.substring(jsonStart));
+      if (bus.type !== "tool-calls-update") continue;
+      for (const tc of (bus.toolCalls || [])) {
+        const callId = tc.response?.callId || tc.request?.callId;
+        if (!callId) continue;
+        const callName = tc.request?.name?.replace(/^mcp_adb-mcp-bridge_/, "") || "";
+        if (callName !== "screenshot") continue;
+        for (const part of (tc.response?.responseParts || [])) {
+          if (!part.inlineData?.data) continue;
+          const ssEvent = ssByToolId.get(callId);
+          if (!ssEvent) continue;
+          // Save the image
+          const imgName = `${ssImgIdx}.png`;
+          const imgDir = join(imageDir, sessionId);
+          mkdirSync(imgDir, { recursive: true });
+          writeFileSync(join(imgDir, imgName), Buffer.from(part.inlineData.data, "base64"));
+          ssEvent.imageFile = `images/${sessionId}/${imgName}`;
+          ssImgIdx++;
+        }
+      }
+    } catch {}
+  }
+  // Back-fill toolResponseImageFile on tool_call events for screenshots
+  // (images are matched after the main loop, so tool_call events need updating)
+  for (const e of events) {
+    if (e.type === "tool_call" && e.toolName === "screenshot" && !e.toolResponseImageFile) {
+      // Find the matching screenshot event by videoOffsetMs
+      const ss = events.find((s: any) => s.type === "screenshot" && s.videoOffsetMs === e.videoOffsetMs && s.imageFile);
+      if (ss) e.toolResponseImageFile = ss.imageFile;
+    }
+  }
+  // Clean up internal _toolId before serialization
+  for (const e of events) { delete (e as any)._toolId; }
+
+  // Gemini only provides final usage — emit a single usage event at the start
+  if (finalUsage) {
+    events.push({
+      type: "usage",
+      videoOffsetMs: 0,
+      inputTokens: finalUsage.inputTokens,
+      outputTokens: finalUsage.outputTokens,
+    });
+  }
+
+  return { events, screenWidth, screenHeight };
+}
+
 async function main() {
   mkdirSync(WIDGET_DATA_DIR, { recursive: true });
   mkdirSync(WIDGET_VIDEOS_DIR, { recursive: true });
@@ -487,6 +814,7 @@ async function main() {
       readFileSync(join(RESULTS_DIR, file), "utf-8")
     );
     const isCodex = data.provider?.startsWith("codex");
+    const isGemini = data.provider?.startsWith("gemini");
 
     for (const result of data.results) {
       if (!result.videoPath || !result.recordingStartedAtMs || !result.rawOutput) {
@@ -509,7 +837,32 @@ async function main() {
       const sessionId = videoFile.replace(".mkv", "");
       const { events, screenWidth, screenHeight } = isCodex
         ? processCodexRawOutput(result.rawOutput, result.recordingStartedAtMs, WIDGET_IMAGES_DIR, sessionId)
+        : isGemini
+        ? processGeminiRawOutput(result.rawOutput, result.recordingStartedAtMs, WIDGET_IMAGES_DIR, sessionId)
         : processClaudeRawOutput(result.rawOutput, result.recordingStartedAtMs, WIDGET_IMAGES_DIR, sessionId);
+
+      // Insert the input prompt as the first message
+      let inputPrompt = result.prompt;
+      if (!inputPrompt) {
+        // Fallback: extract from rawOutput (Gemini has it as first user message)
+        for (const line of result.rawOutput.split("\n").filter(Boolean)) {
+          try {
+            const obj = JSON.parse(line);
+            if (obj.type === "message" && obj.role === "user" && obj.content) {
+              inputPrompt = obj.content;
+              break;
+            }
+          } catch {}
+        }
+      }
+      if (!inputPrompt) {
+        inputPrompt = result.testName;
+      }
+      events.unshift({
+        type: "message",
+        videoOffsetMs: 0,
+        text: `Prompt: ${inputPrompt}`,
+      });
 
       const widgetData: WidgetData = {
         testId: result.testId,
@@ -546,10 +899,10 @@ async function main() {
       console.log(`\nSkipping video conversion (${toConvert.length} pending) — ffmpeg not in PATH.`);
       console.log(`Run: nix shell nixpkgs#ffmpeg -c bun run scripts/export-widget-data.ts`);
     } else {
-      // Remux only (source is already h264 from scrcpy) — no re-encoding needed
-      console.log(`\nConverting ${toConvert.length} videos (remux h264→mp4)...`);
+      // Re-encode: H.265 via NVENC, half-res (540x1200) for small web-friendly files
+      console.log(`\nConverting ${toConvert.length} videos (hevc_nvenc qp35 540x1200)...`);
 
-      const MAX_PARALLEL = 8;
+      const MAX_PARALLEL = 4;
       let converted = 0;
       for (let i = 0; i < toConvert.length; i += MAX_PARALLEL) {
         const batch = toConvert.slice(i, i + MAX_PARALLEL);
@@ -558,7 +911,9 @@ async function main() {
           return new Promise<boolean>((resolve) => {
             const proc = nodeSpawn("ffmpeg", [
               "-i", join(WIDGET_VIDEOS_DIR, mkv),
-              "-c:v", "copy", "-movflags", "+faststart", "-an", mp4Path,
+              "-c:v", "hevc_nvenc", "-preset", "medium", "-rc", "constqp", "-qp", "35",
+              "-vf", "scale=540:1200",
+              "-tag:v", "hvc1", "-movflags", "+faststart", "-an", mp4Path,
             ], { stdio: "pipe" });
             proc.on("close", (code) => {
               if (code === 0) {

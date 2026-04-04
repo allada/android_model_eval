@@ -90,7 +90,7 @@ export class CodexProvider implements LlmProvider {
         ? `Codex exited with code ${exitCode}`
         : undefined;
 
-    return { error, durationMs, rawOutput: stdout + stderr, tokenUsage: parseTokenUsage(stdout) };
+    return { error, prompt: fullPrompt, durationMs, rawOutput: stdout + stderr, tokenUsage: parseTokenUsage(stdout) };
   }
 
   private async spawn(

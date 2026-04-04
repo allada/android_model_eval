@@ -1,0 +1,1847 @@
+test_id,test_name,provider,model,effort,pass,duration_ms,input_tokens,output_tokens
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,true,128253,123489,5467
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,true,549638,1661981,24247
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-5,claude-opus-4-5,low,true,541802,1924783,23721
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-5,claude-opus-4-5,low,false,607086,3566349,364
+get-verification-code,Get verification code from text message,claude-claude-opus-4-5,claude-opus-4-5,low,true,135555,196975,5766
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,34491,32980,235
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604336,2923383,4189
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604102,2761810,4544
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,295570,630158,13309
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606936,3244453,5044
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,119545,185943,5106
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,74430,318030,1877
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,119552,424502,3530
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,279982,1359740,7477
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,193798,629985,5135
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,81573,236941,2553
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,90851,354912,2688
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,174775,681017,4209
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,154855,283477,2777
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,90109,322997,2482
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,61287,226958,2074
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,225545,576014,4653
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,540655,2227005,11736
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,63876,135962,1245
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,52521,177080,1572
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,228803,723299,7214
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,261357,660047,5664
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,82257,93156,3797
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,109448,119563,5036
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,565200,1633686,24621
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,447780,1170563,18333
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,65974,201215,1431
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,75743,229432,1863
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,293871,1097465,9117
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,607005,0,0
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,false,606137,3056191,4348
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,102645,119616,3541
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,false,604562,2893318,4191
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,563329,1989089,20434
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,60077,54726,2160
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,77762,91759,3696
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603896,3185775,3746
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,371660,1028338,17781
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,561428,1121053,18730
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,55486,48342,2166
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,197193,363601,7165
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,267511,567999,9859
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,348207,846130,12537
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,165299,172694,4957
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,338794,825351,15679
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,243046,433027,11372
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,426314,1087024,18637
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,607686,3318688,4905
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,168389,339662,9437
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,390937,1084671,20162
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,586386,1944555,26958
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,486121,2137969,22886
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,231256,729431,13037
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604260,3731759,4993
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,519282,2018517,26255
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,384460,1475887,20513
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,144329,386046,7847
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603686,2985473,4261
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,254124,481238,10715
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,531305,1311435,24026
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606032,2231366,3849
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,55219,58801,2239
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,87543,126953,3640
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,362488,732876,11919
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,227708,403249,8223
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,63715,80716,2894
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-pro,gemini-2.5-pro,,false,489244,38337,1021
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,59701,60489,2398
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,117824,156079,4146
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,308768,681050,11283
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,false,607048,2886270,4020
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,49761,40647,1384
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,76566,82014,2970
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,95134,152127,4116
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,false,603156,1775747,2789
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,496235,1135635,15811
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,147155,256224,5870
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,429140,777630,14432
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,387425,877335,16617
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,476087,1347538,20335
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,368364,825955,15797
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,185634,494362,4334
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,70213,206870,1892
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,252427,1045147,6236
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,606508,0,0
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,57140,201651,1508
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,72019,229623,1811
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,148344,473659,4281
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,404445,1579037,9369
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,240879,410602,10393
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,365403,678913,14860
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,597164,1210720,19385
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606793,3146426,4191
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,326190,960311,7004
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,105496,285841,3291
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,138584,240468,3308
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,336739,765750,6861
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,35473,32430,271
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,52693,195827,1889
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,95380,278506,3117
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,214873,752440,4559
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,181506,734357,4796
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,436712,1952546,9220
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,50748,123458,1325
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,128980,504218,3486
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,360790,1257558,8598
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,393098,1629091,10312
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,198090,678875,4346
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,54988,134861,1211
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,602697,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,548321,1849424,13972
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,66162,47534,2029
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,130693,199603,4904
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,201814,357697,7713
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,361970,549769,10173
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,17041,8365,331
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,219333,899956,5318
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,510130,2282832,9825
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,604206,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,411723,1576562,9772
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,75557,204012,1961
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,98001,164185,1733
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,333799,1192901,8114
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,257035,711942,5856
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,61829,190092,1360
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,123817,463198,2983
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,248209,904527,5342
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,388962,1872461,8129
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,74169,229683,1685
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,68783,77924,2774
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,152544,242639,5430
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,251022,550089,10062
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,311567,697157,10984
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,226122,573239,12299
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,200272,294956,9429
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,324478,1074978,17361
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,571123,2652788,28665
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,170959,498275,9520
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,31530,21820,181
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,10376,10941,109
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,602709,0,0
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,73531,93496,848
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,91721,235758,3003
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,265559,1101948,7266
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,388035,1079827,8424
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,159470,489761,4881
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,330600,744383,5303
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,69792,229468,1955
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,280305,947058,7280
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,371102,944023,6500
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,47393,171045,1251
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,604051,0,0
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,603904,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,320728,1461588,7502
+get-verification-code,Get verification code from text message,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,359327,1482482,9297
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,10145,10884,88
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,33874,133676,1979
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,471330,1761051,24183
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,523976,2062150,26537
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,411652,1241682,20668
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,312703,762644,15613
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,230254,1005346,6838
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,52337,151311,1501
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,329482,1118417,7825
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,310229,1086082,7014
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,556739,1871862,10931
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,246871,756540,4358
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,602996,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,286023,719174,4974
+get-verification-code,Get verification code from text message,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,114326,172620,2729
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,57615,140979,1577
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,108713,336012,2967
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,353509,1570751,8926
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,232226,662061,5586
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,549657,2550098,10363
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,410339,2081160,8860
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,603991,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,213333,751013,4223
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,58263,166156,1819
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,52721,113104,1639
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,574814,2422721,13033
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,169242,567447,4316
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash,gemini-2.5-flash,,false,603089,0,0
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-pro,gemini-2.5-pro,,false,159429,331820,3542
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-pro,gemini-2.5-pro,,false,325432,302365,1168
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-pro,gemini-2.5-pro,,false,344756,626711,3109
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-pro,gemini-2.5-pro,,false,1741192,0,0
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,91086,251005,2896
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,107681,336216,3007
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,258778,905555,5652
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,381874,1310797,7297
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,354724,1177767,8306
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,96857,166122,1637
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,262152,961132,7499
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,267634,1152066,6399
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,372087,1227860,7844
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,133809,502261,4580
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,507905,2143861,14707
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,197696,482652,5143
+get-verification-code,Get verification code from text message,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,180118,467000,3575
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,345584,1528529,8798
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,57001,246552,1512
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,602993,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,607062,0,0
+get-verification-code,Get verification code from text message,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,469476,2238045,10121
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,590948,1497798,24495
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,462433,1624764,21336
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,379457,685673,13769
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606785,4060854,4792
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,118030,88576,5274
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603038,2959903,4070
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,527228,1402836,23306
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,605882,3105372,5208
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,122442,142053,5325
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,602926,2791421,2835
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,554319,1438149,22627
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,561472,1692866,21328
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,131105,128059,4980
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603286,3400159,3961
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,495473,1571710,22872
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,293161,636405,13968
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,180299,390335,8753
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,52434,201892,1451
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,264156,1072931,6428
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,603917,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,308509,956299,5786
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-pro,gemini-2.5-pro,,false,214738,5354,50
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,53520,152444,1370
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,236578,649856,6134
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,394761,1559036,8707
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,139424,393982,3555
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,69287,200022,1439
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,416704,1481717,8908
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,244618,786262,4609
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,532565,1910483,9801
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,177633,478550,4820
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,69867,276894,2457
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,314432,1255244,7874
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,356196,1111284,6827
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,34566,94892,1106
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,419131,1035687,6875
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,542533,1686481,10054
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,278412,587152,5609
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,346410,823927,12749
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,72839,81530,2665
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,315735,622998,11092
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,586857,1936161,19250
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,98573,332160,2907
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,194951,719476,5392
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,310426,922256,7117
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,171872,566266,4201
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,87121,109574,3606
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,132482,198259,4805
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,304568,502010,9232
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,324767,796783,11985
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,89520,99969,3268
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,174738,315519,6503
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,270501,585664,10363
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,false,606581,2977505,4988
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,526340,2088970,11237
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,132065,474346,4043
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,595512,1698091,9895
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,119564,378341,3175
+get-verification-code,Get verification code from text message,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,79519,285871,2173
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,218882,521538,4755
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,182213,372285,3636
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,132183,401497,3800
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,160517,285223,3275
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,45695,111827,1445
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,57208,153293,1582
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,442074,1400416,9867
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,126784,334359,3542
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604155,3432547,4238
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,242016,349416,11093
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,485603,1311318,21372
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,533421,1680022,20017
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,51951,121130,1101
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,429705,1214801,8886
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,286346,1073288,8219
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,434374,1391687,8964
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,425706,800557,19026
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,529268,1258004,20300
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603567,2980262,3455
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,382011,971810,16010
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,39339,97879,1243
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,174931,522558,4629
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,520643,2708189,11799
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,281312,1075486,6273
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-pro,gemini-2.5-pro,,false,748720,148171,1107
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-pro,gemini-2.5-pro,,false,272596,10838,114
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,83601,85273,2983
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,78591,91954,2964
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,211673,372903,8001
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,331467,793816,12354
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash,gemini-2.5-flash,,false,379694,361131,3682
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-flash,gemini-2.5-flash,,false,488325,503070,4980
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash,gemini-2.5-flash,,false,112856,288326,2974
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash,gemini-2.5-flash,,false,968872,1553455,10090
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,77895,215562,1513
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,347616,1472087,7155
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,600448,2770751,14871
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,595624,2529195,12598
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,52886,111789,1369
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,90530,411368,3012
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,463495,1878869,9960
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,186285,656268,3974
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,44341,118821,1024
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,86598,302004,2477
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,328030,1083750,7487
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,208524,539913,5145
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,70085,312991,2408
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,49098,199313,1937
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.1-codex,gpt-5.1-codex,low,false,603509,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.1-codex,gpt-5.1-codex,low,false,607087,0,0
+get-verification-code,Get verification code from text message,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,35375,138242,1245
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,138672,429183,2764
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,125860,379137,3018
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,484390,2115554,13565
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,402710,2052081,9097
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,81934,162037,2624
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,57985,53232,2143
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,81340,133804,3806
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,343757,999061,13657
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,false,608040,3185380,5437
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,60731,170926,4448
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,70184,186022,1251
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,133672,411674,2958
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,268577,1181710,5662
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,605830,0,0
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,74020,186500,2239
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,242287,932181,5744
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,201372,826614,5107
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,128278,388095,3763
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,597227,1981527,25977
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,287172,528088,13379
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,479180,1496051,20748
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,546918,1246550,21673
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-pro,gemini-2.5-pro,,false,283195,890948,3770
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-pro,gemini-2.5-pro,,false,42106,103273,458
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-pro,gemini-2.5-pro,,false,236314,560825,2214
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-pro,gemini-2.5-pro,,false,197616,606913,2826
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,135040,424708,4064
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,123143,495019,2887
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,175518,767950,5426
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,366164,1409983,6510
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,12385,11126,384
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,32505,77761,2748
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,55469,151363,1530
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,124130,528443,3507
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,375872,1288357,9433
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,607287,0,0
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,61946,141566,1796
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,55867,186153,1266
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,163790,356053,3055
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,271381,1100803,6108
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,409097,1317955,8869
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,149031,370334,2440
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,13919,17203,272
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,10649,10995,114
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,13780,11122,120
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,141377,193641,6450
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,192415,298895,8532
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,400340,912780,16077
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,485661,1332745,17719
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604220,3068019,4193
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604727,3316274,4434
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,531775,1174879,25161
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606970,3201196,4059
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,57278,156065,1386
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,360486,1628533,7734
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,604288,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,370997,1734179,9717
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,603555,4331728,389
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,603930,5887279,424
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,603787,3985261,343
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,606971,3394724,330
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,true,260418,537063,10458
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604692,3468717,4004
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,242474,417457,11473
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,414750,992125,16293
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,607646,3736824,5637
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,321155,478197,14338
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,592047,1601824,25177
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603924,2859727,3731
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606666,2688042,4480
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,42309,162505,1126
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,115262,402573,2737
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,289488,1265405,6222
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,607973,0,0
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,61813,196627,2101
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,451584,1069129,19032
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,373855,842064,14738
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603045,2896469,3256
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606441,3222077,4827
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,246963,536983,13325
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603029,4730564,6202
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,501695,1600521,27190
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,361915,1365262,18582
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,82953,242489,2542
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,576828,2939264,12160
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,322108,1249474,7193
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,307615,1296458,7418
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,55076,175140,1246
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,75681,228927,1691
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,224182,916797,4926
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,340652,916716,6130
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,77123,239971,1551
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,108295,405822,2619
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,471786,2106550,10274
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,252588,726859,6023
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,189261,647124,3644
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,208787,277797,10091
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604364,2625899,4580
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604270,4152236,4977
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,607320,3184853,4874
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,81227,356229,3483
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,154514,887525,6534
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.1-codex,gpt-5.1-codex,low,false,603676,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.1-codex,gpt-5.1-codex,low,false,606730,0,0
+get-verification-code,Get verification code from text message,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,46097,202430,2003
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,41199,75600,2344
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,84436,263238,10884
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,57221,128845,3266
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,159694,208827,5541
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,149648,260057,5670
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,269242,615352,10449
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,430311,1255180,15110
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,304507,832082,6245
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,121506,233531,2908
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,159292,324981,4046
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,259887,677528,5180
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,46207,123669,4315
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,11030,11072,124
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604662,3310896,4761
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,180529,265030,8746
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,497927,1512793,22807
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606648,3664811,4437
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,79225,98454,3239
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,209662,478762,8639
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,325735,735301,11801
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,342087,829102,12280
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,415660,1140313,14962
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,125167,199707,4946
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,332312,782105,12639
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,false,606862,2825718,5560
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,114567,142589,4480
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,65211,186820,1305
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,123591,435445,3139
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,197849,805354,6168
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,420648,1413749,10844
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,249113,921499,6537
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,29089,56997,914
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,278514,1203871,8564
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,264767,925343,6060
+get-verification-code,Get verification code from text message,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,117168,276513,2288
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,47919,214633,2152
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,140040,954377,6015
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,271162,1838660,11610
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.1-codex,gpt-5.1-codex,low,false,607078,0,0
+get-verification-code,Get verification code from text message,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,141597,759131,6190
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,226963,674678,4570
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,100798,394833,2481
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,470642,2273070,13776
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,606927,0,0
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,75574,211741,2345
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,47796,84424,1313
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,386989,1789475,8617
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,223559,874315,4856
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,605493,3757422,5269
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,489358,1263645,20935
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,364057,927382,16409
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,435520,1439448,19945
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,552438,1767678,23458
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603627,3636173,3901
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,335292,787587,15054
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,448603,1227788,20812
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,125092,484044,3834
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,42699,134402,1127
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,486885,1619027,9797
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,160992,540187,4131
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,53832,150298,1503
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-flash,gemini-2.5-flash,,false,198203,414275,2450
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash,gemini-2.5-flash,,false,90035,163252,987
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash,gemini-2.5-flash,,false,300911,566916,4138
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,603572,6262269,513
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,true,434371,1091911,16903
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,true,382577,1268703,17688
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,607661,4229680,302
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,605231,5706405,381
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,24446,49580,195
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,36195,96771,5373
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,415789,1329153,7819
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,74446,286434,2464
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,261186,770196,6345
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,329512,1018829,6184
+get-verification-code,Get verification code from text message,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,109912,381527,2948
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,246894,991081,4660
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,199718,700939,5539
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,274591,1033639,5078
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,165112,538818,3788
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603839,2528995,3058
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,76319,84481,3424
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603436,3385056,3644
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,602458,2098134,23798
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,51789,108522,1126
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,121008,311169,2760
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,555938,2465089,13985
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,239026,530813,6087
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash,gemini-2.5-flash,,false,603916,0,0
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,243105,795445,6071
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,172650,389978,3873
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,257723,754661,5435
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,113612,209738,2904
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,62962,181519,3570
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,48416,159558,3245
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,102321,304535,2083
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,174922,547499,4466
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,412830,2255283,9841
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,297886,798166,6502
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,92709,224954,2659
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,66518,63741,2534
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,165404,282118,6033
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,false,603941,3508866,3740
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,false,607430,1756962,3279
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,366162,1230222,8111
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,120528,419144,3128
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,512883,1588533,9664
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,212983,495603,4784
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,484502,1435006,20629
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,241288,508874,10822
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,480248,1204145,21490
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,399560,971663,17284
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,53093,123809,1468
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,103752,190420,2324
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,602160,2231273,11129
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,231210,913850,4993
+get-verification-code,Get verification code from text message,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,83972,245413,2109
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,false,518364,2335540,12236
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,117526,484383,3082
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,251788,1080994,5719
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,533853,1994832,11346
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,56700,215119,1452
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,119133,426922,2409
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,437246,2198400,8449
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,384693,1540883,9719
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604268,4304432,5551
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,575009,1620431,25775
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,408557,953554,20777
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,498513,2327162,24720
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,113754,262194,6563
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash,gemini-2.5-flash,,false,559265,795201,4998
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-flash,gemini-2.5-flash,,false,319898,574559,3325
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash,gemini-2.5-flash,,false,81342,245761,1789
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash,gemini-2.5-flash,,false,545964,572679,5174
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,48723,176648,1288
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,54792,225491,1373
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,604041,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,607114,0,0
+get-verification-code,Get verification code from text message,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,13369,35225,211
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,195810,518941,4540
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,125336,248720,3063
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,404787,1261176,9755
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,566924,2525196,12045
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,316861,1481712,7478
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,104842,411906,2616
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,603640,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,363876,1046506,8141
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,true,178921,230642,8216
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,true,127011,148728,6162
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-5,claude-opus-4-5,low,false,603891,4972481,463
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-5,claude-opus-4-5,low,true,473957,1350847,18894
+get-verification-code,Get verification code from text message,claude-claude-opus-4-5,claude-opus-4-5,low,true,259981,639975,11898
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,true,590900,1636917,21049
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,true,597876,1814094,22257
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,604141,5170725,591
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,607007,4084049,313
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,true,275965,499710,11494
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,63024,215924,1550
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,168705,705746,5620
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,484134,2253207,14199
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,286885,1018598,8132
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,129847,154086,5060
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,108575,158003,4023
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,340252,701526,11237
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,587236,2206050,21075
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,245605,543397,12580
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604758,3095507,4410
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,488244,1680903,23735
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606968,3564648,4705
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,332485,1340281,8238
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,329571,772675,5996
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,434067,958083,6961
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,160188,427443,3912
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,53076,148177,1341
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,205931,529132,4986
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,457129,1925590,10250
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,379310,1048425,7263
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,11886,24890,111
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,11959,24855,147
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,25498,41015,3355
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,79818,84682,2837
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,false,101954,151760,4259
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,283075,674528,11121
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,387931,1111880,13972
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,95571,146070,3812
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,152678,579753,3901
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,66835,284887,2077
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,389823,1246757,9525
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,181145,512455,4663
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,528034,1683945,22709
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,191961,154348,5546
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,556561,1253271,19604
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,235007,441106,9831
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,64096,139625,1640
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,68596,188195,1647
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,481644,1881869,9985
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,111507,312621,3182
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,65219,58668,2238
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,87505,117509,3330
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,254104,593354,10595
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,237958,598073,9992
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,78020,92313,3154
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,184836,331763,6755
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,false,604029,2943047,4298
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,false,606426,3112195,4595
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,546430,3277789,12590
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,65911,225971,1629
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,399377,2222002,8016
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,606483,0,0
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,52646,186674,1238
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,36990,123927,1034
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,464965,1417997,9580
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,370519,1662335,9541
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,57360,52646,2037
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,102228,73430,2478
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,244834,580811,9848
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,false,607690,2186581,4425
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,202475,383031,7922
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,113279,135243,3876
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,329395,747595,11745
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,289767,656276,10328
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,77624,81544,2811
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,93376,255855,1635
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,240585,1068188,5139
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,218217,732905,6447
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,291384,1299987,5797
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,62496,42189,1751
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,105374,155983,4098
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,413834,1216252,14993
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,false,607171,2958882,4376
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,334319,1355710,7567
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,98379,348810,3135
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,486130,2287392,11149
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,606046,0,0
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,114765,203265,2044
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,314929,896644,6055
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,219515,575062,4336
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,460003,2196309,10033
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,true,173240,309981,8647
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,true,211811,397714,9768
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-5,claude-opus-4-5,low,true,407943,1581446,20597
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-5,claude-opus-4-5,low,false,607173,4655553,518
+get-verification-code,Get verification code from text message,claude-claude-opus-4-5,claude-opus-4-5,low,true,200933,308121,9195
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,true,114683,124959,4490
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,true,427416,1344990,19527
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-5,claude-opus-4-5,low,true,451612,997410,16467
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-5,claude-opus-4-5,low,true,404513,749311,13577
+get-verification-code,Get verification code from text message,claude-claude-opus-4-5,claude-opus-4-5,low,true,196184,337466,9118
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,156205,237184,6277
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,90808,113272,3424
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,298296,676036,11381
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,415449,1213104,14600
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,110876,151591,4185
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,246231,581929,9915
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,106081,150198,4012
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,false,605121,3038006,4421
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,227657,423583,8273
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,153720,257839,5850
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,79901,107637,3406
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,93204,126064,3569
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,475935,1476072,17251
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,266528,599169,10455
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,124295,158093,4234
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,63572,240515,1552
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,604101,0,0
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,587292,2942493,15514
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,223346,949879,6787
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,40067,36705,1567
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,260514,281601,6059
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,false,603832,3615320,3622
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,412715,1133508,14040
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,64027,201241,1347
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,603823,0,0
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,332132,1375449,6857
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,192992,845098,4638
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,223109,707414,4694
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,52154,209526,1420
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,292577,1115388,7827
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,176442,599708,4830
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,552844,1935814,11081
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,395598,1420462,8302
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,423444,1460262,11626
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,450261,1391861,8461
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603515,2818700,4091
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,431749,1104458,18545
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,537806,1527158,23838
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,492822,1701914,20393
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,80288,174869,1997
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,40332,107927,1172
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,316237,1392439,7963
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,134344,366585,3710
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,234330,733011,5870
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,122282,419834,3524
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,500519,1928535,10888
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,143854,408684,3013
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,83562,59452,2284
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,102436,200565,4867
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,197150,368548,7616
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,213584,486127,8992
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,47956,37060,1581
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,115928,157087,4009
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,false,603938,2887324,4150
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,412356,1136906,15199
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,84861,308395,2356
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,83434,306571,2481
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,603473,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,271374,796746,6594
+get-verification-code,Get verification code from text message,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,70111,229168,2123
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,39572,108600,1225
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,240171,929255,5847
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,437804,1704434,10736
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,237333,635842,5185
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,293082,1170859,8352
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,103116,223263,2078
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,315325,1119554,9401
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,371854,1172492,7086
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,139472,174440,6208
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,220153,324256,10085
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,493099,1141017,20245
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606946,3402473,4234
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,66134,78201,2863
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,83521,126749,3496
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,false,604041,3056231,4563
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,373068,1002795,13108
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,101582,162004,5709
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,523751,1752747,27035
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,439673,1557817,23227
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,273953,538876,11454
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,36479,95717,1226
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,72383,236297,2042
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,320172,1008253,7325
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,143286,448724,3289
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,59462,163275,1617
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,603768,0,0
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,250751,1053079,5098
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,223169,646257,5161
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,36976,111455,1950
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,37711,133066,2051
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,36780,28687,399
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,66049,64553,2314
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,150635,234456,5601
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,250862,499000,9767
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,false,607134,2127187,4448
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,79470,93191,3247
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,156822,289202,5973
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,false,603550,3003124,3036
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,325181,786647,11642
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,66620,67470,2558
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603302,4958345,5706
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,210814,587936,11631
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,405338,1284482,21312
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,382068,1557901,19295
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,64683,261464,2143
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,140648,49707,239
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash,gemini-2.5-flash,,false,133757,337394,2825
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,86398,97272,3468
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,72952,80969,2959
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,379362,1039996,13795
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,false,607320,2444844,3995
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604659,2869555,3746
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,395999,736585,17078
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,366587,749171,15145
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,390334,935711,14073
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,182831,273221,6912
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,138163,105455,3231
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,313794,723476,11289
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,251311,561525,9629
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,true,157136,213918,8667
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,false,244415,617235,12828
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-5,claude-opus-4-5,low,true,453074,1259883,19401
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-5,claude-opus-4-5,low,false,606768,3671836,431
+get-verification-code,Get verification code from text message,claude-claude-opus-4-5,claude-opus-4-5,low,true,376539,1021322,15380
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,535690,1668656,11023
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,183537,516292,4051
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,203276,684741,5808
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,168123,388530,3545
+get-verification-code,Get verification code from text message,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,79404,302737,2106
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,14757,9994,248
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,96097,175192,2299
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,229351,590797,4306
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,347765,919270,7592
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,80923,74313,2950
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,170271,370658,7467
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,348894,953985,12710
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,428884,1371166,15552
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,602971,3062565,3490
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603408,3296370,4011
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,577207,1598046,25874
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,321880,673915,13578
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,53747,215464,1339
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,68376,312380,1773
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,359440,1857839,8676
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,607090,0,0
+get-verification-code,Get verification code from text message,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,221268,1062516,5017
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,44871,163998,1404
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,27345,94767,872
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,193787,633779,5335
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,340593,1108450,7905
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,57887,201795,1571
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,161162,580988,4396
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,383045,1665198,11651
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,206202,888172,5996
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,68762,186798,1331
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,333548,1477294,7862
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,586534,2584409,16198
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,606984,0,0
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,305714,1260999,8290
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,202497,718922,5021
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,381119,1773298,8600
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,342992,1078950,7112
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,119305,358790,3597
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,525075,2564625,13853
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,45505,124171,1470
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,458924,2147580,12035
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,131281,307082,3627
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,61372,59849,2322
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,121720,178691,4531
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,251522,503532,9349
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,false,607096,2902155,4753
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,false,604145,3761412,444
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,false,604269,5221938,461
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-5,claude-opus-4-5,low,true,367762,1143721,17327
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-5,claude-opus-4-5,low,false,607848,5290483,541
+get-verification-code,Get verification code from text message,claude-claude-opus-4-5,claude-opus-4-5,low,true,175947,315866,8207
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,153577,227637,5816
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,false,90857,102559,3332
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,300411,689398,11093
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,345739,821801,12511
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,78202,113474,3428
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,54280,53458,2095
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,106410,149690,3852
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,263543,319530,7350
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,251685,350933,7737
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,602876,4126120,4905
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,369823,1258686,19346
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,348365,1209087,18284
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606719,4540490,5778
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,37671,27540,275
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,30265,57296,2102
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,37436,99832,3672
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,73711,73079,2730
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,92826,119953,3684
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,false,604086,2362009,4482
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,507703,1529677,16520
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604393,3408711,3925
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,147769,190240,7064
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,474796,1421583,20596
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,607016,3848125,4357
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,401341,938736,16228
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,206358,297744,8897
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603478,2559945,3257
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,607117,2826205,3938
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,253559,1229847,7899
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,146260,436342,3788
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,179125,546345,5299
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,150118,422787,3279
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,91957,259358,1764
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,276387,896435,6409
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,604021,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,88029,203242,2212
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,69465,258330,1764
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-pro,gemini-2.5-pro,,false,564523,1507475,6248
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-pro,gemini-2.5-pro,,false,699436,0,0
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-pro,gemini-2.5-pro,,false,7577396,0,0
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,165212,525482,4628
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,145174,347402,3512
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,403073,1412624,8902
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,318597,1304665,9253
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603537,3042182,3821
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,557768,1581632,22558
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,526698,1478070,22279
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,469656,834497,14921
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,92943,65249,2576
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,84041,145744,3826
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,209390,551293,9905
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,306497,675169,11275
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,72732,155209,1971
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,163178,481385,2973
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,322896,889346,6971
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,232434,633108,4765
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,124386,146188,5559
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603202,2620115,3807
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,388720,926553,15346
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,607739,3016170,5239
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,105433,141243,5078
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,178080,274756,8017
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,474771,1024181,20525
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606160,2758381,4087
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,64583,196098,1349
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,603757,0,0
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,397032,1913310,8298
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,319110,1460441,8670
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604234,3294260,3744
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,307264,582151,13609
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603410,3069698,3770
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,607429,2642159,3452
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,163683,633790,4026
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,117515,545464,3390
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,301965,1366089,7119
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,326553,1497054,7765
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,526611,858790,12195
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,102176,147522,3968
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,456656,812801,12576
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,false,607314,3217089,4928
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,134110,218005,5721
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,112663,177080,4939
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,121688,149869,4316
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,209208,371857,7686
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,false,609399,3153063,5121
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,119956,145836,4414
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,455401,1950004,11740
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,68457,214052,2160
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,440421,1733982,8910
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,349599,1299395,7271
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,77857,65768,2443
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,93706,125707,3775
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,324734,852747,12653
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,459575,716003,11275
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,63091,59157,2289
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,58789,58748,2106
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,240860,494873,9437
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,377800,1439293,15650
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,36279,136099,881
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,122578,528883,3169
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,602929,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,546606,2922014,15572
+get-verification-code,Get verification code from text message,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,37074,140297,924
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,118437,119401,4492
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,151233,153411,4099
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,400456,646886,10629
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,209933,377147,7752
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,14746,16323,156
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,16318,11579,96
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,58166,270426,1981
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,336650,1638786,9967
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.1-codex,gpt-5.1-codex,low,false,603375,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.1-codex,gpt-5.1-codex,low,false,606681,0,0
+get-verification-code,Get verification code from text message,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,12547,46146,327
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,604719,5131842,412
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,604200,4196698,368
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,604051,4228425,463
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,608257,5225939,363
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,true,244929,537897,11909
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,true,437342,1120402,17338
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,603739,5073161,403
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,603927,5158466,398
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,607597,5038612,489
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,true,333507,785424,14470
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,74369,218008,1727
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,134037,573505,3782
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,298246,1333631,7532
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,195153,943850,5065
+get-verification-code,Get verification code from text message,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,11545,35392,204
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,83247,331548,2962
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,71796,377794,3476
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.1-codex,gpt-5.1-codex,low,false,603332,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.1-codex,gpt-5.1-codex,low,false,607175,0,0
+get-verification-code,Get verification code from text message,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,51831,184095,1769
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603786,3389929,3415
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,134917,192594,6334
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603397,3607183,3748
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,448601,1297332,18076
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,91926,79495,3238
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,97903,90859,3422
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,337672,738634,11888
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,280381,537704,9298
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,155428,251646,5786
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,251642,366108,12913
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,178952,352221,9513
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,299245,711186,14259
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,427862,1279139,20678
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,274292,0,0
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,58530,256287,1627
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,323292,1520211,8758
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,301664,1104918,9305
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,354571,1367621,8890
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,67866,215363,1616
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,289827,1555877,7636
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,492057,2405892,15085
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,252511,779343,6503
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,77589,181437,1897
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,96260,379730,2530
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,324086,1235672,8974
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,331392,1237330,9333
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,85204,337734,2361
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,125479,388593,2398
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,510293,2483031,10556
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,114284,373124,3433
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,133359,176331,5155
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,81989,99512,3112
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,205152,458890,8871
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,211454,403215,8142
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,121778,150769,4224
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,false,125525,257628,1678
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,155904,569100,3456
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,603198,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,399916,1117764,8157
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,549048,1565982,23069
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,442122,1172916,18315
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603419,3316454,3621
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,607203,3266693,3758
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,324818,776580,13932
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603484,3329323,4136
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,127683,167155,5758
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,507601,1407377,22688
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606696,3448588,4568
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,220706,897742,6381
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,267209,1188194,6669
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,603978,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,372419,2124970,7654
+get-verification-code,Get verification code from text message,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,11623,35444,190
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,603261,0,0
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,85662,299221,2658
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,295185,1431682,7992
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,374646,1928977,8497
+get-verification-code,Get verification code from text message,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,11047,35360,174
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,100837,327466,2463
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,176250,624171,3592
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,603789,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,304579,865506,6493
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,105772,216208,2479
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,161514,163251,5952
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,166022,283357,7928
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603401,3179532,3765
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606856,3367068,4085
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,true,251069,292329,9432
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,true,294042,513559,11266
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-5,claude-opus-4-5,low,false,603545,6095207,503
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-5,claude-opus-4-5,low,true,388357,1065554,16011
+get-verification-code,Get verification code from text message,claude-claude-opus-4-5,claude-opus-4-5,low,true,576150,1512502,19106
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,127624,156420,4775
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,87928,122445,3557
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,405829,1152528,15044
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,256241,618089,10245
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,137119,198041,5016
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,40314,123100,1265
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,57914,211985,1962
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,432130,1192371,8447
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,91647,276382,2996
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,88985,319576,2197
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,154827,558745,3378
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,213567,704932,5558
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,378284,1283725,7421
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,98813,331832,1882
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,61213,186222,1269
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,123603,561975,3592
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,234588,879139,6818
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,605662,0,0
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,177055,363363,3978
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,117753,349846,2593
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,279806,742225,6624
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,340976,1142152,7166
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,81565,259073,1887
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,156626,603409,3939
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,230421,924277,7220
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,250336,1128118,6165
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,388023,1398077,8010
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,79551,237599,1931
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,362182,1453329,9310
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,507877,1724599,9125
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,53049,67104,2068
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603803,3131780,4349
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,279194,497648,13005
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,378680,933230,18225
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606881,2659120,3336
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,81385,87371,3430
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,116902,158189,4043
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,false,215963,373827,8065
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,false,608645,2781997,3855
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,71557,87234,3125
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,286808,675091,11828
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,455241,1213253,19387
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603979,3521142,3364
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,607179,1709569,3485
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,192751,635363,3758
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,95089,352393,2506
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,294499,1065195,7405
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,606710,0,0
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,false,604303,0,0
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,231263,989532,7514
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,403674,1553851,10006
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,326437,1041144,6831
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,214128,294141,8876
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,125980,129950,5206
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603548,2937053,3364
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,607781,3203456,5356
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,95094,107012,3586
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,195851,423512,7741
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,247378,502543,9335
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,188180,369025,7048
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,59908,41771,1699
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,231037,257655,5929
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,false,603950,1962166,2255
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,279286,598108,9892
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,10980,11054,118
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,44241,144326,2469
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,64255,27900,424
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,63796,227920,5128
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,34394,29721,182
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,248970,984805,5412
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,103029,355744,2353
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,247269,888340,4766
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,317432,1617352,6698
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,111579,409744,2401
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,275661,1434212,6897
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,430119,2092696,11090
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,525022,2801676,15322
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,67126,143324,1686
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,69764,177760,1425
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,361833,1075060,6685
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,607644,0,0
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,199049,869009,4354
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,309446,1024454,10669
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,237783,694155,8153
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,209376,651063,5794
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,131504,138483,5365
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,112585,129605,5070
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603236,2840931,3518
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,561299,1632591,22014
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,49974,158032,1037
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,111537,270605,1736
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,285969,970007,5860
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,278003,823901,6831
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,154325,661349,3755
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,true,259419,405214,9889
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,296231,533460,11282
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,603344,4720737,481
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,607293,4486006,523
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,true,57332,40533,2396
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,376630,867503,12610
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,83692,112075,3340
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,268801,590533,10006
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,false,607234,3313917,4771
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,67111,201763,1594
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,115201,420989,3351
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,244948,1116285,6270
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,606741,0,0
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,171864,251490,6952
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,110215,167199,4327
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,279367,578188,10059
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,264559,576963,9710
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604356,2386056,3544
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,245393,467503,10845
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,571657,1725014,24736
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,449465,795785,14003
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,63494,53686,2430
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,92706,119671,3352
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,false,604018,2275963,3486
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,376153,950512,13224
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,38626,136399,1089
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,577765,3531714,15108
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,265699,1231940,6737
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,606915,0,0
+get-verification-code,Get verification code from text message,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,510223,2300048,10991
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,true,303587,554906,12363
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,603833,5866459,481
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,604022,5163472,384
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,607250,3329331,265
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,93615,62457,3080
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,253523,842840,6107
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,378687,1137859,7515
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,602825,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,261542,1053785,6714
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,73150,200780,1432
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,198788,991075,4876
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,232909,867409,7035
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,200730,1037850,5200
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,350651,1284426,9541
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,90435,184063,2125
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,233750,697522,5320
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,160068,466725,3530
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,417848,1414615,10450
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,87007,237619,2208
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,385063,1712349,10623
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,325389,1159689,8671
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,68591,233307,2116
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,false,524025,2667901,12068
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,126776,469641,2872
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,296583,1440145,8353
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,608001,0,0
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,77808,206763,1519
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,74480,311353,2429
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,246208,928117,6631
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,213919,637971,5089
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,105357,210587,2083
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,71395,239996,1644
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,206943,864573,5716
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,602622,2135080,12053
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,138610,369772,3355
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603991,2290627,3571
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,222979,501285,12132
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603420,4068536,5206
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606865,4304500,5170
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,51011,139449,1640
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,60078,185807,2120
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,603123,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,93141,306471,2909
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,497264,2075847,13090
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,70798,208499,2332
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,286410,843488,6375
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,174775,441172,4042
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,106726,115458,4007
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,105724,150514,3968
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,237905,620727,10403
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,289510,663495,10651
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,65594,61253,2396
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash,gemini-2.5-flash,,false,602602,0,0
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,327488,1529213,7260
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,67758,227184,1655
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,433279,2039372,11036
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,469352,2177254,11050
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,108913,316729,2837
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,138177,443901,4211
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,315995,1313062,8562
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,109431,435776,3533
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,58564,200368,1362
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,353991,1566054,8051
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,299774,1492222,6099
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,608210,0,0
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,137142,169563,6269
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,106956,126653,4975
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,319879,806859,14389
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,521049,1482874,22165
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,162467,286986,6563
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,51554,33036,189
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,11310,10942,88
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,171884,494715,4615
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,71214,174290,1845
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,196226,627782,5346
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,536302,2542052,11177
+get-verification-code,Get verification code from text message,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,105517,365763,2667
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603190,3485229,4301
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,284617,532302,13243
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,440223,1219581,18720
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606916,3288199,4920
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,45922,121620,1150
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,108712,293141,2609
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,356368,1304445,7481
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,375379,1250384,7647
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,64787,257201,1577
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,338414,1250409,9510
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,550919,2366947,9323
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,606599,0,0
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,98997,277734,1864
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,545420,2972198,10886
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,378240,1803048,7454
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,440539,2032217,11414
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,79346,185565,2038
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,84591,75808,3123
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,93576,116438,3410
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,259884,496623,8900
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,230951,587920,9683
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,59350,148603,1776
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,59940,120558,1292
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,507215,1495246,8546
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,141789,420023,4332
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,88183,114407,3664
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,188658,322779,6843
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,509462,1561135,17370
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,198265,404684,7990
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,604574,3594002,316
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,true,160660,207403,6921
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,603491,4774979,395
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,607936,3469691,259
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,true,190065,229507,6674
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,65993,64614,2410
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,187670,261452,5916
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,424565,877319,13107
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,243059,574534,9460
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,140488,202311,5055
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604800,3122265,3836
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,416089,1118936,19068
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,465884,1387889,19896
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,472241,1216752,21528
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,51720,53145,2087
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,184596,176088,4587
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,231144,451759,8798
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,240976,566265,9647
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,58230,215662,1454
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,461747,1846285,10924
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,178547,645152,5206
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,509224,2256599,12647
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,44693,133160,1426
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,126868,289733,2876
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,309386,939539,8247
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,148545,428801,4609
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,125520,134502,1334
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,66268,229775,2006
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,484101,2193715,12587
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,235899,681719,5487
+get-verification-code,Get verification code from text message,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,57488,121841,1688
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,86266,98076,3212
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,147379,136690,3795
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,184103,322291,7036
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,356083,1015172,13819
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,144696,167622,6579
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,333806,695048,14154
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,443032,1149473,17600
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,417861,1028573,16941
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,true,201169,245205,9703
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,true,105952,113342,4439
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-5,claude-opus-4-5,low,false,603680,5155775,424
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-5,claude-opus-4-5,low,false,607298,4933002,503
+get-verification-code,Get verification code from text message,claude-claude-opus-4-5,claude-opus-4-5,low,true,220213,366239,10169
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,47531,43935,1758
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,96578,135500,3672
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,false,499443,982935,13169
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,216650,406121,8531
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,180803,703737,6231
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,262671,1078860,8490
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,261789,1145461,7501
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,283495,692642,6001
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,309602,909695,16783
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,336760,930157,15763
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,602958,4273066,5616
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606530,4700888,4762
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,172860,293222,9108
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,197918,322731,10092
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,415304,1151142,18518
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,562868,1832417,26471
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,208196,231118,6126
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,92789,240820,2213
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,289903,1039092,7677
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,319091,860124,7495
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,410825,1578139,8960
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,98180,266678,1742
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,589012,4708084,20214
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.1-codex,gpt-5.1-codex,low,false,603883,0,0
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.1-codex,gpt-5.1-codex,low,false,603856,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.1-codex,gpt-5.1-codex,low,false,607560,0,0
+get-verification-code,Get verification code from text message,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,53706,216515,2053
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,130854,333796,2918
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,147916,522765,2988
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,420188,1339836,11755
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,513908,2392385,12687
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,189958,738641,5818
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,82546,216567,2097
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,434266,1588292,9640
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,136310,408925,3371
+get-verification-code,Get verification code from text message,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,109107,459464,3322
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,97679,126345,4048
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,103561,140644,3994
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,false,605033,1830969,3698
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,603014,2047589,19533
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,91327,101507,4183
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,122928,145078,5573
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,330805,688468,14940
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606801,3219795,4778
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,137202,410832,4611
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,113120,254823,2005
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,308321,1482201,8969
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,173108,497727,4340
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,12928,11660,94
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,42917,96858,1299
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,111083,421466,3292
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,455307,1415539,9659
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,181365,442937,4258
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,57556,159619,1078
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,23352,44786,701
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,384067,1125900,7632
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,175326,402555,3928
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,32812,24639,106
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,68188,311337,7062
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,12131,24647,78
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,32462,83350,2152
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,400457,793651,17679
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,386730,832465,16124
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603441,3196382,4544
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,192364,321231,8546
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,212225,697046,5241
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,166220,408034,3089
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,459810,1433069,9984
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,448048,1688266,11249
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,45199,96696,2061
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,60644,218465,2832
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,140504,376719,3445
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,186228,603743,4568
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,211212,690146,5679
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,153404,436757,4443
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,387032,1556882,10090
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,84792,195784,1999
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,367617,809612,6613
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,308726,1075602,7769
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,58466,141461,1940
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,125016,393272,2924
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,604020,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,230840,694840,7109
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,603551,5029150,420
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,true,437392,1155044,18203
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,603943,4095936,359
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,607066,5457936,467
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,true,122501,107371,4297
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603250,4239295,5171
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,201678,439468,11137
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,357796,1059398,18555
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,325096,1198728,16381
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,399948,1223661,19287
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603655,3569518,5360
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603249,3109078,4426
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,607455,3112267,4429
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,195624,458305,10457
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,42404,41970,1735
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,82316,104908,3041
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,266528,599338,10164
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,false,606892,3213133,4298
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,604380,0,0
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,604222,0,0
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,605175,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,394585,1955918,8685
+get-verification-code,Get verification code from text message,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,446714,2010010,10178
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,63636,60251,2370
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,125267,189923,4814
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,201804,484662,9048
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,207348,417269,8028
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,403708,1456313,9961
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,125264,385361,3042
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,604272,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,332960,1003138,7040
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,64359,194930,1284
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,67393,148275,1419
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,347783,1711923,7593
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,342284,1256658,5688
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,70193,83478,2799
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,158154,262068,6387
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,187720,279645,6396
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,false,606174,2884225,4021
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,150850,124828,3681
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,89605,92432,3306
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,146988,138406,3653
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,264470,576295,9837
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,410788,1168752,15041
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,104512,407864,1455
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,29531,24657,124
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,17536,25563,128
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,522971,2065109,11714
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,42742,109358,1220
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,281208,1101782,8060
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,522738,1998690,10883
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,83084,177512,1557
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,84646,203118,2607
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,201561,633100,4418
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,264073,890334,6578
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,373347,1156415,8483
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,148656,407186,3555
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,477272,1730331,9883
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,408300,1232157,7970
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,false,603625,0,0
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,182397,674585,4448
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,415112,1650568,10920
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,139418,404455,4681
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,50055,187579,1284
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,122560,560143,3299
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,383480,1368629,9109
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,579305,2596034,14442
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-pro,gemini-2.5-pro,,false,240938,833822,4261
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-pro,gemini-2.5-pro,,false,215993,652727,2360
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-pro,gemini-2.5-pro,,false,271161,840323,4038
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-pro,gemini-2.5-pro,,false,884744,0,0
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,498135,1197396,20017
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604119,3027901,3798
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,347582,714600,13852
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,303312,534515,12536
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,114035,81391,3105
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,80504,99153,3084
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,405768,559326,10399
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,246113,497576,8776
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,53087,120080,1108
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,78955,196002,1989
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,570661,2562342,14325
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,160507,335268,4219
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,377439,1407077,7255
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,106531,373479,2337
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,441779,2573784,12409
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,575531,2197279,12070
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,true,125982,106690,4852
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,false,604136,4843681,461
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-5,claude-opus-4-5,low,true,519578,1800595,22103
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-5,claude-opus-4-5,low,true,477709,1496643,20029
+get-verification-code,Get verification code from text message,claude-claude-opus-4-5,claude-opus-4-5,low,true,226543,442742,10865
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,67218,85407,3503
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,133106,195052,4961
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,375485,1189609,16080
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,448938,1364494,16349
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,19607,26349,133
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,192455,810254,4204
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,88347,314728,2490
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,200207,897646,5323
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,608398,0,0
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,246280,968959,5444
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,394379,716686,17438
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,211206,280790,9666
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603969,3379615,3702
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,378261,913299,15326
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,45186,41941,1728
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,87976,120811,3717
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,391471,960154,13104
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,341885,811624,11989
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,126520,514822,3702
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,95374,386075,3211
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,345140,1323137,9175
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,112740,218717,2432
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,126807,368041,3603
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,199324,388407,3278
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,161976,479344,5127
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,296466,1056032,6955
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,43983,69117,842
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,31083,70283,3336
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,90153,244391,10609
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,43344,56428,1959
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,45765,104415,2276
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,42622,94702,3664
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,44369,24897,153
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604373,3862400,3608
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,550372,1967851,25002
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604318,3535221,3872
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,482235,1790931,20897
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,202345,296942,8654
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,74049,124034,1394
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,326153,945742,5902
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,603691,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,606494,0,0
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,132435,280133,2811
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,22649,44898,682
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,473946,1420856,9801
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,606286,0,0
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,249306,412116,10997
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,445777,1192407,18794
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603870,2958420,3169
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,607011,2924218,3843
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,439791,634548,13132
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,455186,1261029,20012
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,387040,886400,18662
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,608951,2659367,3902
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,82780,344046,5086
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,15908,50828,749
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,73310,501180,5689
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,57676,306173,5474
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,310087,704701,13375
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,380659,877730,16814
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,525871,1208947,25394
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,252807,460842,10827
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,76611,204158,1571
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,56049,134061,1190
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,516901,2486270,13373
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,607612,0,0
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,43896,154491,1219
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,true,227509,214276,9326
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,true,346874,665892,13752
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-5,claude-opus-4-5,low,false,603968,4662332,357
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-5,claude-opus-4-5,low,true,368043,1042852,16133
+get-verification-code,Get verification code from text message,claude-claude-opus-4-5,claude-opus-4-5,low,true,290898,511432,10793
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603787,3549560,4055
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,441612,1098710,19322
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,397867,1043662,16806
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,417519,1056767,18480
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,105173,328517,2815
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,140488,620996,4181
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,534465,1687721,10207
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,268559,1192328,6178
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,78224,196665,2067
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,229595,753205,6710
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,583700,2801247,9403
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,229882,835402,5048
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,48907,151273,1439
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,26458,44851,823
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,331803,673298,5311
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,196402,825318,4962
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,82206,293970,5298
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,14338,23691,544
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,33305,34524,6655
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,67756,113650,8203
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,57699,171808,1597
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,51116,163778,1712
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,528202,2381054,12814
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,453142,2085338,7708
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,84203,238934,1461
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,355460,1503790,9436
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,436041,2122816,10048
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,323791,985593,6103
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,76556,273941,1776
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,126519,401485,2832
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,326788,1242873,7574
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,607582,0,0
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,98667,345375,2116
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,110914,400206,2473
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,603740,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,269863,889537,7132
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,117107,475446,3045
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,114489,179432,6270
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,182347,405324,10383
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603094,3954600,4226
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,487081,2008044,22704
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,33877,49998,2404
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,343303,1045030,7593
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,75709,139319,1808
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,397915,1522466,10433
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,499478,1732980,10319
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,51835,53485,2075
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,110508,164403,4260
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,345667,983711,13932
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,189768,392616,7545
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,115425,146100,3953
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,89605,95046,3365
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,110099,170152,4318
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,false,603564,3322529,4558
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,425003,904822,12191
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,54878,47837,2031
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,127442,180751,4618
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,503249,1613482,17688
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,false,606596,3090220,4001
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,328330,1361044,9145
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,102414,411758,3344
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,477433,1591446,10084
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,397634,1463444,9460
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,431293,1097729,19332
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,326296,744080,14322
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,576814,1768140,25418
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,602504,2125914,24174
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,85287,123825,3888
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,62244,112299,1484
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,251305,1181916,7859
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,207139,837483,6016
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,449672,2366261,11016
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,259636,1003537,5830
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,120668,331781,2185
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,423130,1781883,8457
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,607864,0,0
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,90708,228014,1592
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,68204,174104,1355
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,477247,2476825,16005
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,606346,0,0
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,83280,119803,3984
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,137255,216980,5081
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,509117,1479717,17404
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,295240,708204,10814
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,66533,61955,2383
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,105470,567377,4504
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,433228,3426650,14587
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.1-codex,gpt-5.1-codex,low,false,603908,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.1-codex,gpt-5.1-codex,low,false,606761,0,0
+get-verification-code,Get verification code from text message,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,42593,158749,1895
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604172,3657867,4300
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,382729,716664,17987
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603241,3313338,4037
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,456590,1280613,18040
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,168796,134870,4823
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,163495,335686,6787
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,295752,675429,10913
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,false,607551,3147514,4553
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,44753,156023,1110
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,83678,293153,2234
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,603495,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,606761,0,0
+get-verification-code,Get verification code from text message,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,168757,610415,3451
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,166451,217167,7590
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,371974,684059,17202
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,386410,1013443,16629
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606883,3563651,4275
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,46267,113547,1454
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,108021,234979,2060
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,436009,1837682,10704
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,240524,499434,4547
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,83007,100163,3489
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,119492,192892,4577
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,149903,310002,6941
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,525625,1098027,13677
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,131712,221434,5275
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,344583,1271626,8411
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,222415,687425,6859
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,198546,655989,4812
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,161177,472666,3752
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,416937,1865254,9514
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,97162,278952,2112
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,369675,1589668,6687
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,436849,2065169,10540
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,455316,2464359,9845
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,452252,1817403,10699
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,456488,1680147,10978
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,608057,0,0
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,126666,430810,2930
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,57556,305752,3141
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.1-codex,gpt-5.1-codex,low,false,604597,0,0
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.1-codex,gpt-5.1-codex,low,false,603892,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.1-codex,gpt-5.1-codex,low,false,606799,0,0
+get-verification-code,Get verification code from text message,codex-gpt-5.1-codex,gpt-5.1-codex,low,true,10821,46100,312
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,40914,150161,1071
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,52082,215208,1486
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,604060,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.2-codex,gpt-5.2-codex,low,false,330488,1702111,8047
+get-verification-code,Get verification code from text message,codex-gpt-5.2-codex,gpt-5.2-codex,low,true,250538,912067,6856
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,152518,225100,5976
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,104768,173668,4500
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,260353,606773,10414
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,476218,1603612,17362
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,75889,88917,3080
+airplane-mode-on,Turn on airplane mode,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,58401,110868,2731
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash-lite,gemini-2.5-flash-lite,,false,26442,10793,103
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,157864,493188,4577
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,72002,246284,1943
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,603412,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,607030,0,0
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,102689,94109,3590
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,54842,52434,2054
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,243008,502363,9117
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,314794,871881,12351
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,603926,4125444,343
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,604107,4073519,367
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,604184,4301029,408
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,606995,5726341,410
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,210961,369351,8673
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,198332,321532,9395
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,201061,349386,9558
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,572369,1766653,25829
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,607112,3676376,4389
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,133389,192907,5842
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,45638,36995,1543
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,294381,792256,11894
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,false,606957,2545528,4290
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,true,86441,71241,3326
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,true,188373,339074,8935
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-5,claude-opus-4-5,low,true,481610,1931090,22002
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-5,claude-opus-4-5,low,false,607329,5819613,566
+get-verification-code,Get verification code from text message,claude-claude-opus-4-5,claude-opus-4-5,low,true,297436,719443,12181
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,94689,105072,4353
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603471,3404259,3919
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603347,3613121,4253
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606419,3446744,3868
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,342927,1060602,8181
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,122764,339402,2988
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,273337,846658,6622
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,380566,1256450,7320
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,168368,381003,2567
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,81260,271492,2387
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,328764,1256687,8854
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,606644,0,0
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,96311,347990,2814
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,false,603435,0,0
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,258382,715925,5588
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,407158,1445164,7286
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,535186,1782472,8846
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,62391,159131,1622
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.3-codex,gpt-5.3-codex,low,false,64858,241901,1919
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,151928,394786,3933
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,393737,1917762,9935
+get-verification-code,Get verification code from text message,codex-gpt-5.3-codex,gpt-5.3-codex,low,true,124299,316841,3373
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,200855,891564,4373
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,50463,133165,1119
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,291562,1214388,8545
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,128978,340978,4252
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,89103,258709,1887
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,true,379455,1274097,7509
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,false,603784,0,0
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,123938,487012,3099
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,151139,474435,2801
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,77763,75758,2657
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,102282,133338,3694
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,344473,833553,12501
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,false,609132,3021152,4849
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,163807,263731,5979
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,88906,101121,3363
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-6,claude-opus-4-6,low,true,88082,118479,3417
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-6,claude-opus-4-6,low,true,193669,322293,7149
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-6,claude-opus-4-6,low,true,510285,1596902,17613
+get-verification-code,Get verification code from text message,claude-claude-opus-4-6,claude-opus-4-6,low,true,62826,60308,2370
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,54356,186908,1340
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,216024,937120,5941
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,274947,849382,6486
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,false,609038,0,0
+airplane-mode-off,Turn off airplane mode,gemini-gemini-2.5-flash,gemini-2.5-flash,,false,49044,91105,485
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-flash,gemini-2.5-flash,,false,302213,837885,6583
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-flash,gemini-2.5-flash,,false,1545042,0,0
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,405365,1280807,19078
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,192539,329820,9083
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,510796,1400492,18908
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,458454,1288107,19956
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,78409,124000,3933
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604313,3345349,4279
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,432585,1095041,17362
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,453402,1219564,18558
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,331697,760221,13884
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,430875,564459,14282
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,142114,186738,6391
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,312337,844666,15415
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,402406,1481568,19704
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,118101,154843,6683
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,446272,1472105,22644
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,404559,1093049,18989
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,491399,2161469,25138
+airplane-mode-on,Turn on airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,false,604663,4341324,472
+airplane-mode-off,Turn off airplane mode,claude-claude-opus-4-5,claude-opus-4-5,low,true,196784,372979,9345
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-opus-4-5,claude-opus-4-5,low,true,360853,1149426,18529
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-opus-4-5,claude-opus-4-5,low,false,607112,6639639,571
+get-verification-code,Get verification code from text message,claude-claude-opus-4-5,claude-opus-4-5,low,true,209546,361986,8402
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,604103,2968906,3863
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,212590,284122,9090
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,443241,1078062,17368
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,408193,672474,13079
+set-alarm-5pm,Set an alarm for 5:00 PM,gemini-gemini-2.5-pro,gemini-2.5-pro,,false,732163,251149,1030
+uninstall-app,Uninstall the Firefox Focus app,gemini-gemini-2.5-pro,gemini-2.5-pro,,false,130697,91514,656
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,true,205255,364762,9578
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,603778,4813849,426
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,603737,5834457,511
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,false,607047,4657203,496
+get-verification-code,Get verification code from text message,claude-claude-sonnet-4-5,claude-sonnet-4-5,low,true,348776,782795,13897
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,113297,138816,5314
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,266517,369768,10256
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603753,3044692,3271
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,433690,1130115,18216
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,495936,1716132,24696
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603166,2903168,4572
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,565959,2160599,28532
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,607486,4091681,5282
+airplane-mode-on,Turn on airplane mode,codex-gpt-5.4,gpt-5.4,low,true,230265,810315,4538
+airplane-mode-off,Turn off airplane mode,codex-gpt-5.4,gpt-5.4,low,false,403726,1317391,9226
+set-alarm-5pm,Set an alarm for 5:00 PM,codex-gpt-5.4,gpt-5.4,low,true,566499,2539642,12531
+uninstall-app,Uninstall the Firefox Focus app,codex-gpt-5.4,gpt-5.4,low,true,219668,721068,5650
+get-verification-code,Get verification code from text message,codex-gpt-5.4,gpt-5.4,low,true,214161,619393,5662
+airplane-mode-on,Turn on airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603555,2495495,3695
+airplane-mode-off,Turn off airplane mode,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,true,297868,617576,13506
+set-alarm-5pm,Set an alarm for 5:00 PM,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,603447,3180170,3946
+uninstall-app,Uninstall the Firefox Focus app,claude-claude-sonnet-4-6,claude-sonnet-4-6,low,false,606527,3627461,5030
